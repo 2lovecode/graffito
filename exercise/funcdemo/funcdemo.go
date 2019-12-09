@@ -14,12 +14,12 @@ func trace(s string) string {
 	return s
 }
 
-func untrace(s string) {
+func unTrace(s string) {
 	fmt.Println("esc:", s)
 }
 
 func min(a int, b ...int) (min int) {
-	defer untrace(trace("min"))
+	defer unTrace(trace("min"))
 	min = a
 	for _, v := range b {
 		if v < min {
