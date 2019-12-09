@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+import "reflect"
+
 func main() {
 	var a1 [4]int
 	a2 := new([4]int)
@@ -19,4 +21,15 @@ func main() {
 	fmt.Println(a2)
 	fmt.Println(s1)
 	fmt.Println(s2)
+
+	//
+	a3 := [...]int{10, 20, 30, 40, 50}
+	for _, item := range a3 {
+		item *= 2
+	}
+	fmt.Println(reflect.TypeOf(a3).String())
+	fmt.Println(a3)
+
+	fmt.Println(len(a3[2:2]))
+	fmt.Println(len(a3[2:3]))
 }
