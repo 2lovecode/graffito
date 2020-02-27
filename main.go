@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"graffito/modules"
 	"os"
 )
 
@@ -11,6 +12,7 @@ type params struct {
 	module string
 	task string
 }
+
 
 var p params
 
@@ -28,6 +30,11 @@ func main() {
 	if p.help {
 		flag.Usage()
 	}
+	modules.Run(modules.InputParams{
+		Module:p.module,
+		Task:   p.task,
+		Params: nil,
+	})
 }
 
 func usage() {

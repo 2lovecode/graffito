@@ -1,4 +1,4 @@
-package main
+package tools
 
 import (
 	"fmt"
@@ -75,7 +75,7 @@ var first = [256]uint8{
 	s5, s6, s6, s6, s7, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, // 0xF0-0xFF
 }
 
-func main() {
+func ByteChar() {
 	s1 := "asSASA ddd dsjkdsjs dk"
 	s2 := "asSASA ddd dsjkdsjsこん dk"
 	fmt.Println(len(s1))
