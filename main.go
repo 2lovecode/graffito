@@ -5,12 +5,15 @@ import (
 	"fmt"
 	"graffito/modules"
 	"os"
+	"strconv"
+	g_params "graffito/utils/params"
 )
 
 type params struct {
 	help bool
 	module string
 	task string
+	f string
 }
 
 
@@ -21,6 +24,7 @@ func init() {
 	flag.BoolVar(&p.help, "h",false, "帮助")
 	flag.StringVar(&p.module,"m", "tools", "指定模块名")
 	flag.StringVar(&p.task,"t", "hello", "指定选定模块下需要执行的任务名")
+	flag.StringVar(&p.f,"f", "", "文件路径")
 
 	flag.Usage = usage
 }
@@ -30,19 +34,34 @@ func main() {
 	if p.help {
 		flag.Usage()
 	}
-	modules.Run(modules.InputParams{
-		Module:p.module,
+
+	paramsMap := map[string]interface{}{}
+	inputParams := g_params.NewInputParams()
+	for k,v := range flag.Args() {
+		paramsMap[inputParams.GetInputPrefix()+strconv.Itoa(k)] = v
+	}
+	inputParams.FileList = []string{p.f}
+	inputParams.InputNum = flag.NArg()
+	inputParams.ParamsMap = paramsMap
+
+	modules.Run(g_params.CommandParams{
+		Module: p.module,
 		Task:   p.task,
-		Params: nil,
-	})
+	}, inputParams)
 }
 
 func usage() {
-	fmt.Fprintf(os.Stderr, `graffito version: 0.0.0
+	_, err := fmt.Fprintf(os.Stderr, `graffito version: 0.0.0
 用法: go run main.go [-m module] [-t task] [-h]
 
 选项:
 
 `)
-	flag.PrintDefaults()
+	if err != nil {
+		fmt.Println("Unknown Error!")
+	} else {
+		flag.PrintDefaults()
+	}
 }
+
+

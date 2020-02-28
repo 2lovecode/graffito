@@ -2,6 +2,8 @@ package tools
 
 import (
 	"fmt"
+	g_params "graffito/utils/params"
+	"strconv"
 )
 
 const (
@@ -75,16 +77,16 @@ var first = [256]uint8{
 	s5, s6, s6, s6, s7, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, // 0xF0-0xFF
 }
 
-func ByteChar() {
-	s1 := "asSASA ddd dsjkdsjs dk"
-	s2 := "asSASA ddd dsjkdsjsこん dk"
-	fmt.Println(len(s1))
-	fmt.Println(len(s2))
-	fmt.Println(ccc(s1))
-	fmt.Println(ccc(s2))
+func CalcCharNum(params g_params.InputParamsInterface) {
+	inputNum := params.GetInputNum()
+	input := ""
+	for i := 0; i < inputNum; i++ {
+		input = params.GetString(params.GetInputPrefix()+strconv.Itoa(i))
+		fmt.Println(input, " 字符数为 :", calc(input))
+	}
 }
 
-func ccc(s string) (n int) {
+func calc(s string) (n int) {
 	ns := len(s)
 	for i := 0; i < ns; n++ {
 		c := s[i]
