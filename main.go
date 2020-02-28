@@ -52,7 +52,7 @@ func main() {
 
 func usage() {
 	_, err := fmt.Fprintf(os.Stderr, `graffito version: 0.0.0
-用法: go run main.go [-m module] [-t task] [-f filepath] [-h] [...]
+用法: go run cache.go [-m module] [-t task] [-f filepath] [-h] [...]
 
 选项:
 

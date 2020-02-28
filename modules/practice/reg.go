@@ -20,5 +20,6 @@ func (mine PracticeModule)GetModuleName() string {
 func (mine PracticeModule)Register() map[string]interface{}{
 	return map[string]interface{}{
 		"zktest": ZkTest,
+		"cache" : CacheRun,
 	}
 }
