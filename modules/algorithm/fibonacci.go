@@ -1,28 +1,32 @@
-package main
+package algorithm
+
+// ##### 两种方式
+//    1.正常
+//    2.使用内存缓存
 
 import (
 	"fmt"
 	"time"
 )
 
-const cnt int = 45
+const cnt int = 30
 
 var mem [cnt]uint64
 
-func main() {
+func FibonacciRun() {
 	start := time.Now()
 	for i := 0; i < cnt; i++ {
-		fibonacci(i)
+		fmt.Print(fibonacci(i), ",")
 	}
 	end := time.Now()
-	fmt.Println("run time is:", end.Sub(start))
+	fmt.Println("not use mem cache run time is:", end.Sub(start))
 
 	s := time.Now()
 	for i := 0; i < cnt; i++ {
-		fibonacciUseMem(i)
+		fmt.Print(fibonacciUseMem(i), ",")
 	}
 	e := time.Now()
-	fmt.Println("run time is:", e.Sub(s))
+	fmt.Println("use mem cache run time is:", e.Sub(s))
 }
 
 func fibonacci(n int) (num uint64) {

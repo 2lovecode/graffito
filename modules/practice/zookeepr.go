@@ -1,15 +1,32 @@
-package main
+package practice
 
 import (
 	"fmt"
+	"github.com/samuel/go-zookeeper/zk"
+	g_params "graffito/utils/params"
+	"strconv"
 	"time"
 )
+
+func ZkTest(params g_params.InputParamsInterface) {
+	input := params.GetString(params.GetInputPrefix()+strconv.Itoa(0))
+	switch input {
+	case "test1":
+		zkTest1()
+	case "test2":
+		zkTest2()
+	case "test3":
+		zkTest3()
+	default:
+		fmt.Println("需要加参数【test1 | test2 | test3】")
+	}
+}
 
 /**
  * 获取一个zk连接
  * @return {[type]}
  */
-func getConnect(zkList []string) (conn *zk.Conn) {
+func zkGetConnect(zkList []string) (conn *zk.Conn) {
 	conn, _, err := zk.Connect(zkList, 10*time.Second)
 	if err != nil {
 		fmt.Println(err)
@@ -21,9 +38,9 @@ func getConnect(zkList []string) (conn *zk.Conn) {
  * 测试连接
  * @return
  */
-func test1() {
+func zkTest1() {
 	zkList := []string{"localhost:2183"}
-	conn := getConnect(zkList)
+	conn := zkGetConnect(zkList)
 
 	defer conn.Close()
 	conn.Create("/go_servers", nil, 0, zk.WorldACL(zk.PermAll))
@@ -35,9 +52,9 @@ func test1() {
  * 测试临时节点
  * @return {[type]}
  */
-func test2() {
+func zkTest2() {
 	zkList := []string{"localhost:2183"}
-	conn := getConnect(zkList)
+	conn := zkGetConnect(zkList)
 
 	defer conn.Close()
 	conn.Create("/testadaadsasdsaw", nil, zk.FlagEphemeral, zk.WorldACL(zk.PermAll))
@@ -48,9 +65,9 @@ func test2() {
 /**
  * 获取所有节点
  */
-func test3() {
+func zkTest3() {
 	zkList := []string{"localhost:2183"}
-	conn := getConnect(zkList)
+	conn := zkGetConnect(zkList)
 
 	defer conn.Close()
 
@@ -59,8 +76,4 @@ func test3() {
 		fmt.Println(err)
 	}
 	fmt.Printf("%v \n", children)
-}
-
-func main() {
-	test1()
 }

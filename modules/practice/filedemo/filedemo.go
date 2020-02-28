@@ -66,8 +66,8 @@ func main() {
 
 	runtimePath, _ := os.Getwd()
 
-	from := runtimePath + "/exercise/filedemo/from.dat"
-	to := runtimePath + "/exercise/filedemo/to.dat"
+	from := runtimePath + "/practice/filedemo/from.dat"
+	to := runtimePath + "/practice/filedemo/to.dat"
 
 	fmt.Println(from)
 	fmt.Println("123456")

@@ -1,4 +1,4 @@
-package main
+package algorithm
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"runtime"
 )
 
-func main() {
+func QuickSortRun() {
 	where()
 	func(a int, b int) { fmt.Println(a + b) }(1, 3)
 	where()

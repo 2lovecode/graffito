@@ -18,8 +18,11 @@
         - unix: 
             - ./graffito -m tools -t hello param1 param2
     
-#### 二.模块列表
+#### 二. 模块列表
 | 功能  | 所属模块  | 用法                       |简介       |
 | :---  | :------  | :------------------------  | :-------------- |
 | hello |  tools   | -m tools -t hello          |                  |
 | ccnum |    -     | -m tools -t ccnum abc 你好 | 统计字符串字符数 |
+| zktest | practice | -m practice -t zktest test1 | zookeepr连接demo |
+| fibo | alg | -m alg -t fibo  | 两种Fibonacci生成方式对比 |
+| qsort | - | -m alg -t qsort  | 快速排序实现 |
