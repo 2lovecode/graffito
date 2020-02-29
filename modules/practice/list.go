@@ -1,11 +1,11 @@
-package main
+package practice
 
 import (
 	"container/list"
 	"fmt"
 )
 
-func main() {
+func ListRun() {
 	l := list.New()
 
 	l.PushFront(2)

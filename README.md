@@ -25,5 +25,6 @@
 | ccnum |    -     | -m tools -t ccnum abc 你好 | 统计字符串字符数 |
 | zktest | practice | -m practice -t zktest test1 | zookeepr连接demo |
 | cache | - | -m practice -t cache | 缓存穿透及解决方案对比 |
+| list | - | -m practice -t list | list包使用 |
 | fibo | alg | -m alg -t fibo  | 两种Fibonacci生成方式对比 |
 | qsort | - | -m alg -t qsort  | 快速排序实现 |

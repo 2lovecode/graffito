@@ -2,7 +2,6 @@ package practice
 
 
 func init() {
-
 }
 
 type PracticeModule struct {
@@ -21,5 +20,6 @@ func (mine PracticeModule)Register() map[string]interface{}{
 	return map[string]interface{}{
 		"zktest": ZkTest,
 		"cache" : CacheRun,
+		"list" : ListRun,
 	}
 }
