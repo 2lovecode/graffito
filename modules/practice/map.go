@@ -1,10 +1,11 @@
-package main
+package practice
 
 import (
 	"fmt"
 	"sort"
 )
-func main() {
+
+func MapRun() {
 	//map是无序的
 	gc := map[string]string{"a": "aaa", "b": "bbbbbbb", "c": "cccc"}
 	for index, item := range gc {

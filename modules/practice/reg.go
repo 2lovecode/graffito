@@ -21,5 +21,8 @@ func (mine PracticeModule)Register() map[string]interface{}{
 		"zktest": ZkTest,
 		"cache" : CacheRun,
 		"list" : ListRun,
+		"map" : MapRun,
+		"string" : StringRun,
+		"json" : JsonRun,
 	}
 }
