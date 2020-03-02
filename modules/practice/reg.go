@@ -31,7 +31,6 @@ func (mine PracticeModule)Register() map[string]interface{}{
 		"fcopy": FileCopyRun,
 		"channel": ChannelRun,
 		"routine": RoutineRun,
-		"beego": BeegoRun,
 		"gin" : GinRun,
 		"http": HttpRun,
 	}

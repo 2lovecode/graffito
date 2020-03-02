@@ -2,8 +2,8 @@ package modules
 
 import (
 	"errors"
-	"fmt"
 	"github.com/codegangsta/inject"
+	"graffito/utils/logging"
 	g_params "graffito/utils/params"
 )
 
@@ -22,10 +22,10 @@ func Run(command g_params.CommandParams, params g_params.InputParams) {
 	if err == nil {
 		_, e := inj.Invoke(s)
 		if e != nil {
-			fmt.Println(e)
+			logging.TLog.Error(e)
 		}
 	} else {
-		fmt.Println(err)
+		logging.TLog.Error(err)
 	}
 }
 
