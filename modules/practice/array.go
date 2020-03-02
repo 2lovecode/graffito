@@ -1,10 +1,11 @@
-package main
+package practice
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
-import "reflect"
-
-func main() {
+func ArrayRun() {
 	var a1 [4]int
 	a2 := new([4]int)
 	var s1, s2 []int

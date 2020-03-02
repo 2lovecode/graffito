@@ -1,4 +1,4 @@
-package main
+package practice
 
 import (
 	"fmt"
@@ -8,8 +8,8 @@ import (
 )
 
 type person struct {
-	Name string	"person name"
-	Age int 	"person age"
+	Name string	`json:"name"`
+	Age int 	`json:"age"`
 }
 
 type a1 struct {
@@ -29,7 +29,7 @@ func typeTag(p person, idx int) {
 	fmt.Println(tt.Tag)
 }
 
-func main() {
+func StructRun() {
 	im := big.NewInt(2)
 	in := im
 	io := big.NewInt(1)

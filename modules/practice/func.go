@@ -1,8 +1,8 @@
-package main
+package practice
 
 import "fmt"
 
-func main() {
+func FunctionRun() {
 	a := 2
 	b := []int{9, 4, 1, 3, 10}
 	fmt.Println(min(a, b...))

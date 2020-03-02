@@ -1,7 +1,7 @@
-package main
+package practice
 
 import "github.com/astaxie/beego"
 
-func main() {
+func BeegoRun() {
 	beego.Run()
 }

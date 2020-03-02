@@ -29,5 +29,14 @@
 | string | - | -m practice -t string | string使用 |
 | json | - | -m practice -t json | json使用 |
 | map | - | -m practice -t map | map使用 |
+| struct | - | -m practice -t struct | struct使用 |
+| interface | - | -m practice -t interface | interface使用 |
+| func | - | -m practice -t func | func使用 |
+| arr | - | -m practice -t arr | array使用 |
+| fcopy | - | -m practice -t fcopy | file使用 |
+| channel | - | -m practice -t channel | channel使用 |
+| routine | - | -m practice -t routine | routine使用 |
+| beego | - | -m practice -t beego | beego使用 |
+| gin | - | -m practice -t gin | gin使用 |
 | fibo | alg | -m alg -t fibo  | 两种Fibonacci生成方式对比 |
 | qsort | - | -m alg -t qsort  | 快速排序实现 |

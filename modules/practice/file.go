@@ -1,4 +1,4 @@
-package main
+package practice
 
 import (
 	"fmt"
@@ -39,35 +39,12 @@ func cat(f *os.File) {
 	}
 }
 
-func main() {
-	//var msg, hh string
-	//var err error
-	//
-	//fmt.Scanln(&hh)
-	//
-	//fmt.Println(hh, "morning")
-	//
-	//mReader := bufio.NewReader(os.Stdin)
-	//
-	//msg, err = mReader.ReadString('\n')
-	//
-	//if err == nil {
-	//	fmt.Println(msg)
-	//} else {
-	//	fmt.Println("Error")
-	//}
-	//
-	//fileHandle, err := os.Open("")
-	//if err != nil {
-	//	fmt.Println(err)
-	//	return
-	//}
-	//defer fileHandle.Close()
+func FileCopyRun() {
 
 	runtimePath, _ := os.Getwd()
 
-	from := runtimePath + "/practice/filedemo/from.dat"
-	to := runtimePath + "/practice/filedemo/to.dat"
+	from := runtimePath + "/modules/practice/data/file/from.dat"
+	to := runtimePath + "/modules/practice/data/file/to.dat"
 
 	fmt.Println(from)
 	fmt.Println("123456")

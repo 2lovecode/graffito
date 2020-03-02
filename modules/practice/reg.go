@@ -24,5 +24,15 @@ func (mine PracticeModule)Register() map[string]interface{}{
 		"map" : MapRun,
 		"string" : StringRun,
 		"json" : JsonRun,
+		"struct": StructRun,
+		"interface": InterfaceRun,
+		"func": FunctionRun,
+		"arr": ArrayRun,
+		"fcopy": FileCopyRun,
+		"channel": ChannelRun,
+		"routine": RoutineRun,
+		"beego": BeegoRun,
+		"gin" : GinRun,
+		"http": HttpRun,
 	}
 }

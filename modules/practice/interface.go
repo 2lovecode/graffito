@@ -1,4 +1,4 @@
-package main
+package practice
 
 import (
 	"fmt"
@@ -56,7 +56,7 @@ func (l *Ll) At(i int) Ele {
 	return l.a[i]
 }
 
-func main() {
+func InterfaceRun() {
 	var s shape
 
 	q := &square{2, 5}
@@ -116,5 +116,5 @@ func main() {
 
 	fmt.Println(v)
 	fmt.Println(v.Interface())
-	
+
 }
