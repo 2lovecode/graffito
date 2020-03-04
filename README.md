@@ -47,4 +47,4 @@
 ##### 1. 设计模式
 |  功能 | 命令                       |简介       |
 | :---  | :------------------------  | :-------------- |
-| factory | -m practice -t pattern factory          |   工厂模式实现               |
+| builder | -m practice -t pattern builder          |   构建者模式实现               |

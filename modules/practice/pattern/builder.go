@@ -29,11 +29,11 @@ type PhoneInterface interface {
 	Call()
 }
 
-//手机工厂接口
-type PhoneFactory interface {
-	Size(size PhoneSize) PhoneFactory
-	Color(color PhoneColor) PhoneFactory
-	SimCard(sim PhoneSim) PhoneFactory
+//手机构造接口
+type PhoneBuilder interface {
+	Size(size PhoneSize) PhoneBuilder
+	Color(color PhoneColor) PhoneBuilder
+	SimCard(sim PhoneSim) PhoneBuilder
 	Build() PhoneInterface
 }
 
@@ -50,31 +50,31 @@ func (mine MPhone) Call() {
 }
 
 
-//实现手机工厂接口的MPhone工厂
-type MPhoneFactory struct {
+//实现手机构建者接口的MPhone构建者
+type MPhoneBuilder struct {
 	phone MPhone
 }
 
-func NewMPhoneFactory() MPhoneFactory {
-	return MPhoneFactory{phone:MPhone{}}
+func NewMPhoneBuilder() MPhoneBuilder {
+	return MPhoneBuilder{phone:MPhone{}}
 }
 
-func (mine MPhoneFactory) Size(size PhoneSize) MPhoneFactory {
+func (mine MPhoneBuilder) Size(size PhoneSize) MPhoneBuilder {
 	mine.phone.Size = size
 	return mine
 }
 
-func (mine MPhoneFactory) Color(color PhoneColor) MPhoneFactory {
+func (mine MPhoneBuilder) Color(color PhoneColor) MPhoneBuilder {
 	mine.phone.Color = color
 	return mine
 }
 
-func (mine MPhoneFactory) SimCard(sim PhoneSim) MPhoneFactory {
+func (mine MPhoneBuilder) SimCard(sim PhoneSim) MPhoneBuilder {
 	mine.phone.SimCard = sim
 	return mine
 }
 
-func (mine MPhoneFactory) Build() MPhone {
+func (mine MPhoneBuilder) Build() MPhone {
 	return mine.phone
 }
 

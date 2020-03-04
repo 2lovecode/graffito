@@ -10,8 +10,8 @@ func PatternRun(p params.InputParamsInterface) {
 	key := p.GetInputPrefix() + "0"
 	input := p.GetString(key)
 	switch input {
-	case "factory":
-		patternFactory()
+	case "builder":
+		patternBuilder()
 	default:
 		patternList()
 	}
@@ -19,12 +19,12 @@ func PatternRun(p params.InputParamsInterface) {
 
 func patternList(){
 	fmt.Println("可使用的参数列表：", []string{
-		"factory",
+		"builder",
 	})
 }
 
-func patternFactory() {
-	mFactory := pattern.NewMPhoneFactory()
+func patternBuilder() {
+	mFactory := pattern.NewMPhoneBuilder()
 
 	mPhoneOne := mFactory.Size(pattern.SizeBig).Color(pattern.ColorBlue).SimCard(pattern.SimYiDong).Build()
 	mPhoneTwo := mFactory.Size(pattern.SizeSmall).Color(pattern.ColorRed).SimCard(pattern.SimLianTong).Build()
