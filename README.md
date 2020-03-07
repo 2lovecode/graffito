@@ -23,7 +23,8 @@
 | :---  | :------  | :------------------------  | :-------------- |
 | hello |  tools   | -m tools -t hello          |                  |
 | ccnum |    -     | -m tools -t ccnum abc 你好 | 统计字符串字符数 |
-| zktest | practice | -m practice -t zktest test1 | zookeepr连接demo |
+| pattern | practice | -m practice -t pattern | 设计模式实践 |
+| zktest | - | -m practice -t zktest test1 | zookeepr连接demo |
 | cache | - | -m practice -t cache | 缓存穿透及解决方案对比 |
 | list | - | -m practice -t list | list包使用 |
 | string | - | -m practice -t string | string使用 |
@@ -40,3 +41,10 @@
 | gin | - | -m practice -t gin | gin使用 |
 | fibo | alg | -m alg -t fibo  | 两种Fibonacci生成方式对比 |
 | qsort | - | -m alg -t qsort  | 快速排序实现 |
+
+
+#### 三. 子功能列表
+##### 1. 设计模式
+|  功能 | 命令                       |简介       |
+| :---  | :------------------------  | :-------------- |
+| builder | -m practice -t pattern builder          |   构建者模式实现               |

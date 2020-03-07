@@ -33,5 +33,7 @@ func (mine PracticeModule)Register() map[string]interface{}{
 		"routine": RoutineRun,
 		"gin" : GinRun,
 		"http": HttpRun,
+		"pattern": PatternRun,
+		"sync": SyncRun,
 	}
 }
