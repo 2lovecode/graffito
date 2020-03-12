@@ -41,6 +41,7 @@
 | gin | - | -m practice -t gin | gin使用 |
 | fibo | alg | -m alg -t fibo  | 两种Fibonacci生成方式对比 |
 | qsort | - | -m alg -t qsort  | 快速排序实现 |
+| parallel | exp | -m exp -t parallel  | 具有依赖关系的并行调用解决方案 |
 
 
 #### 三. 子功能列表
