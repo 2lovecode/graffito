@@ -6,6 +6,16 @@ import (
 )
 
 func MapRun() {
+	//map赋值是指针赋值
+	map1 := map[string]string{
+		"a" : "b",
+	}
+	var map2 map[string]string
+
+	map2 = map1
+
+	map2["c"] = "d"
+	fmt.Println(map1, map2)
 	//map是无序的
 	gc := map[string]string{"a": "aaa", "b": "bbbbbbb", "c": "cccc"}
 	for index, item := range gc {

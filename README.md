@@ -37,8 +37,8 @@
 | fcopy | - | -m practice -t fcopy | file使用 |
 | channel | - | -m practice -t channel | channel使用 |
 | routine | - | -m practice -t routine | routine使用 |
-| beego | - | -m practice -t beego | beego使用 |
 | gin | - | -m practice -t gin | gin使用 |
+| time | - | -m practice -t time | time使用 |
 | fibo | alg | -m alg -t fibo  | 两种Fibonacci生成方式对比 |
 | qsort | - | -m alg -t qsort  | 快速排序实现 |
 | parallel | exp | -m exp -t parallel  | 具有依赖关系的并行调用解决方案 |
