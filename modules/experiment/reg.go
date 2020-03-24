@@ -19,5 +19,6 @@ func (mine ExpModule)Register() map[string]interface{}{
 	return map[string]interface{}{
 		"parallel": ParallelRun,
 		"event": EventRun,
+		"permutation": PermutationRun,
 	}
 }
