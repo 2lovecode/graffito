@@ -14,7 +14,7 @@ func  (heap IntHeap) Push(value int) {
 	a := make(map[string]string, 1)
 	fmt.Println(a)
 }
-g
+
 func (heap IntHeap) Pop() (value int) {
 	return 0
 }
