@@ -58,9 +58,7 @@ func (heap *MaxIntHeap) up() {
 	parentKey := (currentKey + 1) / 2 - 1
 	for parentKey >= 0 {
 		if heap.Data[parentKey] < heap.Data[currentKey] {
-			tmp := heap.Data[parentKey]
-			heap.Data[parentKey] = heap.Data[currentKey]
-			heap.Data[currentKey] = tmp
+			heap.Data[parentKey], heap.Data[currentKey] = heap.Data[currentKey], heap.Data[parentKey]
 			currentKey = parentKey
 			parentKey = (currentKey + 1) / 2 - 1
 		} else {
@@ -80,9 +78,7 @@ func (heap *MaxIntHeap) down() {
 			tmpKey = rightKey
 		}
 		if heap.Data[currentKey] < heap.Data[tmpKey] {
-			tmp := heap.Data[currentKey]
-			heap.Data[currentKey] = heap.Data[tmpKey]
-			heap.Data[tmpKey] = tmp
+			heap.Data[currentKey], heap.Data[tmpKey] = heap.Data[tmpKey], heap.Data[currentKey]
 		} else {
 			break
 		}
