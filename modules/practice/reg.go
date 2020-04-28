@@ -1,6 +1,5 @@
 package practice
 
-
 func init() {
 }
 
@@ -23,18 +22,17 @@ func (mine PracticeModule)Register() map[string]interface{}{
 		"list" : ListRun,
 		"map" : MapRun,
 		"string" : StringRun,
-		"json" : JsonRun,
-		"struct": StructRun,
+		"json" :     JsonRun,
+		"struct":    StructRun,
 		"interface": InterfaceRun,
-		"func": FunctionRun,
-		"arr": ArrayRun,
-		"fcopy": FileCopyRun,
-		"channel": ChannelRun,
-		"routine": RoutineRun,
-		"gin" : GinRun,
-		"http": HttpRun,
-		"pattern": PatternRun,
-		"sync": SyncRun,
-		"time": TimeRun,
+		"func":      FunctionRun,
+		"arr":       ArrayRun,
+		"fcopy":     FileCopyRun,
+		"channel":   ChannelRun,
+		"routine":   RoutineRun,
+		"gin" :      GinRun,
+		"http":      HttpRun,
+		"sync":      SyncRun,
+		"time":      TimeRun,
 	}
 }

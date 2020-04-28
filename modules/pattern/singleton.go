@@ -1,6 +1,9 @@
 package pattern
 
-import "sync"
+import (
+	"fmt"
+	"sync"
+)
 
 var singletonOnce sync.Once
 var instance Earth
@@ -14,4 +17,15 @@ func NewSingleton() Earth {
 		instance = Earth{}
 	})
 	return instance
+}
+
+
+func SingletonRun() {
+	earth := NewSingleton()
+	earth.Name = "地球"
+
+	earth2 := NewSingleton()
+
+	fmt.Println("earth:", earth.Name)
+	fmt.Println("earth2", earth2.Name)
 }

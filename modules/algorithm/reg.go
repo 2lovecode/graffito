@@ -18,5 +18,6 @@ func (mine AlgModule)Register() map[string]interface{}{
 		"fibo" : FibonacciRun,
 		"qsort" : QuickSortRun,
 		"heap" : HeapRun,
+		"hash" : HashRun,
 	}
 }
