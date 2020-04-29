@@ -157,7 +157,7 @@ func hashFunc(key string, mapLen int) int {
 func HashRun() {
 	/*
 		1.数组 -- 可通过下标随机访问 -- O(1)
-		2.hash函数计算出的值必须分布均匀 -- 信息论【信息的压缩】
+		2.hash函数计算出的值必须随机且均匀分布 -- 信息论【信息的压缩】
 		3.hash函数的时间和空间复杂度
 		4.装载因子 -- 衡量冲突的概率 -- 通过扩容重散列降低装载因子
 	 */
@@ -170,8 +170,13 @@ func HashRun() {
 		//"k-6" : "v-6",
 		//"k-7" : "v-7",
 	}
-	//开放寻址法解决冲突
-	//开放寻址，有不同实现。最简单的实现:不断往下寻找第一个为空的位置。
+	/**
+		开放寻址法解决冲突
+		开放寻址，有不同实现
+			线性探测 - 实现
+			二次探测
+			双重散列
+	 */
 	fmt.Println("===开放寻址处理冲突===")
 	openAddrHash := NewOpenAddrHash(5)
 	BatchPut(openAddrHash, testData)
