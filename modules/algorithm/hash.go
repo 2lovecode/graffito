@@ -143,6 +143,51 @@ func (lh *LinkHash) Get(key string) string {
 	return lh.List[hashKey].Find(key).Value
 }
 
+type LinkReHash struct {
+	List []*LinkNode
+	Len int
+}
+
+func NewLinkReHash(cap int) *LinkReHash {
+	lh := &LinkReHash{
+		List : make([]*LinkNode, cap),
+		Len : 0,
+	}
+	for i := 0; i < cap; i++ {
+		lh.List[i] = NewLinkNode()
+	}
+	return lh
+}
+
+func (lh *LinkReHash) Put(key string, value string) {
+	mapLen := len(lh.List)
+	if float32(lh.Len) / float32(mapLen) >= 1.2 {
+		newMapLen := mapLen * 2
+		newList := make([]*LinkNode, newMapLen)
+		for i := 0; i < newMapLen; i++ {
+			newList[i] = NewLinkNode()
+		}
+		for _, v := range lh.List {
+			for v.Next != nil {
+				v = v.Next
+				newHashKey := hashFunc(v.Key, newMapLen)
+				newList[newHashKey].Find(v.Key).Add(v.Key, v.Value)
+			}
+		}
+		lh.List = newList
+		mapLen = newMapLen
+	}
+	hashKey := hashFunc(key, mapLen)
+	lh.List[hashKey].Find(key).Add(key, value)
+	lh.Len++
+}
+
+func (lh *LinkReHash) Get(key string) string {
+	mapLen := len(lh.List)
+	hashKey := hashFunc(key, mapLen)
+	return lh.List[hashKey].Find(key).Value
+}
+
 func hashFunc(key string, mapLen int) int {
 	m := md5.New()
 	m.Write([]byte(key))
@@ -191,9 +236,9 @@ func HashRun() {
 
 	//装载因子-重散列
 	fmt.Println("===分离链表-重散列===")
-	linkHash1 := NewLinkHash(2)
-	BatchPut(linkHash1, testData)
-	BatchGet(linkHash1, testData)
+	linkReHash := NewLinkReHash(2)
+	BatchPut(linkReHash, testData)
+	BatchGet(linkReHash, testData)
 
 	//
 }
