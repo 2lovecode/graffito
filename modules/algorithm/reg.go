@@ -15,6 +15,8 @@ func (mine AlgModule)GetModuleName() string {
 
 func (mine AlgModule)Register() map[string]interface{}{
 	return map[string]interface{}{
+		"array": ArrayRun,
+		"link": LinkRun,
 		"fibo" : FibonacciRun,
 		"qsort" : QuickSortRun,
 		"heap" : HeapRun,
