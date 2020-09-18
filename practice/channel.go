@@ -1,16 +1,14 @@
-package practice
+package main
 
 import (
 	"fmt"
-	"graffito/utils/params"
 	"os"
 	"time"
 )
 
 
-func ChannelRun(params params.InputParamsInterface) {
-	key := params.GetInputPrefix() + "0"
-	input := params.GetString(key)
+func main() {
+	input := "test1"
 	switch input {
 	case "test1":
 		channelTest1()

@@ -1,4 +1,4 @@
-package practice
+package main
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func RoutineRun(p params.InputParamsInterface) {
+func main() {
 	key := p.GetInputPrefix() + "0"
 	input := p.GetString(key)
 	switch input {

@@ -1,4 +1,4 @@
-package practice
+package main
 
 import (
 	"fmt"
@@ -39,16 +39,13 @@ func cat(f *os.File) {
 	}
 }
 
-func FileCopyRun() {
-
+func main() {
 	runtimePath, _ := os.Getwd()
 
-	from := runtimePath + "/modules/practice/data/file/from.dat"
-	to := runtimePath + "/modules/practice/data/file/to.dat"
+	from := runtimePath + "/data/file/from.dat"
+	to := runtimePath + "/data/file/to.dat"
 
 	fmt.Println(from)
 	fmt.Println("123456")
 	copyFile(from, to)
-
-
 }

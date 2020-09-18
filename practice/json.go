@@ -1,4 +1,4 @@
-package practice
+package main
 
 import (
 	"encoding/json"
@@ -15,7 +15,7 @@ type vcard struct {
 	Addr []*address
 }
 
-func JsonRun() {
+func main() {
 	addr1 := &address{"beijing", "china"}
 	addr2 := &address{"tianjing", "china"}
 

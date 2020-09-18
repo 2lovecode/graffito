@@ -1,4 +1,4 @@
-package practice
+package main
 
 import (
 	"fmt"
@@ -29,7 +29,7 @@ func typeTag(p person, idx int) {
 	fmt.Println(tt.Tag)
 }
 
-func StructRun() {
+func main() {
 	im := big.NewInt(2)
 	in := im
 	io := big.NewInt(1)

@@ -1,4 +1,4 @@
-package pattern
+package lib
 
 import "fmt"
 
@@ -59,11 +59,4 @@ func NewPc(t PcType) Pc{
 	}
 
 	return p
-}
-
-
-func FactoryRun() {
-	NewPc(TypeLenovo).RunPrint()
-	NewPc(TypeDell).RunPrint()
-	NewPc(TypeHp).RunPrint()
 }

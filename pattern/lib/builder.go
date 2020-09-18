@@ -1,4 +1,4 @@
-package pattern
+package lib
 
 import "fmt"
 
@@ -78,14 +78,6 @@ func (mine MPhoneBuilder) Build() MPhone {
 	return mine.phone
 }
 
-func BuilderRun() {
-	mBuilder := NewMPhoneBuilder()
 
-	mPhoneOne := mBuilder.Size(SizeBig).Color(ColorBlue).SimCard(SimYiDong).Build()
-	mPhoneTwo := mBuilder.Size(SizeSmall).Color(ColorRed).SimCard(SimLianTong).Build()
-
-	mPhoneOne.Call()
-	mPhoneTwo.Call()
-}
 
 

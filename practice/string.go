@@ -1,4 +1,4 @@
-package practice
+package main
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func StringRun() {
+func main() {
 	s1 := "Heeeee, Goood"
 	hasPrefix := strings.HasPrefix(s1, "He")
 	fmt.Println(hasPrefix)

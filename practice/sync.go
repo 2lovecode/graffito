@@ -1,11 +1,11 @@
-package practice
+package main
 
 import (
 	"fmt"
 	"sync"
 )
 
-func SyncRun() {
+func main() {
 	var once sync.Once
 	ch := make(chan bool)
 	for i := 0; i < 10; i++ {

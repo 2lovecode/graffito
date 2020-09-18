@@ -1,22 +1,49 @@
-package practice
+package main
 
 import (
+	"flag"
 	"fmt"
-	"graffito/utils/params"
 	"io/ioutil"
 	"net/http"
+	"os"
 )
 
-func HttpRun(p params.InputParamsInterface) {
-	key := p.GetInputPrefix() + "0"
-	input := p.GetString(key)
-	switch input {
-	case "client":
-		httpClientRun()
-	case "server":
-		httpServerRun()
-	default:
-		fmt.Println("请输入参数 client/server")
+type params struct {
+	help bool
+	client bool
+}
+
+
+var p params
+
+func init() {
+	flag.BoolVar(&p.help, "h",false, "帮助")
+	flag.BoolVar(&p.client,"c", false, "客户端模式")
+	flag.Usage = usage
+}
+
+func usage() {
+	_, err := fmt.Fprintf(os.Stderr, `http version: 0.0.0
+用法: go run http.go [-c client] [-h]
+
+`)
+	if err != nil {
+		fmt.Println("Unknown Error!")
+	} else {
+		flag.PrintDefaults()
+	}
+}
+
+func main() {
+	flag.Parse()
+	if p.help {
+		flag.Usage()
+	} else {
+		if p.client {
+			httpClientRun()
+		} else {
+			httpServerRun()
+		}
 	}
 }
 func httpClientRun() {

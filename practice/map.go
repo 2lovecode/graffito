@@ -1,11 +1,11 @@
-package practice
+package main
 
 import (
 	"fmt"
 	"sort"
 )
 
-func MapRun() {
+func main() {
 	//map赋值是指针赋值
 	map1 := map[string]string{
 		"a" : "b",
