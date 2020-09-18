@@ -1,4 +1,4 @@
-package experiment
+package main
 
 //DFA AC 中文分词
 

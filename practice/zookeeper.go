@@ -1,15 +1,14 @@
-package practice
+package main
 
 import (
 	"fmt"
 	"github.com/samuel/go-zookeeper/zk"
-	g_params "graffito/utils/params"
-	"strconv"
 	"time"
 )
 
-func ZkTest(params g_params.InputParamsInterface) {
-	input := params.GetString(params.GetInputPrefix()+strconv.Itoa(0))
+func main() {
+	input := "test1"
+
 	switch input {
 	case "test1":
 		zkTest1()

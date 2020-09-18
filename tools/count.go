@@ -1,9 +1,9 @@
-package tools
+package main
 
 import (
+	"flag"
 	"fmt"
-	g_params "graffito/utils/params"
-	"strconv"
+	"os"
 )
 
 const (
@@ -77,15 +77,6 @@ var first = [256]uint8{
 	s5, s6, s6, s6, s7, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, // 0xF0-0xFF
 }
 
-func CalcCharNum(params g_params.InputParamsInterface) {
-	inputNum := params.GetInputNum()
-	input := ""
-	for i := 0; i < inputNum; i++ {
-		input = params.GetString(params.GetInputPrefix()+strconv.Itoa(i))
-		fmt.Println(input, " 字符数为 :", calc(input))
-	}
-}
-
 func calc(s string) (n int) {
 	ns := len(s)
 	for i := 0; i < ns; n++ {
@@ -118,4 +109,40 @@ func calc(s string) (n int) {
 		i += size
 	}
 	return n
+}
+
+type params struct {
+	help bool
+	input string
+}
+
+
+var p params
+
+func init() {
+	flag.BoolVar(&p.help, "h",false, "帮助")
+	flag.StringVar(&p.input,"i", "input", "输入值")
+	flag.Usage = usage
+}
+
+func main() {
+	flag.Parse()
+	if p.help {
+		flag.Usage()
+	} else {
+		fmt.Println("原字符串为 : ", p.input)
+		fmt.Println("字符数为 : ", calc(p.input))
+	}
+}
+
+func usage() {
+	_, err := fmt.Fprintf(os.Stderr, `str_count version: 0.0.0
+用法: go run str_count.go [-i input] [-h]
+
+`)
+	if err != nil {
+		fmt.Println("Unknown Error!")
+	} else {
+		flag.PrintDefaults()
+	}
 }

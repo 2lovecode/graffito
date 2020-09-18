@@ -1,8 +1,8 @@
-package experiment
+package main
 
 import (
 	"fmt"
-	"graffito/modules/experiment/event"
+	"graffito/experiment/event"
 	"graffito/utils/params"
 )
 
@@ -25,7 +25,7 @@ func (mine *MyPhone) Execute(p params.IPayload) {
 	}
 }
 
-func EventRun() {
+func main() {
 	mEvent := event.NewMEvent()
 
 	myC := &MyCar{}
