@@ -1,13 +1,13 @@
-package pattern
+package main
 
 import "graffito/pattern/lib"
 
 func main() {
-	mBuilder := lib.NewMPhoneBuilder()
+	iBuilder := lib.NewIPhoneBuilder()
 
-	mPhoneOne := mBuilder.Size(SizeBig).Color(ColorBlue).SimCard(SimYiDong).Build()
-	mPhoneTwo := mBuilder.Size(SizeSmall).Color(ColorRed).SimCard(SimLianTong).Build()
+	bbPhone := iBuilder.Size(lib.SizeBig).Color(lib.ColorBlue).SimCard(lib.SimYiDong).Build()
+	srPhone := iBuilder.Size(lib.SizeSmall).Color(lib.ColorRed).SimCard(lib.SimLianTong).Build()
 
-	mPhoneOne.Call()
-	mPhoneTwo.Call()
+	bbPhone.Call()
+	srPhone.Call()
 }

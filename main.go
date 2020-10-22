@@ -18,5 +18,3 @@ func main() {
 		ch <- "hello world"
 	}()
 }
-
-

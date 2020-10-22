@@ -5,16 +5,16 @@ import "fmt"
 //定义常量
 type PhoneSize string
 const (
-	SizeBig PhoneSize = "big"
-	SizeMiddle = "middle"
-	SizeSmall = "small"
+	SizeBig PhoneSize = "大尺寸"
+	SizeMiddle = "中等尺寸"
+	SizeSmall = "小尺寸"
 )
 
 type PhoneColor string
 const (
-	ColorRed PhoneColor = "red"
-	ColorGreen = "green"
-	ColorBlue = "blue"
+	ColorRed PhoneColor = "红色"
+	ColorGreen = "绿色"
+	ColorBlue = "蓝色"
 )
 
 type PhoneSim string
@@ -38,43 +38,45 @@ type PhoneBuilder interface {
 }
 
 
-//实现手机接口的MPhone
-type MPhone struct {
+//实现手机接口的IPhone
+type IPhone struct {
 	Size PhoneSize
 	Color PhoneColor
 	SimCard PhoneSim
 }
 
-func (mine MPhone) Call() {
+func (mine IPhone) Call() {
 	fmt.Printf("%s,%s,%s phone calling\n", mine.Size, mine.Color, mine.SimCard)
 }
 
 
-//实现手机构建者接口的MPhone构建者
-type MPhoneBuilder struct {
-	phone MPhone
+//实现手机构建者接口的构建者
+type IPhoneBuilder struct {
+	phone IPhone
 }
 
-func NewMPhoneBuilder() MPhoneBuilder {
-	return MPhoneBuilder{phone:MPhone{}}
+func NewIPhoneBuilder() PhoneBuilder {
+	return IPhoneBuilder{
+		phone:IPhone{},
+	}
 }
 
-func (mine MPhoneBuilder) Size(size PhoneSize) MPhoneBuilder {
+func (mine IPhoneBuilder) Size(size PhoneSize) PhoneBuilder {
 	mine.phone.Size = size
 	return mine
 }
 
-func (mine MPhoneBuilder) Color(color PhoneColor) MPhoneBuilder {
+func (mine IPhoneBuilder) Color(color PhoneColor) PhoneBuilder {
 	mine.phone.Color = color
 	return mine
 }
 
-func (mine MPhoneBuilder) SimCard(sim PhoneSim) MPhoneBuilder {
+func (mine IPhoneBuilder) SimCard(sim PhoneSim) PhoneBuilder {
 	mine.phone.SimCard = sim
 	return mine
 }
 
-func (mine MPhoneBuilder) Build() MPhone {
+func (mine IPhoneBuilder) Build() PhoneInterface {
 	return mine.phone
 }
 

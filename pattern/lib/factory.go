@@ -11,7 +11,7 @@ type Pc interface {
 type lenovo struct {}
 
 func (mine lenovo) RunPrint() {
-	fmt.Println("Welcome Lenovo")
+	fmt.Println("联想")
 }
 
 func newLenovo() lenovo{
@@ -21,7 +21,7 @@ func newLenovo() lenovo{
 type dell struct {}
 
 func (mine dell) RunPrint() {
-	fmt.Println("Welcome Dell")
+	fmt.Println("戴尔")
 }
 
 func newDell() dell {
@@ -35,7 +35,7 @@ func newHp() hp{
 }
 
 func (mine hp) RunPrint() {
-	fmt.Println("Welcome Hp")
+	fmt.Println("惠普")
 }
 
 

@@ -5,15 +5,15 @@ import (
 )
 
 var singletonOnce sync.Once
-var instance Earth
+var instance *Earth
 
 type Earth struct {
 	Name string
 }
 
-func NewSingleton() Earth {
+func NewSingleton() *Earth {
 	singletonOnce.Do(func(){
-		instance = Earth{}
+		instance = &Earth{}
 	})
 	return instance
 }
