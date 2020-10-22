@@ -35,12 +35,14 @@
 | :---:  | :------: | :------------------------:  |
 | [缓存 穿透/击穿/雪崩 解决方案](experiment/cache.go)|  |  |
 | [事件绑定与触发](experiment/event.go)|  |  |
+| [一种批量多样数据的处理模式](experiment/mode0.go)|  |  |
 
 #### 设计模式
 | 功能  | 说明  | 备注                       |
 | :---:  | :------: | :------------------------:  |
 | [建造者](pattern/builder.go) |  |  |
 | [工厂模式](pattern/factory.go) |  |  |
+| [对象池模式](pattern/obj_pool.go) |  |  |
 | [单例](pattern/singleton.go) |  |  |
 
 #### 练习代码
