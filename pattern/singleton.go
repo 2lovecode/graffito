@@ -5,6 +5,7 @@ import (
 	"graffito/pattern/lib"
 )
 
+// 单例模式
 func main() {
 	earth := lib.NewSingleton()
 	earth.Name = "地球"

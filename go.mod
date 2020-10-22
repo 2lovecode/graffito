@@ -18,9 +18,10 @@ replace (
 )
 
 require (
-	github.com/codegangsta/inject v0.0.0-20150114235600-33e0aa1cb7c0
+	github.com/codegangsta/inject v0.0.0-20150114235600-33e0aa1cb7c0 // indirect
 	github.com/garyburd/redigo v1.6.0
 	github.com/gin-gonic/gin v1.5.0
+	github.com/json-iterator/go v1.1.7
 	github.com/samuel/go-zookeeper v0.0.0-20190923202752-2cc03de413da
 	github.com/shiena/ansicolor v0.0.0-20151119151921-a422bbe96644 // indirect
 	github.com/sirupsen/logrus v1.4.2

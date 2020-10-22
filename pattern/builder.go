@@ -2,6 +2,7 @@ package main
 
 import "graffito/pattern/lib"
 
+// 构建者模式
 func main() {
 	iBuilder := lib.NewIPhoneBuilder()
 
