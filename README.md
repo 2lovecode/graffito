@@ -45,6 +45,7 @@
 | [对象池模式](pattern/obj_pool.go) |  |  |
 | [观察者模式](pattern/observer.go) |  |  |
 | [单例](pattern/singleton.go) |  |  |
+| [策略模式](pattern/strategy.go) |  |  |
 
 #### 练习代码
 | 功能  | 说明  | 备注                       |
