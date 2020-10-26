@@ -43,6 +43,7 @@
 | [建造者](pattern/builder.go) |  |  |
 | [工厂模式](pattern/factory.go) |  |  |
 | [对象池模式](pattern/obj_pool.go) |  |  |
+| [观察者模式](pattern/observer.go) |  |  |
 | [单例](pattern/singleton.go) |  |  |
 
 #### 练习代码
