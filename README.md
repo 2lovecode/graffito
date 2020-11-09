@@ -24,50 +24,50 @@
 #### 数据结构&算法
 | 功能  | 说明  | 备注                       |
 | :---:  | :------: | :------------------------:  |
-| [数组实现](algorithm/array.go) |  |  |
-| [斐波那契数列](algorithm/fibonacci.go) |  | |
-| [哈希表](algorithm/hash.go) |  |  |
-| [堆实现](algorithm/heap.go) |  |  |
-| [快排实现](algorithm/quicksort.go) |  |  |
+| [数组实现](algorithm/array/main.go) |  |  |
+| [斐波那契数列](algorithm/fibonacci/main.go) |  | |
+| [哈希表](algorithm/hash/main.go) |  |  |
+| [堆实现](algorithm/heap/main.go) |  |  |
+| [快排实现](algorithm/quicksort/main.go) |  |  |
 
 #### 实验代码
 | 功能  | 说明  | 备注                       |
 | :---:  | :------: | :------------------------:  |
-| [缓存 穿透/击穿/雪崩 解决方案](experiment/cache.go)|  |  |
-| [事件绑定与触发](experiment/event.go)|  |  |
-| [一种批量多样数据的处理模式](experiment/mode0.go)|  |  |
+| [缓存 穿透/击穿/雪崩 解决方案](experiment/cache/main.go)|  |  |
+| [事件绑定与触发](experiment/event/main.go)|  |  |
+| [一种批量多样数据的处理模式](experiment/mode0/main.go)|  |  |
 
 #### 设计模式
 | 功能  | 说明  | 备注                       |
 | :---:  | :------: | :------------------------:  |
-| [建造者](pattern/builder.go) |  |  |
-| [工厂模式](pattern/factory.go) |  |  |
-| [对象池模式](pattern/obj_pool.go) |  |  |
-| [观察者模式](pattern/observer.go) |  |  |
-| [单例](pattern/singleton.go) |  |  |
-| [策略模式](pattern/strategy.go) |  |  |
+| [建造者](pattern/builder/main.go) |  |  |
+| [工厂模式](pattern/factory/main.go) |  |  |
+| [对象池模式](pattern/obj_pool/main.go) |  |  |
+| [观察者模式](pattern/observer/main.go) |  |  |
+| [单例](pattern/singleton/main.go) |  |  |
+| [策略模式](pattern/strategy/main.go) |  |  |
 
 #### 练习代码
 | 功能  | 说明  | 备注                       |
 | :---:  | :------: | :------------------------:  |
-| [数组](practice/array.go)|  |  |
-| [通道](practice/channel.go)|  |  |
-| [文件读写](practice/file.go)|  |  |
-| [函数](practice/func.go)|  |  |
-| [gin框架使用demo](practice/gin.go)|  |  |
-| [http实现demo](practice/http.go)|  |  |
-| [接口](practice/interface.go)|  |  |
-| [json](practice/json.go)|  |  |
-| [切片](practice/list.go)|  |  |
-| [map](practice/map.go)|  |  |
-| [协程](practice/routine.go)|  |  |
-| [字符串](practice/string.go)|  |  |
-| [结构体](practice/struct.go)|  |  |
-| [异步简单实现](practice/sync.go)|  |  |
-| [time包](practice/time.go)|  |  |
-| [zookeeper连接demo](practice/zookeeper.go)|  |  |
+| [数组](practice/array/main.go)|  |  |
+| [通道](practice/channel/main.go)|  |  |
+| [文件读写](practice/file/main.go)|  |  |
+| [函数](practice/func/main.go)|  |  |
+| [gin框架使用demo](practice/gin/main.go)|  |  |
+| [http实现demo](practice/http/main.go)|  |  |
+| [接口](practice/interface/main.go)|  |  |
+| [json](practice/json/main.go)|  |  |
+| [切片](practice/list/main.go)|  |  |
+| [map](practice/map/main.go)|  |  |
+| [协程](practice/routine/main.go)|  |  |
+| [字符串](practice/string/main.go)|  |  |
+| [结构体](practice/struct/main.go)|  |  |
+| [异步简单实现](practice/sync/main.go)|  |  |
+| [time包](practice/time/main.go)|  |  |
+| [zookeeper连接demo](practice/zookeeper/main.go)|  |  |
 
 #### 做的小工具
 | 功能  | 说明  | 备注                       |
 | :---:  | :------: | :------------------------:  |
-| [计算中文字符个数](tools/count.go)|  |  |
+| [计算中文字符个数](tools/count/main.go)|  |  |
