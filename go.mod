@@ -1,6 +1,6 @@
 module graffito
 
-go 1.13
+go 1.15
 
 replace (
 	golang.org/x/crypto => github.com/golang/crypto v0.0.0-20190313024323-a1f597ede03a
