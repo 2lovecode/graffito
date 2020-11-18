@@ -45,12 +45,14 @@ func main() {
 	fmt.Println(allCellsDistOrder(0, 0, 0, 0))
 }
 
+// SI SI
 type SI struct {
 	D float64
 	X int
 	Y int
 }
 
+// SII SII
 type SII []SI
 
 func (sii SII) Len() int {
