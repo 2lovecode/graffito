@@ -50,7 +50,10 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(canCompleteCircuit([]int{2, 3, 4}, []int{3, 4, 3}))
+	gas := []int{1, 2, 3, 4, 5}
+	cost := []int{3, 4, 5, 1, 2}
+	fmt.Println(canCompleteCircuit(gas, cost))
+	fmt.Println(can(gas, cost))
 }
 
 func canCompleteCircuit(gas []int, cost []int) int {
@@ -76,6 +79,33 @@ func canCompleteCircuit(gas []int, cost []int) int {
 		if j == gNum {
 			return start
 		}
+	}
+	return -1
+}
+
+func can(gas []int, cost []int) int {
+	gNum := len(gas)
+	sum := 0
+	j := 0
+
+	for i := 0; i < gNum; {
+		sum = 0
+		j = 0
+
+		for j < gNum {
+			pos := (i + j) % gNum
+			sum += gas[pos] - cost[pos]
+			if sum < 0 {
+				break
+			}
+			j++
+		}
+		if j == gNum {
+			return i
+		} else {
+			i += j + 1
+		}
+
 	}
 	return -1
 }
