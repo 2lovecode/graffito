@@ -39,12 +39,28 @@
 //     -231 <= xstart < xend <= 231 - 1
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func main() {
-	fmt.Println(findMinArrowShots([][]int{{1, 2}}))
+	fmt.Println(findMinArrowShots([][]int{{10, 16}, {2, 8}, {1, 6}, {7, 12}}))
 }
 
 func findMinArrowShots(points [][]int) int {
-	return 0
+	if len(points) == 0 {
+		return 0
+	}
+	sort.Slice(points, func(i, j int) bool { return points[i][1] < points[j][1] })
+	maxRight := points[0][1]
+	count := 1
+
+	for _, v := range points {
+		if v[0] > maxRight {
+			maxRight = v[1]
+			count++
+		}
+	}
+	return count
 }
