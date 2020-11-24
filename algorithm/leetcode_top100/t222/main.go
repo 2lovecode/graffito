@@ -27,9 +27,59 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+func NewTree(valSlice []int) *TreeNode {
+	var root, newNode, nowNode *TreeNode
+
+	for _, v := range valSlice {
+		newNode = &TreeNode{
+			Val: v,
+		}
+		if root == nil {
+			root = newNode
+		} else {
+			nowNode = find(root)
+			if nowNode != nil {
+				if nowNode.Left == nil {
+					nowNode.Left = newNode
+				} else if nowNode.Right == nil {
+					nowNode.Right = newNode
+				}
+			}
+		}
+	}
+	return root
+}
+
+func find(root *TreeNode) *TreeNode {
+	var nowNode *TreeNode
+
+	nowNode = root
+	if nowNode == nil {
+		return nil
+	}
+
+	if nowNode.Left == nil {
+		return nowNode
+	}
+
+	if nowNode.Right == nil {
+		return nowNode
+	}
+
+	lNode := find(nowNode.Left)
+	if lNode != nil {
+		return lNode
+	}
+
+	rNode := find(nowNode.Right)
+	if rNode != nil {
+		return rNode
+	}
+	return nil
+}
+
 func main() {
-	root := &TreeNode{}
-	fmt.Println(countNodes(root))
+	fmt.Println(countNodes(NewTree([]int{1, 2, 3, 4, 5, 6})))
 }
 
 /**
