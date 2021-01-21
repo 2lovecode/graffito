@@ -36,6 +36,7 @@
 | :---:  | :------: | :------------------------:  |
 | [缓存 穿透/击穿/雪崩 解决方案](experiment/cache/main.go)|  |  |
 | [事件绑定与触发](experiment/event/main.go)|  |  |
+| [有依赖关系的并行模型](experiment/httpdeps/main.go)|  |  详情见：https://github.com/2lovecode/depends|
 | [一种批量多样数据的处理模式](experiment/mode0/main.go)|  |  |
 
 #### 设计模式

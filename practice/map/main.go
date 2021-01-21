@@ -8,7 +8,7 @@ import (
 func main() {
 	//map赋值是指针赋值
 	map1 := map[string]string{
-		"a" : "b",
+		"a": "b",
 	}
 	var map2 map[string]string
 
@@ -45,6 +45,6 @@ func main() {
 	}
 
 	for k, v := range vk {
-		fmt.Printf("key: %d, value: %s\n", k,v)
+		fmt.Printf("key: %d, value: %s\n", k, v)
 	}
 }
