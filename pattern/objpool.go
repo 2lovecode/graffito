@@ -1,16 +1,13 @@
-package lib
-
-import "fmt"
+package pattern
 
 type LinkObject struct {
 	id int
 }
 
-
 type LinkPool chan *LinkObject
 
-func (link *LinkObject) ID() {
-	fmt.Println("ID is :", link.id)
+func (link *LinkObject) ID() int {
+	return link.id
 }
 
 func NewPool(total int) *LinkPool {
@@ -23,14 +20,12 @@ func NewPool(total int) *LinkPool {
 	return &pool
 }
 
-
-func (pool *LinkPool) Do() {
+func (pool *LinkPool) Get() *LinkObject {
 	select {
 	case obj := <-*pool:
-		obj.ID()
 		*pool <- obj
+		return obj
 	default:
-		return
+		return nil
 	}
 }
-

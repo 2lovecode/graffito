@@ -1,8 +1,9 @@
-package lib
+package algorithm
 
 import (
-	. "github.com/smartystreets/goconvey/convey"
 	"testing"
+
+	. "github.com/smartystreets/goconvey/convey"
 )
 
 func TestNewMyArray(t *testing.T) {
@@ -10,7 +11,7 @@ func TestNewMyArray(t *testing.T) {
 		myA := NewMyArray(2)
 		So(myA, ShouldHaveSameTypeAs, &MyArray{})
 		testData := []int{3, 4, 1, 6}
-		Convey("Insert&&Get&&Del方法", func () {
+		Convey("Insert&&Get&&Del方法", func() {
 			for k, v := range testData {
 				myA.Insert(v, k)
 			}
@@ -19,7 +20,7 @@ func TestNewMyArray(t *testing.T) {
 
 			myA.Del(2)
 
-			So(myA.Len, ShouldEqual, len(testData) - 1)
+			So(myA.Len, ShouldEqual, len(testData)-1)
 			So(myA.Get(2), ShouldEqual, 6)
 
 		})

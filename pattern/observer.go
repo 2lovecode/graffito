@@ -1,9 +1,7 @@
-package lib
-
-import "fmt"
+package pattern
 
 type Event struct {
-	Data int64
+	Data interface{}
 }
 
 type IObserver interface {
@@ -16,9 +14,9 @@ type INotifier interface {
 	Notify(eve Event)
 }
 
-
 type Observer struct {
-	id int
+	id   int
+	Data interface{}
 }
 
 type Notifier struct {
@@ -26,7 +24,7 @@ type Notifier struct {
 }
 
 func (o *Observer) OnNotify(eve Event) {
-	fmt.Printf("****** Observer %d received: %d\n", o.id, eve.Data)
+	o.Data = eve.Data
 }
 
 func (n *Notifier) Register(obs IObserver) {

@@ -1,32 +1,35 @@
-package lib
+package pattern
 
 import "fmt"
 
 //定义常量
 type PhoneSize string
+
 const (
-	SizeBig PhoneSize = "大尺寸"
-	SizeMiddle = "中等尺寸"
-	SizeSmall = "小尺寸"
+	SizeBig    PhoneSize = "大尺寸"
+	SizeMiddle           = "中等尺寸"
+	SizeSmall            = "小尺寸"
 )
 
 type PhoneColor string
+
 const (
-	ColorRed PhoneColor = "红色"
-	ColorGreen = "绿色"
-	ColorBlue = "蓝色"
+	ColorRed   PhoneColor = "红色"
+	ColorGreen            = "绿色"
+	ColorBlue             = "蓝色"
 )
 
 type PhoneSim string
+
 const (
-	SimYiDong PhoneSim = "移动"
-	SimLianTong = "联通"
-	SimDianXin = "电信"
+	SimYiDong   PhoneSim = "移动"
+	SimLianTong          = "联通"
+	SimDianXin           = "电信"
 )
 
 //手机接口
 type PhoneInterface interface {
-	Call()
+	Call() string
 }
 
 //手机构造接口
@@ -37,18 +40,16 @@ type PhoneBuilder interface {
 	Build() PhoneInterface
 }
 
-
 //实现手机接口的IPhone
 type IPhone struct {
-	Size PhoneSize
-	Color PhoneColor
+	Size    PhoneSize
+	Color   PhoneColor
 	SimCard PhoneSim
 }
 
-func (mine IPhone) Call() {
-	fmt.Printf("%s,%s,%s phone calling\n", mine.Size, mine.Color, mine.SimCard)
+func (mine IPhone) Call() string {
+	return fmt.Sprintf("%s,%s,%s", mine.Size, mine.Color, mine.SimCard)
 }
-
 
 //实现手机构建者接口的构建者
 type IPhoneBuilder struct {
@@ -57,7 +58,7 @@ type IPhoneBuilder struct {
 
 func NewIPhoneBuilder() PhoneBuilder {
 	return IPhoneBuilder{
-		phone:IPhone{},
+		phone: IPhone{},
 	}
 }
 
@@ -79,7 +80,3 @@ func (mine IPhoneBuilder) SimCard(sim PhoneSim) PhoneBuilder {
 func (mine IPhoneBuilder) Build() PhoneInterface {
 	return mine.phone
 }
-
-
-
-

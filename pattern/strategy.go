@@ -1,4 +1,4 @@
-package lib
+package pattern
 
 type Operator interface {
 	Apply(a int, b int) int
@@ -13,10 +13,10 @@ func (o *Operation) Operate(a int, b int) int {
 }
 
 type Addition struct{}
+
 func (Addition) Apply(a int, b int) int {
 	return a + b
 }
-
 
 type Multiplication struct{}
 

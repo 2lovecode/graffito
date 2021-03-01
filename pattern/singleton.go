@@ -1,4 +1,4 @@
-package lib
+package pattern
 
 import (
 	"sync"
@@ -12,7 +12,7 @@ type Earth struct {
 }
 
 func NewSingleton() *Earth {
-	singletonOnce.Do(func(){
+	singletonOnce.Do(func() {
 		instance = &Earth{}
 	})
 	return instance
