@@ -7,8 +7,9 @@
         - cd graffito
   3. 进入某个模块目录 如: algorithm
         - cd algorithm
-  4. 运行某个文件 如: heap.go
-        - go run heap.go
+  4. 运行单测
+        - go test -v ./algorithm/...
+        - go test -v ./pattern/...
     
 ### 二. 目录说明
 
@@ -24,12 +25,11 @@
 #### 数据结构&算法
 | 功能  | 说明  | 备注                       |
 | :---:  | :------: | :------------------------:  |
-| [数组实现](algorithm/array/main.go) |  |  |
-| [斐波那契数列](algorithm/fibonacci/main.go) |  | |
-| [哈希表](algorithm/hash/main.go) |  |  |
-| [堆实现](algorithm/heap/main.go) |  |  |
-| [LeetCode Top100](algorithm/leetcode_top100) |  |  |
-| [快排实现](algorithm/quicksort/main.go) |  |  |
+| [数组实现](algorithm/array.go) |  |  |
+| [斐波那契数列](algorithm/fibonacci.go) |  | |
+| [哈希表](algorithm/hash.go) |  |  |
+| [堆实现](algorithm/heap.go) |  |  |
+| [快排实现](algorithm/quicksort.go) |  |  |
 
 #### 实验代码
 | 功能  | 说明  | 备注                       |
@@ -39,15 +39,20 @@
 | [有依赖关系的并行模型](experiment/httpdeps/main.go)|  |  详情见：https://github.com/2lovecode/depends|
 | [一种批量多样数据的处理模式](experiment/mode0/main.go)|  |  |
 
+#### LeetCode
+| 功能  | 说明  | 备注                       |
+| :---:  | :------: | :------------------------:  |
+| [LeetCode](algorithm/leetcode) |  |  |
+
 #### 设计模式
 | 功能  | 说明  | 备注                       |
 | :---:  | :------: | :------------------------:  |
-| [建造者](pattern/builder/main.go) |  |  |
-| [工厂模式](pattern/factory/main.go) |  |  |
-| [对象池模式](pattern/obj_pool/main.go) |  |  |
-| [观察者模式](pattern/observer/main.go) |  |  |
-| [单例](pattern/singleton/main.go) |  |  |
-| [策略模式](pattern/strategy/main.go) |  |  |
+| [建造者](pattern/builder.go) |  |  |
+| [工厂模式](pattern/factory.go) |  |  |
+| [对象池模式](pattern/obj_pool.go) |  |  |
+| [观察者模式](pattern/observer.go) |  |  |
+| [单例](pattern/singleton.go) |  |  |
+| [策略模式](pattern/strategy.go) |  |  |
 
 #### 练习代码
 | 功能  | 说明  | 备注                       |

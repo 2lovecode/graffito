@@ -1,4 +1,4 @@
-package lib
+package algorithm
 
 import (
 	"crypto/md5"
@@ -17,7 +17,7 @@ func BatchPut(h HashInterface, d map[string]string) {
 }
 
 func BatchGet(h HashInterface, d map[string]string) {
-	for  k, _ := range d {
+	for k, _ := range d {
 		v := h.Get(k)
 		if v != "" {
 			fmt.Printf("%s, %s\n", k, v)
@@ -28,16 +28,16 @@ func BatchGet(h HashInterface, d map[string]string) {
 
 //开放寻址
 type KeyValue struct {
-	Key string
+	Key   string
 	Value string
 }
 
-type OpenAddrHash struct{
+type OpenAddrHash struct {
 	List []KeyValue
 }
 
 func NewOpenAddrHash(cap int) *OpenAddrHash {
-	return &OpenAddrHash{List:make([]KeyValue, cap)}
+	return &OpenAddrHash{List: make([]KeyValue, cap)}
 }
 
 func (h *OpenAddrHash) Put(key string, value string) {
@@ -61,7 +61,7 @@ func (h *OpenAddrHash) Put(key string, value string) {
 	}
 }
 
-func (h *OpenAddrHash) Get(key string) string{
+func (h *OpenAddrHash) Get(key string) string {
 	hashLen := len(h.List)
 	hashKey := hashFunc(key, hashLen)
 	originHashKey := hashKey
@@ -79,15 +79,14 @@ func (h *OpenAddrHash) Get(key string) string{
 	}
 }
 
-
 //分离链表法
 type LinkNode struct {
-	Key string
+	Key   string
 	Value string
-	Next *LinkNode
+	Next  *LinkNode
 }
 
-func NewLinkNode() *LinkNode{
+func NewLinkNode() *LinkNode {
 	return &LinkNode{
 		Key:   "",
 		Value: "",
@@ -95,7 +94,7 @@ func NewLinkNode() *LinkNode{
 	}
 }
 
-func (node *LinkNode) Find(key string) *LinkNode{
+func (node *LinkNode) Find(key string) *LinkNode {
 	current := node
 	for current.Next != nil {
 		if current.Key == key {
@@ -124,7 +123,7 @@ type LinkHash struct {
 }
 
 func NewLinkHash(cap int) *LinkHash {
-	lh := &LinkHash{List:make([]*LinkNode, cap)}
+	lh := &LinkHash{List: make([]*LinkNode, cap)}
 	for i := 0; i < cap; i++ {
 		lh.List[i] = NewLinkNode()
 	}
@@ -145,13 +144,13 @@ func (lh *LinkHash) Get(key string) string {
 
 type LinkReHash struct {
 	List []*LinkNode
-	Len int
+	Len  int
 }
 
 func NewLinkReHash(cap int) *LinkReHash {
 	lh := &LinkReHash{
-		List : make([]*LinkNode, cap),
-		Len : 0,
+		List: make([]*LinkNode, cap),
+		Len:  0,
 	}
 	for i := 0; i < cap; i++ {
 		lh.List[i] = NewLinkNode()
@@ -161,7 +160,7 @@ func NewLinkReHash(cap int) *LinkReHash {
 
 func (lh *LinkReHash) Put(key string, value string) {
 	mapLen := len(lh.List)
-	if float32(lh.Len) / float32(mapLen) >= 1.2 {
+	if float32(lh.Len)/float32(mapLen) >= 1.2 {
 		newMapLen := mapLen * 2
 		newList := make([]*LinkNode, newMapLen)
 		for i := 0; i < newMapLen; i++ {

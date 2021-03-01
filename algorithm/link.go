@@ -1,4 +1,4 @@
-package lib
+package algorithm
 
 import (
 	"errors"
@@ -9,7 +9,7 @@ type MLinkNode struct {
 	Next  *MLinkNode
 }
 
-func NewMLinkNode () *MLinkNode {
+func NewMLinkNode() *MLinkNode {
 	return &MLinkNode{
 		Value: MObject{},
 		Next:  nil,
@@ -19,7 +19,7 @@ func NewMLinkNode () *MLinkNode {
 type MSingleLink struct {
 	Head *MLinkNode
 	Tail *MLinkNode
-	Len int
+	Len  int
 }
 
 func NewMSingleLink() *MSingleLink {
@@ -27,7 +27,7 @@ func NewMSingleLink() *MSingleLink {
 	return &MSingleLink{
 		Head: head,
 		Tail: head,
-		Len: 0,
+		Len:  0,
 	}
 }
 
@@ -45,7 +45,7 @@ func (link *MSingleLink) Find(pos int) (linkNode *MLinkNode, e error) {
 }
 
 func (link *MSingleLink) Insert(value MObject, pos int) error {
-	if pos > link.Len + 1 || pos < 0 {
+	if pos > link.Len+1 || pos < 0 {
 		return errors.New("exceed length")
 	} else {
 		newNode := NewMLinkNode()

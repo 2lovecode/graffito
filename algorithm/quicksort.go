@@ -1,6 +1,4 @@
-package lib
-
-
+package algorithm
 
 func QuickSort(list []int, left int, right int) {
 	start := left

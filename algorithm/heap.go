@@ -1,18 +1,18 @@
-package lib
+package algorithm
 
 // 数组实现最大堆
 type MaxIntHeap struct {
-	Data []int
-	Len int
-	Cap int
+	Data      []int
+	Len       int
+	Cap       int
 	OriginCap int
 }
 
-func NewIntHeap(cap int) *MaxIntHeap{
+func NewIntHeap(cap int) *MaxIntHeap {
 	heap := &MaxIntHeap{
-		Data: make([]int, cap),
-		Len:  0,
-		Cap:  cap,
+		Data:      make([]int, cap),
+		Len:       0,
+		Cap:       cap,
 		OriginCap: cap,
 	}
 	return heap
@@ -20,7 +20,7 @@ func NewIntHeap(cap int) *MaxIntHeap{
 
 func (heap *MaxIntHeap) Push(value int) {
 	if (heap.Len + 1) >= heap.Cap {
-		data := make([]int, heap.Cap * 2)
+		data := make([]int, heap.Cap*2)
 		copy(data, heap.Data)
 		heap.Data = data
 		heap.Cap = heap.Cap * 2
@@ -33,7 +33,7 @@ func (heap *MaxIntHeap) Push(value int) {
 	heap.up()
 }
 
-func (heap *MaxIntHeap) Pop() int{
+func (heap *MaxIntHeap) Pop() int {
 	value := heap.Data[0]
 
 	heap.Len--
@@ -52,13 +52,13 @@ func (heap *MaxIntHeap) Pop() int{
 }
 
 func (heap *MaxIntHeap) up() {
-	currentKey := heap.Len - 1;
-	parentKey := (currentKey + 1) / 2 - 1
+	currentKey := heap.Len - 1
+	parentKey := (currentKey+1)/2 - 1
 	for parentKey >= 0 {
 		if heap.Data[parentKey] < heap.Data[currentKey] {
 			heap.Data[parentKey], heap.Data[currentKey] = heap.Data[currentKey], heap.Data[parentKey]
 			currentKey = parentKey
-			parentKey = (currentKey + 1) / 2 - 1
+			parentKey = (currentKey+1)/2 - 1
 		} else {
 			break
 		}
@@ -67,8 +67,8 @@ func (heap *MaxIntHeap) up() {
 
 func (heap *MaxIntHeap) down() {
 	currentKey := 0
-	leftKey := currentKey * 2 + 1
-	rightKey := currentKey * 2 + 2
+	leftKey := currentKey*2 + 1
+	rightKey := currentKey*2 + 2
 
 	for (currentKey < heap.Len) && (rightKey <= heap.Len) {
 		tmpKey := leftKey
@@ -81,8 +81,7 @@ func (heap *MaxIntHeap) down() {
 			break
 		}
 		currentKey = tmpKey
-		leftKey = currentKey * 2 + 1
-		rightKey = currentKey * 2 + 2
+		leftKey = currentKey*2 + 1
+		rightKey = currentKey*2 + 2
 	}
 }
-
