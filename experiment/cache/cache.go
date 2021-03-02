@@ -1,15 +1,16 @@
-package main
+package cache
 
 import (
 	"fmt"
-	"github.com/garyburd/redigo/redis"
 	"math/rand"
 	"os"
 	"time"
+
+	"github.com/garyburd/redigo/redis"
 	"github.com/willf/bloom"
 )
 
-const mapLen  = 50
+const mapLen = 50
 const randLen = 1000
 
 const executeTime = 2
@@ -23,7 +24,7 @@ var cacheSpace int64 = 0
 var stdTotal = 0
 
 type CacheDb struct {
-	data map[string]string
+	data  map[string]string
 	count int
 }
 
@@ -38,7 +39,6 @@ func (db *CacheDb) Select(key string) string {
 
 	return ""
 }
-
 
 func (db *CacheDb) Insert(key string, value string) {
 	db.data[key] = value
@@ -57,7 +57,7 @@ func NewCacheDb(data map[string]string) *CacheDb {
 }
 
 //总访问量，缓存访问量，数据库访问量，缓存空间占用量
-func main() {
+func Run() {
 	n := uint(1000)
 	filter := bloom.New(20*n, 5) // load of 20, 5 keys
 
@@ -72,21 +72,21 @@ func main() {
 	//缓存穿透
 	fmt.Println("缓存穿透:")
 	penetrate(c, db)
-	printFormat("缓存穿透示例", totalCount, cacheGetCount + cacheSetCount, db.GetCount(), cacheSpace)
+	printFormat("缓存穿透示例", totalCount, cacheGetCount+cacheSetCount, db.GetCount(), cacheSpace)
 	stdTotal = totalCount
 
 	//缓存穿透 -- 解决方案【全部缓存】
 	initData(c, db)
 	penetrateSolutionOne(c, db)
-	printFormat("缓存穿透解决方案【全部缓存】", totalCount, cacheGetCount + cacheSetCount, db.GetCount(), cacheSpace)
+	printFormat("缓存穿透解决方案【全部缓存】", totalCount, cacheGetCount+cacheSetCount, db.GetCount(), cacheSpace)
 	//缓存穿透 -- 解决方案【布隆过滤器】
 	initData(c, db)
 	penetrateSolutionTwo(c, db, filter)
-	printFormat("缓存穿透解决方案【布隆过滤器】", totalCount, cacheGetCount + cacheSetCount, db.GetCount(), cacheSpace)
+	printFormat("缓存穿透解决方案【布隆过滤器】", totalCount, cacheGetCount+cacheSetCount, db.GetCount(), cacheSpace)
 
 }
 
-func initRedis() redis.Conn{
+func initRedis() redis.Conn {
 	//初始化缓存
 	c, err := redis.Dial("tcp", "127.0.0.1:6379")
 	if err != nil {
@@ -101,11 +101,11 @@ func initRedis() redis.Conn{
 	return c
 }
 
-func initDb(filter *bloom.BloomFilter) *CacheDb{
+func initDb(filter *bloom.BloomFilter) *CacheDb {
 	//数据库写入数据
 	db := NewCacheDb(make(map[string]string, mapLen))
 
-	for i := 0; i < mapLen;  i++ {
+	for i := 0; i < mapLen; i++ {
 		key := "key" + string(i)
 		value := "value" + string(i)
 		db.Insert(key, value)
@@ -154,7 +154,6 @@ func printFormat(desc string, totalCount int, cacheCount int, dbCount int, cache
 	}
 	fmt.Printf("<<<<Total visit: %d(%d)| Cache visit: %d(%d) | Db visit: %d(%d) | Cache Space %d(%d)\n", totalCount, stdTotal, cacheCount, stdTotal*cacheCount/totalCount, dbCount, stdTotal*dbCount/totalCount, cacheSpace, stdTotal*int(cacheSpace)/totalCount)
 }
-
 
 func penetrate(c redis.Conn, db *CacheDb) {
 	startTime := time.Now().Second()
@@ -230,4 +229,3 @@ func penetrateSolutionTwo(c redis.Conn, db *CacheDb, filter *bloom.BloomFilter) 
 		}
 	}
 }
-

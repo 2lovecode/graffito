@@ -1,4 +1,4 @@
-package lib
+package count
 
 const (
 	t1 = 0b00000000
