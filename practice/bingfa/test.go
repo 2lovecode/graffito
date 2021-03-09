@@ -1,4 +1,4 @@
-package main
+package bingfa
 
 import (
 	"context"
@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func main() {
+func Run() {
 
 	timeOutTime := time.Now().Add(500 * time.Millisecond)
 	timeOut, _ := context.WithDeadline(context.Background(), timeOutTime)
