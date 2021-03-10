@@ -46,7 +46,7 @@ func (engine *Engine) handler(xc *XContext) {
 	xc.Render(200, jsonResp)
 }
 
-// 添加路由
+// 添加路由 把路由放到 --基数树-- 中
 func (engine *Engine) addRoute(method, path string, handlers HandlersChain) {
 	// todo 检查下路由
 

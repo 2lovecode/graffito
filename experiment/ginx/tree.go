@@ -1,5 +1,5 @@
 package ginx
-
+// 基数树实现
 type node struct {
 	path string
 	children []*node
