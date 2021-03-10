@@ -1,8 +1,6 @@
 package practice
 
 import (
-	"context"
-	"fmt"
 	"testing"
 
 	. "github.com/smartystreets/goconvey/convey"
@@ -10,8 +8,8 @@ import (
 
 func Test_Array(t *testing.T) {
 	Convey("Array", t, func() {
-		ctx := context.WithValue(context.TODO(), "aaa", "bbb")
-		fmt.Println(ctx)
+		//ctx := context.WithValue(context.TODO(), "aaa", "bbb")
+		//fmt.Println(ctx)
 		// var a1 [4]int
 		// a2 := new([4]int)
 		// var s1, s2 []int
@@ -39,5 +37,7 @@ func Test_Array(t *testing.T) {
 
 		// fmt.Println(len(a3[2:2]))
 		// fmt.Println(len(a3[2:3]))
+		a := true
+		So(a, ShouldEqual, true)
 	})
 }

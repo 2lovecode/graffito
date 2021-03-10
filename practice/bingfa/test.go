@@ -6,10 +6,11 @@ import (
 	"time"
 )
 
-func Run() {
+func Run1() int {
 
 	timeOutTime := time.Now().Add(500 * time.Millisecond)
 	timeOut, _ := context.WithDeadline(context.Background(), timeOutTime)
+	sum := 0
 
 	var wg sync.WaitGroup
 
@@ -24,6 +25,7 @@ func Run() {
 			for {
 				select {
 				case <-ch:
+					sum++
 					wg.Done()
 					return
 				case <-timeOut.Done():
@@ -35,7 +37,7 @@ func Run() {
 	}
 
 	wg.Wait()
-
+	return sum
 }
 
 func DownloadPic(pic string, ch chan bool) {
