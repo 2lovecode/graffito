@@ -2,22 +2,21 @@ package experiment
 
 import (
 	"context"
+	"fmt"
 	"graffito/experiment/depends"
 	"testing"
 	"time"
-
-	. "github.com/smartystreets/goconvey/convey"
 )
 
-func Test_Depends(t *testing.T) {
-	Convey("Depends", t, func() {
+func TestDepends_Execute(t *testing.T) {
+	for i := 0; i < 4; i++ {
 		ctx := context.WithValue(context.TODO(), "q", "test")
 
 		sA := depends.NewServiceA()
 		sB := depends.NewServiceB()
 		sC := depends.NewServiceC()
 
-		hd := depends.NewHttpDeps(100 * time.Millisecond)
+		hd := depends.NewDepends(100 * time.Millisecond)
 
 		hd.Register(sA)
 		hd.Register(sB)
@@ -35,8 +34,39 @@ func Test_Depends(t *testing.T) {
 		sA.Decode(&sAData)
 		sB.Decode(&sBData)
 		sC.Decode(&sCData)
-		So(sAData.Message, ShouldEqual, "service_a")
-		So(sBData.Message, ShouldEqual, "service_b")
-		So(sCData.Message, ShouldEqual, "service_c")
-	})
+
+		fmt.Println(sAData, sBData, sCData)
+	}
+}
+
+func BenchmarkDepends_Execute(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		ctx := context.WithValue(context.TODO(), "q", "test")
+
+		sA := depends.NewServiceA()
+		sB := depends.NewServiceB()
+		sC := depends.NewServiceC()
+
+		hd := depends.NewDepends(100 * time.Millisecond)
+
+		hd.Register(sA)
+		hd.Register(sB)
+		hd.Register(sC)
+
+
+		hd.AddDepend(sC, []depends.IService{sB})
+		hd.AddDepend(sB, []depends.IService{sA})
+
+		hd.Execute(ctx)
+		sAData := depends.ServiceAData{}
+		sBData := depends.ServiceBData{}
+		sCData := depends.ServiceCData{}
+
+
+		sA.Decode(&sAData)
+		sB.Decode(&sBData)
+		sC.Decode(&sCData)
+
+		fmt.Println(sAData, sBData, sCData)
+	}
 }
