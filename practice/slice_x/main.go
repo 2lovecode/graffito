@@ -49,5 +49,13 @@ func Run_3() {
 
 	o := base[2:4:5]
 	newO := myAppend(o)
+	//newO = myAppend(newO)
 	fmt.Println(base, o, newO)
+
+	base1 := []int{0, 1, 2, 3, 4, 5, 6}
+	o1 := base1[2:4]
+	newO1 := myAppend(o1)
+	//newO1 = myAppend(newO1)
+	fmt.Println(base1, o1, newO1)
+
 }
