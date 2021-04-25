@@ -37,6 +37,9 @@ func myAppend(s []int) []int {
 	return s
 }
 
+func changeSlice(s []int) {
+	s[0] = 10
+}
 func Run_3() {
 	// 实验作为函数参数传递
 	s := []int{1, 2, 3}
@@ -58,4 +61,8 @@ func Run_3() {
 	//newO1 = myAppend(newO1)
 	fmt.Println(base1, o1, newO1)
 
+
+	base3 := []int{0, 1, 2}
+	changeSlice(base3)
+	fmt.Println(base3)
 }
