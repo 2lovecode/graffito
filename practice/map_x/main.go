@@ -48,3 +48,27 @@ func Run1() {
 		fmt.Printf("key: %d, value: %s\n", k, v)
 	}
 }
+
+func Run2() {
+	type SSS struct {
+		D int
+	}
+
+	s1 := SSS{
+		D: 1,
+	}
+	s2 := SSS{
+		D:1,
+	}
+
+	var tt = map[*SSS]int{}
+	var ttt = map[SSS]int{}
+
+	tt[&s1] = 33
+	fmt.Println(tt[&s1], tt[&s2])
+
+	ttt[s1] = 22
+	fmt.Println(ttt[s1], ttt[s2])
+
+	fmt.Println(s1 == s2)
+}
