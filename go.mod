@@ -3,6 +3,8 @@ module graffito
 go 1.15
 
 require (
+	github.com/antlr/antlr4 v0.0.0-20210506161523-0a1c3e3ce1ca // indirect
+	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20210506161523-0a1c3e3ce1ca // indirect
 	github.com/garyburd/redigo v1.6.2
 	github.com/gin-gonic/gin v1.6.3
 	github.com/json-iterator/go v1.1.10
