@@ -5,6 +5,7 @@ import (
 	"math"
 	"reflect"
 	"sort"
+	"unsafe"
 )
 
 type shape interface {
@@ -116,5 +117,51 @@ func Run1() {
 
 	fmt.Println(v)
 	fmt.Println(v.Interface())
+
+}
+
+type Animal interface {
+	Run()
+}
+
+type Duck struct {
+	name string
+}
+
+func (d Duck) Run() {
+}
+
+func Run2() {
+	var a Animal
+	var b *Duck
+
+	fmt.Printf("a: %T, %v, %v\n", a, a, a == nil)
+	fmt.Printf("b: %T, %v, %v\n", b, b, b == nil)
+
+	a = b
+
+	fmt.Printf("a: %T, %v, %v\n", a, a, a == nil)
+	fmt.Printf("b: %T, %v, %v\n", b, b, b == nil)
+
+}
+
+type iface struct {
+	tab  *itab
+	data unsafe.Pointer
+}
+type itab struct {
+	inter	uintptr
+	_type	uintptr
+	link	uintptr
+	hash	uint32
+	_   	[4]byte
+	fun		[1]uintptr
+}
+
+func Run3() {
+	var an = Animal(Duck{name: "name"})
+
+	iface := (*iface)(unsafe.Pointer(&an))
+	fmt.Printf("iface.tab.hash = %#x\n", iface.tab.hash)
 
 }
