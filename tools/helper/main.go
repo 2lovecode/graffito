@@ -3,15 +3,21 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"flag"
 	"fmt"
 	"github.com/spf13/afero"
 	tips2 "graffito/tools/helper/tips"
 	"io"
 )
 
+var dataPath string
 func main() {
+
+	flag.StringVar(&dataPath, "path", "tools/helper/tips.json", "数据文件地址")
+	flag.Parse()
+
 	var AppFs = afero.NewOsFs()
-	input, err := readFile(AppFs, "tools/helper/data/tips.json")
+	input, err := readFile(AppFs, dataPath)
 
 	if err == nil {
 		tips := &tips2.TipGroups{}
