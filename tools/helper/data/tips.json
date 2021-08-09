@@ -1,0 +1,157 @@
+{
+  "name": "系统使用手册",
+  "description": "",
+  "comment": "",
+  "tips": [
+    {
+      "group": "别名定义",
+      "description": "在~/.bash_profile中定义了别名",
+      "items": [
+        {
+          "name": "2c",
+          "usage": [
+            {
+              "name": "2c",
+              "description": "cd到~/Development/Code目录",
+              "comment": ""
+            }
+          ],
+          "comment": ""
+        },
+        {
+          "name": "2d",
+          "usage": [
+            {
+              "name": "2d",
+              "description": "cd到~/Downloads目录",
+              "comment": ""
+            }
+          ],
+          "comment": ""
+        },
+        {
+          "name": "2l",
+          "usage": [
+            {
+              "name": "2l",
+              "description": "cd到/usr/local目录",
+              "comment": ""
+            }
+          ],
+          "comment": ""
+        },
+        {
+          "name": "2t",
+          "usage": [
+            {
+              "name": "2t",
+              "description": "cd到~/Development/ThirdPartyCode目录",
+              "comment": ""
+            }
+          ],
+          "comment": ""
+        },
+        {
+          "name": "2w",
+          "usage": [
+            {
+              "name": "2w",
+              "description": "cd到~/Development/Work目录",
+              "comment": ""
+            }
+          ],
+          "comment": ""
+        },
+        {
+          "name": "2log",
+          "usage": [
+            {
+              "name": "2log",
+              "description": "cd到~/Development/logs目录",
+              "comment": ""
+            }
+          ],
+          "comment": ""
+        },
+        {
+          "name": "php",
+          "usage": [
+            {
+              "name": "php-start",
+              "description": "启动php开发docker环境",
+              "comment": ""
+            },
+            {
+              "name": "php-stop",
+              "description": "停止php开发docker环境",
+              "comment": ""
+            }
+          ],
+          "comment": ""
+        },
+        {
+          "name": "sftp",
+          "usage": [
+            {
+              "name": "fdev",
+              "description": "sftp登陆开发机",
+              "comment": ""
+            }
+          ],
+          "comment": ""
+        },
+        {
+          "name": "ghidra",
+          "usage": [
+            {
+              "name": "ghidra",
+              "description": "运行ghidra软件",
+              "comment": ""
+            }
+          ],
+          "comment": ""
+        },
+        {
+          "name": "cheat",
+          "usage": [
+            {
+              "name": "cheat",
+              "description": "运行cht程序查询一些开发使用文档",
+              "comment": ""
+            }
+          ],
+          "comment": ""
+        }
+      ]
+    },
+    {
+      "group": "工具",
+      "description": "安装的工具的使用",
+      "items": [
+        {
+          "name": "gitui",
+          "usage": [
+            {
+              "name": "gitui",
+              "description": "在已经git init的目录中运行 gitui",
+              "comment": "https://github.com/extrawurst/gitui"
+            }
+          ],
+          "comment": ""
+        },
+        {
+          "name": "flameshot",
+          "usage": [
+            {
+              "name": "flameshot",
+              "description": "",
+              "comment": "https://github.com/flameshot-org/flameshot"
+            }
+          ],
+          "comment": ""
+        }
+      ]
+    }
+  ]
+}
+
