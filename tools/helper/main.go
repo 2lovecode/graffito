@@ -23,7 +23,7 @@ func main() {
 		tips := &tips2.TipGroups{}
 		err = json.NewDecoder(bytes.NewReader(input)).Decode(tips)
 		if err == nil {
-			tips.CliPrintA()
+			tips.CliPrintB()
 		}
 	}
 	fmt.Println(err)
