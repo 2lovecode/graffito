@@ -1,15 +1,15 @@
-package main
+package g3n
 
 import (
-	"github.com/g3n/engine/util/application"
 	"github.com/g3n/engine/geometry"
-	"github.com/g3n/engine/material"
-	"github.com/g3n/engine/math32"
 	"github.com/g3n/engine/graphic"
 	"github.com/g3n/engine/light"
+	"github.com/g3n/engine/material"
+	"github.com/g3n/engine/math32"
+	"github.com/g3n/engine/util/application"
 )
 
-func main() {
+func Run() {
 
 	app, _ := application.Create(application.Options{
 		Title:  "Hello G3N",

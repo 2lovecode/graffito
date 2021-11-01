@@ -1,23 +1,29 @@
-package main
+package helper
 
 import (
 	"bytes"
 	"encoding/json"
-	"flag"
 	"fmt"
-	"github.com/spf13/afero"
 	tips2 "graffito/tools/helper/tips"
 	"io"
+
+	"github.com/spf13/afero"
 )
 
-var dataPath string
-func main() {
+type Helper struct {
+	dataPath string
+}
 
-	flag.StringVar(&dataPath, "path", "tools/helper/tips.json", "数据文件地址")
-	flag.Parse()
+func NewHelper(dataPath string) *Helper {
+	if dataPath == "" {
+		dataPath = "tools/helper/tips.json"
+	}
+	return &Helper{dataPath: dataPath}
+}
 
+func (h *Helper) Run() {
 	var AppFs = afero.NewOsFs()
-	input, err := readFile(AppFs, dataPath)
+	input, err := readFile(AppFs, h.dataPath)
 
 	if err == nil {
 		tips := &tips2.TipGroups{}
@@ -28,7 +34,6 @@ func main() {
 	}
 	fmt.Println(err)
 }
-
 
 func readFile(fs afero.Fs, filename string) ([]byte, error) {
 	f, err := fs.Open(filename)
@@ -48,7 +53,6 @@ func readFile(fs afero.Fs, filename string) ([]byte, error) {
 
 	return readAll(f, n+bytes.MinRead)
 }
-
 
 func readAll(r io.Reader, capacity int64) (b []byte, err error) {
 	buf := bytes.NewBuffer(make([]byte, 0, capacity))

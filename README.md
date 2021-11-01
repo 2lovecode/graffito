@@ -5,11 +5,9 @@
         - git clone git@github.com:2lovecode/graffito.git
   2. 进入项目目录
         - cd graffito
-  3. 进入某个模块目录 如: algorithm
-        - cd algorithm
-  4. 运行单测
-        - go test -v ./algorithm/...
-        - go test -v ./pattern/...
+  3. 执行命令
+        - go run graffito.go
+        - 按照给出的帮助命令使用相应功能
     
 ### 二. 目录说明
 

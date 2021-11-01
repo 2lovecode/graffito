@@ -1,4 +1,4 @@
-package count
+package string_op
 
 const (
 	t1 = 0b00000000
@@ -71,10 +71,20 @@ var first = [256]uint8{
 	s5, s6, s6, s6, s7, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, xx, // 0xF0-0xFF
 }
 
-func Count(s string) (n int) {
-	ns := len(s)
+type StringOp struct {
+	str string
+}
+
+func NewStringOp(str string) *StringOp {
+	return &StringOp{
+		str: str,
+	}
+}
+
+func (strOp *StringOp) Count() (n int) {
+	ns := len(strOp.str)
 	for i := 0; i < ns; n++ {
-		c := s[i]
+		c := strOp.str[i]
 		if c < 0x80 {
 			// ASCII fast path
 			i++
@@ -91,13 +101,13 @@ func Count(s string) (n int) {
 			continue
 		}
 		accept := acceptRanges[x>>4]
-		if c := s[i+1]; c < accept.lo || accept.hi < c {
+		if c := strOp.str[i+1]; c < accept.lo || accept.hi < c {
 			size = 1
 		} else if size == 2 {
-		} else if c := s[i+2]; c < locb || hicb < c {
+		} else if c := strOp.str[i+2]; c < locb || hicb < c {
 			size = 1
 		} else if size == 3 {
-		} else if c := s[i+3]; c < locb || hicb < c {
+		} else if c := strOp.str[i+3]; c < locb || hicb < c {
 			size = 1
 		}
 		i += size
