@@ -1,13 +1,13 @@
 ## GO语言实践
 
 ### 一. 用法
-  1. 克隆代码
-        - git clone git@github.com:2lovecode/graffito.git
-  2. 进入项目目录
-        - cd graffito
-  3. 执行命令
-        - go run graffito.go
-        - 按照给出的帮助命令使用相应功能
+  1. 编译构建
+        - 克隆代码 ```git clone git@github.com:2lovecode/graffito.git```
+        - 进入项目目录 ```cd graffito```
+        - 构建 ```go build```
+  2. 使用各个功能
+        - 查看命令帮助 ```./graffito -h```
+        - 执行命令，例如 ```./graffito tools count abc``` 计算字符串abc的字符数
     
 ### 二. 目录说明
 
@@ -17,8 +17,15 @@
 | experiment |  一些实验性想法的实现     ||
 | pattern |  设计模式实现     ||
 | practice | 编程练习代码     ||
+| tools | 特别好用的命令行工具集     ||
 
 ### 三. 模块列表
+
+#### 工具列表
+| 功能  | 说明  | 备注                       |
+| :---:  | :------: | :------------------------:  |
+| [计算中文字符个数](tools/string_op)|  ```./graffito tools count abc``` |  |
+| [简易redis命令行客户端](tools/redis)|  ```./graffito tools redis``` |  |
 
 #### 数据结构&算法
 | 功能  | 说明  | 备注                       |
@@ -32,7 +39,7 @@
 #### 实验代码
 | 功能  | 说明  | 备注                       |
 | :---:  | :------: | :------------------------:  |
-| [缓存 穿透/击穿/雪崩 解决方案](experiment/cache)|  |  |
+| [缓存 穿透/击穿/雪崩 解决方案](experiment/cache)| ```./graffito exp cache``` |  |
 | [事件绑定与触发](experiment/event)|  |  |
 | [有依赖关系的并行模型](experiment/depends)|  |  详情见：https://github.com/2lovecode/depends|
 | [一种批量多样数据的处理模式](experiment/mode0)|  |  |
@@ -71,8 +78,3 @@
 | [异步简单实现](practice/sync/main.go)|  |  |
 | [time包](practice/time/main.go)|  |  |
 | [zookeeper连接demo](practice/zookeeper/main.go)|  |  |
-
-#### 做的小工具
-| 功能  | 说明  | 备注                       |
-| :---:  | :------: | :------------------------:  |
-| [计算中文字符个数](tools/string_op/main.go)|  |  |

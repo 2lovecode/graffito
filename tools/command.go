@@ -3,6 +3,7 @@ package tools
 import (
 	"fmt"
 	"graffito/tools/helper"
+	"graffito/tools/redis"
 	"graffito/tools/string_op"
 
 	"github.com/spf13/cobra"
@@ -33,6 +34,21 @@ func NewToolsCommand() *cobra.Command {
 		h.Run()
 	}, Short: "命令列表", Example: "graffito tools helper"}
 	toolsCmd.AddCommand(helperCmd)
+
+	redisCmd := &cobra.Command{Use: "redis", Run: func(cmd *cobra.Command, args []string) {
+		host := ""
+		port := ""
+
+		if len(args) > 0 {
+			host = args[0]
+			if len(args) > 1 {
+				port = args[1]
+			}
+		}
+		r := redis.NewRedisInstance(host, port)
+		r.Run()
+	}, Short: "命令列表", Example: "graffito tools helper"}
+	toolsCmd.AddCommand(redisCmd)
 
 	return toolsCmd
 }

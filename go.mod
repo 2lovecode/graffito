@@ -7,6 +7,7 @@ require (
 	github.com/g3n/engine v0.1.0
 	github.com/garyburd/redigo v1.6.2
 	github.com/go-gl/glfw v0.0.0-20210410170116-ea3d685f79fb // indirect
+	github.com/go-redis/redis/v8 v8.11.4
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/json-iterator/go v1.1.11
 	github.com/samuel/go-zookeeper v0.0.0-20201211165307-7117e9ea2414
@@ -17,5 +18,6 @@ require (
 	github.com/spf13/cobra v1.2.1
 	github.com/willf/bitset v1.1.11 // indirect
 	github.com/willf/bloom v2.0.3+incompatible
+	go.opentelemetry.io/otel v0.20.0 // indirect
 	golang.org/x/image v0.0.0-20210504121937-7319ad40d33e // indirect
 )
