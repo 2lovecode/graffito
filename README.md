@@ -35,13 +35,21 @@
 
 
 ### 数据结构&算法
-| 功能  | 说明  | 备注                       |
-| :---:  | :------: | :------------------------:  |
-| [数组实现](algorithm/array.go) |  |  |
-| [斐波那契数列](algorithm/fibonacci.go) |  | |
-| [哈希表](algorithm/hash.go) |  |  |
-| [堆实现](algorithm/heap.go) |  |  |
-| [快排实现](algorithm/quicksort.go) |  |  |
+
+#### [数组实现](algorithm/array.go)
+ - 命令：```./graffito alg arr```
+
+#### [斐波那契数列](algorithm/fibonacci.go)
+ - 命令：```./graffito alg fibo```
+
+#### [哈希表](algorithm/hash.go)
+ - 命令：```./graffito alg hash```
+
+#### [堆](algorithm/heap.go)
+ - 命令：```./graffito alg heap```
+
+#### [快排](algorithm/quicksort.go)
+ - 命令：```./graffito alg qs```
 
 ### 实验代码
 | 功能  | 说明  | 备注                       |
