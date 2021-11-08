@@ -21,8 +21,8 @@ func Test_Event(t *testing.T) {
 		p := params.NewPayload()
 		p.Set("name", "vivo")
 
-		So(mEvent.Trigger("car", p), ShouldEqual, "car-vivo")
-		So(mEvent.Trigger("phone", p), ShouldEqual, "phone-vivo")
+		mEvent.Trigger("car", p)
+		mEvent.Trigger("phone", p)
 	})
 
 }
