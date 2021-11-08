@@ -54,7 +54,7 @@
 ### 实验代码
 | 功能  | 说明  | 备注                       |
 | :---:  | :------: | :------------------------:  |
-| [缓存 穿透/击穿/雪崩 解决方案](experiment/cache)| ```./graffito exp cache``` |  |
+| [缓存穿透及解决方案模拟](experiment/cache)| ```./graffito exp cross-cache``` |  |
 | [事件绑定与触发](experiment/event)|  |  |
 | [有依赖关系的并行模型](experiment/depends)|  |  详情见：https://github.com/2lovecode/depends|
 | [一种批量多样数据的处理模式](experiment/mode0)|  |  |

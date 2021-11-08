@@ -15,9 +15,9 @@ func NewExperimentCommand() *cobra.Command {
 	// }, Short: "g3n游戏包示例代码"}
 
 	// expCmd.AddCommand(stringOpCmd)
-	cacheCmd := &cobra.Command{Use: "cache", Run: func(cmd *cobra.Command, args []string) {
-		cache.Run()
-	}, Short: "3类缓存问题"}
+	cacheCmd := &cobra.Command{Use: "cross-cache", Run: func(cmd *cobra.Command, args []string) {
+		cache.CrossRun()
+	}, Short: "缓存穿透"}
 
 	expCmd.AddCommand(cacheCmd)
 

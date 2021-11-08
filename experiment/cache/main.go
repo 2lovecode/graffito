@@ -57,7 +57,7 @@ func NewCacheDb(data map[string]string) *CacheDb {
 }
 
 //总访问量，缓存访问量，数据库访问量，缓存空间占用量
-func Run() {
+func CrossRun() {
 	n := uint(1000)
 	filter := bloom.New(20*n, 5) // load of 20, 5 keys
 
