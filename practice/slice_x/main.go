@@ -61,8 +61,21 @@ func Run_3() {
 	//newO1 = myAppend(newO1)
 	fmt.Println(base1, o1, newO1)
 
-
 	base3 := []int{0, 1, 2}
 	changeSlice(base3)
 	fmt.Println(base3)
+}
+
+func Run_4() {
+	s1 := []int{1, 2, 3, 4}
+
+	s2 := []*int{}
+
+	for _, v := range s1 {
+		s2 = append(s2, &v)
+	}
+
+	for _, v := range s2 {
+		fmt.Println(*v)
+	}
 }
