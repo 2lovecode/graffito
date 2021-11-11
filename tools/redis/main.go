@@ -41,6 +41,7 @@ func (instance *RedisInstance) bootstrap() {
 		"hset":    &commands.RedisCommandHSet{},
 		"hget":    &commands.RedisCommandHGet{},
 		"hgetall": &commands.RedisCommandHGetAll{},
+		"select":  &commands.RedisCommandSelect{},
 	}
 }
 

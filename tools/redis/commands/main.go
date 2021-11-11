@@ -125,3 +125,22 @@ func PrintInfo(msg string) {
 func PrintError(msg string) {
 	fmt.Println("错误: ", msg)
 }
+
+type RedisCommandSelect struct {
+}
+
+func (cmd *RedisCommandSelect) Execute(ctx context.Context, client *redis2.Client, args []string) {
+	if len(args) > 0 {
+		index, _ := strconv.Atoi(args[0])
+		fmt.Println(index)
+		pipe := client.Pipeline()
+		pipe.Do(ctx, "select", index)
+		_, err := pipe.Exec(ctx)
+
+		if err == nil {
+			PrintInfo("OK")
+		} else {
+			PrintError(err.Error())
+		}
+	}
+}
