@@ -1,6 +1,9 @@
 package slice_x
 
-import "fmt"
+import (
+	"fmt"
+	"net/url"
+)
 
 func Run_1() {
 
@@ -78,4 +81,17 @@ func Run_4() {
 	for _, v := range s2 {
 		fmt.Println(*v)
 	}
+	originalUrl := "https://pic.ziroom.com/steward_images/60025745.png"
+	finalUrl := originalUrl
+	originalUrlObj, err := url.Parse(originalUrl)
+
+	if err == nil {
+		if originalUrlObj.RawQuery == "" {
+			finalUrl = finalUrl + "?imageMogr2/thumbnail/384x/format/jpg"
+		} else {
+			finalUrl = finalUrl + "&imageMogr2/thumbnail/384x/format/jpg"
+		}
+	}
+	// "imageMogr2/thumbnail/384x/format/jpg"
+	fmt.Println(finalUrl)
 }
