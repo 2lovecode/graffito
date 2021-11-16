@@ -32,6 +32,9 @@
  - 命令：``` ./graffito tools helper  ~/Development/Tools/tips.json  ```
  - tips.json文件 可以参考[tips.json](tools/helper/tips.json)
  - ![image](images/helper.png)
+#### [颜色格式转换工具](tools/color)
+ - ``` ./graffito tools color "rgb(199, 166, 141)" rgb ahex ```
+ - ![image](images/color.png)
 
 
 ### 数据结构&算法

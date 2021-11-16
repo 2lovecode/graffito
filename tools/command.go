@@ -2,9 +2,11 @@ package tools
 
 import (
 	"fmt"
+	"graffito/tools/color"
 	"graffito/tools/helper"
 	"graffito/tools/redis"
 	"graffito/tools/string_op"
+	"strings"
 
 	"github.com/spf13/cobra"
 )
@@ -49,6 +51,26 @@ func NewToolsCommand() *cobra.Command {
 		r.Run()
 	}, Short: "命令列表", Example: "graffito tools helper"}
 	toolsCmd.AddCommand(redisCmd)
+
+	colorCmd := &cobra.Command{Use: "color", Run: func(cmd *cobra.Command, args []string) {
+		if len(args) >= 3 {
+			res, err := color.ConvertColorFormat(args[0], color.ColorFormat(strings.ToUpper(args[1])), color.ColorFormat(strings.ToUpper(args[2])))
+			if err == nil {
+				fmt.Println(res)
+			} else {
+				fmt.Println(err)
+			}
+		} else {
+			fmt.Println("缺少参数！")
+		}
+
+		// fmt.Println(color.ConvertColorFormat("#FFC7A68D", color.ColorFormatAHEX, color.ColorFormatRGBA))
+		// fmt.Println(color.ConvertColorFormat("rgba(199, 166, 141, 1)", color.ColorFormatRGBA, color.ColorFormatAHEX))
+		// fmt.Println(color.ConvertColorFormat("#FFC7A68D", color.ColorFormatAHEX, color.ColorFormatRGBA))
+		// fmt.Println(color.ConvertColorFormat("#FFC7A68D", color.ColorFormatAHEX, color.ColorFormatRGBA))
+		// fmt.Println(color.ConvertColorFormat("#FFC7A68D", color.ColorFormatAHEX, color.ColorFormatRGBA))
+	}, Short: "颜色转换", Example: "graffito tools color"}
+	toolsCmd.AddCommand(colorCmd)
 
 	return toolsCmd
 }
