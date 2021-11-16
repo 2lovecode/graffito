@@ -4,7 +4,6 @@ import (
 	"errors"
 	"image/color"
 	"regexp"
-	"strconv"
 )
 
 type ColorFormat string
@@ -68,16 +67,4 @@ func ValidateColorFormat(color string, format ColorFormat) (flag bool, err error
 		return regexp.MatchString(reg, color)
 	}
 	return false, errors.New("不支持该格颜色式！")
-}
-
-func HexToRgb(hex string) string {
-	if len(hex) != 9 {
-		return ""
-	}
-	op, _ := strconv.ParseInt(hex[1:3], 16, 10)
-	opf := strconv.FormatFloat(float64(op)/255, 'f', 2, 64)
-	r, _ := strconv.ParseInt(hex[3:5], 16, 10)
-	g, _ := strconv.ParseInt(hex[5:7], 16, 10)
-	b, _ := strconv.ParseInt(hex[7:], 16, 10)
-	return "rgba(" + strconv.Itoa(int(r)) + "," + strconv.Itoa(int(g)) + "," + strconv.Itoa(int(b)) + "," + opf + ")"
 }
