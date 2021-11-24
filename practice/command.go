@@ -2,6 +2,7 @@ package practice
 
 import (
 	"graffito/practice/slice_x"
+	"graffito/practice/ts"
 
 	"github.com/spf13/cobra"
 )
@@ -27,6 +28,11 @@ func NewPracticeCommand() *cobra.Command {
 	}}
 
 	pracCmd.AddCommand(slice1OpCmd)
+
+	tsCmd := &cobra.Command{Use: "ts", Run: func(cmd *cobra.Command, args []string) {
+		ts.Run()
+	}}
+	pracCmd.AddCommand(tsCmd)
 
 	return pracCmd
 }
