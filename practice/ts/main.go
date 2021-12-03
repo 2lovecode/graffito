@@ -5,6 +5,7 @@ import (
 	"net/url"
 	"path/filepath"
 	"strings"
+	"unicode/utf8"
 )
 
 func Run() {
@@ -18,4 +19,19 @@ func Run() {
 		fmt.Println(ext)
 	}
 
+	originalNickname := "我sdfdfsdfs是谁"
+	nickname := ""
+	nicknameLen := utf8.RuneCountInString(originalNickname)
+
+	if nicknameLen <= 0 {
+		nickname = "***"
+	} else if nicknameLen == 1 {
+		nickname = originalNickname
+	} else {
+		f, _ := utf8.DecodeRuneInString(originalNickname)
+		l, _ := utf8.DecodeLastRuneInString(originalNickname)
+		nickname = string(f) + "***" + string(l)
+	}
+
+	fmt.Println(nickname)
 }
