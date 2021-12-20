@@ -18,6 +18,7 @@ require (
 	github.com/spf13/cobra v1.2.1
 	github.com/willf/bitset v1.1.11 // indirect
 	github.com/willf/bloom v2.0.3+incompatible
+	github.com/xuri/excelize/v2 v2.4.1
 	go.opentelemetry.io/otel v0.20.0 // indirect
 	golang.org/x/image v0.0.0-20210504121937-7319ad40d33e // indirect
 )

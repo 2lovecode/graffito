@@ -5,6 +5,7 @@ import (
 	"net/url"
 	"path/filepath"
 	"strings"
+	"sync"
 	"unicode/utf8"
 )
 
@@ -34,4 +35,27 @@ func Run() {
 	}
 
 	fmt.Println(nickname)
+
+	var count int = 0
+	var wg sync.WaitGroup
+
+	wg.Add(1)
+	go func() {
+		for i := 0; i < 10000; i++ {
+			count++
+		}
+		wg.Done()
+	}()
+
+	wg.Add(1)
+	go func() {
+		for i := 0; i < 10000; i++ {
+			count++
+		}
+		wg.Done()
+	}()
+
+	wg.Wait()
+
+	fmt.Println(count)
 }
