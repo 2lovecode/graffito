@@ -10,6 +10,7 @@ import (
 	"graffito/experiment/mode0/card"
 	"graffito/experiment/mode0/handler"
 	"graffito/experiment/mode0/source"
+	"graffito/experiment/search"
 	"graffito/utils/params"
 	"time"
 
@@ -107,6 +108,11 @@ func NewExperimentCommand() *cobra.Command {
 		fmt.Println(sAData, sBData, sCData)
 	}, Short: "depends"}
 	expCmd.AddCommand(dependsCmd)
+
+	searchCmd := &cobra.Command{Use: "search", Run: func(cmd *cobra.Command, args []string) {
+		search.Run()
+	}, Short: "search"}
+	expCmd.AddCommand(searchCmd)
 
 	return expCmd
 }

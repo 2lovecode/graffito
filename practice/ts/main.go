@@ -1,7 +1,11 @@
 package ts
 
 import (
+	"bytes"
+	"compress/gzip"
+	"encoding/base64"
 	"fmt"
+	"io/ioutil"
 	"net/url"
 	"path/filepath"
 	"strings"
@@ -58,4 +62,24 @@ func Run() {
 	wg.Wait()
 
 	fmt.Println(count)
+
+	decoded, err := base64.StdEncoding.DecodeString("aaa")
+
+	result := ""
+
+	if err == nil {
+		reader := bytes.NewReader(decoded)
+		if reader != nil {
+			gzReader, err := gzip.NewReader(reader)
+			if err == nil && gzReader != nil {
+				res, err := ioutil.ReadAll(reader)
+				if err == nil {
+					result = string(res)
+				}
+			}
+		}
+
+	}
+	fmt.Println(err, result)
+
 }
