@@ -26,6 +26,7 @@ func Run(ctx context.Context) error {
 	}
 
 	loader := dataloader.NewBatchedLoader(batchFn)
+	// loader := dataloader.NewBatchedLoader(batchFn, dataloader.WithCache(&dataloader.NoCache{}))
 
 	thunk2 := loader.Load(context.TODO(), dataloader.StringKey("key2"))
 	fmt.Println("thunk2-load")
