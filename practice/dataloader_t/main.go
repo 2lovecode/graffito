@@ -1,0 +1,46 @@
+package dataloader_t
+
+import (
+	"context"
+	"fmt"
+	"log"
+
+	"github.com/graph-gophers/dataloader"
+)
+
+func Run(ctx context.Context) error {
+	batchFn := func(ctx context.Context, keys dataloader.Keys) []*dataloader.Result {
+		var results []*dataloader.Result
+		for _, key := range keys {
+			switch key.String() {
+			case "key1":
+				fmt.Println("key1-run")
+				results = append(results, &dataloader.Result{Data: "hello"})
+			case "key2":
+				fmt.Println("key2-run")
+				results = append(results, &dataloader.Result{Data: "world"})
+			}
+
+		}
+		return results
+	}
+
+	loader := dataloader.NewBatchedLoader(batchFn)
+
+	thunk2 := loader.Load(context.TODO(), dataloader.StringKey("key2"))
+	fmt.Println("thunk2-load")
+	result2, _ := thunk2()
+
+	thunk := loader.Load(context.TODO(), dataloader.StringKey("key1"))
+	fmt.Println("thunk-load")
+	result, _ := thunk()
+
+	thunk3 := loader.Load(context.TODO(), dataloader.StringKey("key1"))
+	fmt.Println("thunk3-load")
+	result3, _ := thunk3()
+
+	log.Printf("value: %#v", result)
+	log.Printf("value: %#v", result2)
+	log.Printf("value: %#v", result3)
+	return nil
+}
