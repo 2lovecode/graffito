@@ -3,7 +3,6 @@ package helper
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	tips2 "graffito/tools/helper/tips"
 	"io"
 
@@ -32,7 +31,6 @@ func (h *Helper) Run() {
 			tips.CliPrintB()
 		}
 	}
-	fmt.Println(err)
 }
 
 func readFile(fs afero.Fs, filename string) ([]byte, error) {

@@ -34,10 +34,11 @@ func Run(ctx context.Context) error {
 
 	thunk := loader.Load(context.TODO(), dataloader.StringKey("key1"))
 	fmt.Println("thunk-load")
-	result, _ := thunk()
 
 	thunk3 := loader.Load(context.TODO(), dataloader.StringKey("key1"))
 	fmt.Println("thunk3-load")
+
+	result, _ := thunk()
 	result3, _ := thunk3()
 
 	log.Printf("value: %#v", result)
