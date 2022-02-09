@@ -3,6 +3,8 @@ package practice
 import (
 	"context"
 	"graffito/practice/dataloader_t"
+	"graffito/practice/plan9"
+	"graffito/practice/schedule_x"
 	"graffito/practice/slice_x"
 	"graffito/practice/ts"
 
@@ -42,6 +44,19 @@ func NewPracticeCommand() *cobra.Command {
 	}
 
 	pracCmd.AddCommand(dataloaderCmd)
+
+	// go调度器测试
+	goScheduleCmd := &cobra.Command{Use: "schedule", Run: func(cmd *cobra.Command, args []string) {
+		schedule_x.Run()
+	}}
+	pracCmd.AddCommand(goScheduleCmd)
+
+	// 测试
+	plan9Cmd := &cobra.Command{Use: "plan9", Run: func(cmd *cobra.Command, args []string) {
+		plan9.GoWithPlan9()
+		plan9.Plan9WithGo()
+	}}
+	pracCmd.AddCommand(plan9Cmd)
 
 	// 测试
 	tsCmd := &cobra.Command{Use: "ts", Run: func(cmd *cobra.Command, args []string) {
