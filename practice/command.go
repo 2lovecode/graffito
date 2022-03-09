@@ -4,6 +4,7 @@ import (
 	"context"
 	"graffito/practice/dataloader_t"
 	"graffito/practice/plan9"
+	"graffito/practice/regexp_x"
 	"graffito/practice/schedule_x"
 	"graffito/practice/slice_x"
 	"graffito/practice/ts"
@@ -57,6 +58,12 @@ func NewPracticeCommand() *cobra.Command {
 		plan9.Plan9WithGo()
 	}}
 	pracCmd.AddCommand(plan9Cmd)
+
+	// 正则表达式
+	regCmd := &cobra.Command{Use: "reg", Run: func(cmd *cobra.Command, args []string) {
+		regexp_x.Run()
+	}}
+	pracCmd.AddCommand(regCmd)
 
 	// 测试
 	tsCmd := &cobra.Command{Use: "ts", Run: func(cmd *cobra.Command, args []string) {
