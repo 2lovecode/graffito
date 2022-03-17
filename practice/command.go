@@ -3,6 +3,7 @@ package practice
 import (
 	"context"
 	"graffito/practice/dataloader_t"
+	"graffito/practice/generics_x"
 	"graffito/practice/plan9"
 	"graffito/practice/regexp_x"
 	"graffito/practice/schedule_x"
@@ -64,6 +65,12 @@ func NewPracticeCommand() *cobra.Command {
 		regexp_x.Run()
 	}}
 	pracCmd.AddCommand(regCmd)
+
+	// 泛型
+	genericCmd := &cobra.Command{Use: "generic", Run: func(cmd *cobra.Command, args []string) {
+		generics_x.Run()
+	}}
+	pracCmd.AddCommand(genericCmd)
 
 	// 测试
 	tsCmd := &cobra.Command{Use: "ts", Run: func(cmd *cobra.Command, args []string) {
