@@ -15,6 +15,11 @@ import (
 )
 
 func Run() {
+
+	if strings.Contains("https://ppp.ttt.com/aaa/ccc", "ppp.ttt.com") {
+		fmt.Println("good good")
+	}
+
 	fmt.Println(time.Now().Format("2006年01月02日 15:04:05"))
 	link := "http://aaa.ccc.com/cs/go/we.html?ddd=.png"
 	u, e := url.Parse(link)
