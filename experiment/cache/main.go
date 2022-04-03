@@ -1,12 +1,13 @@
 package cache
 
 import (
+	"context"
 	"fmt"
+	redis2 "github.com/go-redis/redis/v8"
 	"math/rand"
 	"os"
 	"time"
 
-	"github.com/garyburd/redigo/redis"
 	"github.com/willf/bloom"
 )
 
@@ -58,6 +59,8 @@ func NewCacheDb(data map[string]string) *CacheDb {
 
 //总访问量，缓存访问量，数据库访问量，缓存空间占用量
 func CrossRun() {
+	ctx := context.TODO()
+
 	n := uint(1000)
 	filter := bloom.New(20*n, 5) // load of 20, 5 keys
 
@@ -71,34 +74,26 @@ func CrossRun() {
 
 	//缓存穿透
 	fmt.Println("缓存穿透:")
-	penetrate(c, db)
+	penetrate(ctx, c, db)
 	printFormat("缓存穿透示例", totalCount, cacheGetCount+cacheSetCount, db.GetCount(), cacheSpace)
 	stdTotal = totalCount
 
 	//缓存穿透 -- 解决方案【全部缓存】
-	initData(c, db)
-	penetrateSolutionOne(c, db)
+	initData(ctx, c, db)
+	penetrateSolutionOne(ctx, c, db)
 	printFormat("缓存穿透解决方案【全部缓存】", totalCount, cacheGetCount+cacheSetCount, db.GetCount(), cacheSpace)
 	//缓存穿透 -- 解决方案【布隆过滤器】
-	initData(c, db)
-	penetrateSolutionTwo(c, db, filter)
+	initData(ctx, c, db)
+	penetrateSolutionTwo(ctx, c, db, filter)
 	printFormat("缓存穿透解决方案【布隆过滤器】", totalCount, cacheGetCount+cacheSetCount, db.GetCount(), cacheSpace)
 
 }
 
-func initRedis() redis.Conn {
+func initRedis() *redis2.Client {
 	//初始化缓存
-	c, err := redis.Dial("tcp", "127.0.0.1:6379")
-	if err != nil {
-		fmt.Println("无法连接redis 127.0.0.1:6379 ")
-		return nil
-	}
-	_, err0 := c.Do("FLUSHDB")
-	if err0 != nil {
-		fmt.Println("flush error")
-		return nil
-	}
-	return c
+	return redis2.NewClient(&redis2.Options{
+		Addr: "127.0.0.1:6379",
+	})
 }
 
 func initDb(filter *bloom.BloomFilter) *CacheDb {
@@ -106,19 +101,16 @@ func initDb(filter *bloom.BloomFilter) *CacheDb {
 	db := NewCacheDb(make(map[string]string, mapLen))
 
 	for i := 0; i < mapLen; i++ {
-		key := "key" + string(i)
-		value := "value" + string(i)
+		key := fmt.Sprintf("key%d", i)
+		value := fmt.Sprintf("value%d", i)
 		db.Insert(key, value)
 		filter.Add([]byte(key))
 	}
 	return db
 }
 
-func initData(c redis.Conn, db *CacheDb) {
-	_, err0 := c.Do("FLUSHDB")
-	if err0 != nil {
-		fmt.Println("flush error")
-	}
+func initData(ctx context.Context, c *redis2.Client, db *CacheDb) {
+	c.FlushDB(ctx)
 	totalCount = 0
 	cacheGetCount = 0
 	cacheSetCount = 0
@@ -126,22 +118,22 @@ func initData(c redis.Conn, db *CacheDb) {
 	cacheSpace = 0
 }
 
-func setCache(key string, value string, c redis.Conn) {
-	_, err1 := c.Do("SET", key, value)
-	if err1 != nil {
+func setCache(ctx context.Context, key string, value string, c *redis2.Client) {
+
+	res := c.Set(ctx, key, value, expireTime)
+
+	if res.Err() != nil {
 		fmt.Println("set redis error")
 	}
-	sizeDb, err2 := c.Do("DBSIZE")
-	if err2 != nil {
+
+	res1 := c.DBSize(ctx)
+
+	if res1.Err() != nil {
 		fmt.Println("set redis error")
 	} else {
-		if cacheSpace < sizeDb.(int64) {
-			cacheSpace = sizeDb.(int64)
+		if cacheSpace < res1.Val() {
+			cacheSpace = res1.Val()
 		}
-	}
-	_, err3 := c.Do("EXPIRE", key, expireTime)
-	if err3 != nil {
-		fmt.Println("set redis error")
 	}
 
 	cacheSetCount++
@@ -155,77 +147,80 @@ func printFormat(desc string, totalCount int, cacheCount int, dbCount int, cache
 	fmt.Printf("<<<<Total visit: %d(%d)| Cache visit: %d(%d) | Db visit: %d(%d) | Cache Space %d(%d)\n", totalCount, stdTotal, cacheCount, stdTotal*cacheCount/totalCount, dbCount, stdTotal*dbCount/totalCount, cacheSpace, stdTotal*int(cacheSpace)/totalCount)
 }
 
-func penetrate(c redis.Conn, db *CacheDb) {
+func penetrate(ctx context.Context, c *redis2.Client, db *CacheDb) {
 	startTime := time.Now().Second()
 
 	for endTime := 0; endTime < executeTime; endTime = time.Now().Second() - startTime {
 		totalCount++
-		key := "key" + string(rand.Intn(randLen))
-		value, err := c.Do("GET", key)
+		key := fmt.Sprintf("key%d", rand.Intn(randLen))
+		value := c.Get(ctx, key)
 		cacheGetCount++
-		if err != nil {
-			fmt.Println("Error", err)
+		if value.Err() != nil {
+			fmt.Println("Error", value.Err())
 			break
 		}
-		if value != nil {
+		if value.Val() != "" {
 			continue
 		}
 
-		value = db.Select(key)
+		dbVal := db.Select(key)
 
-		if value != "" {
-			setCache(key, value.(string), c)
+		if dbVal != "" {
+			setCache(ctx, key, dbVal, c)
 		}
 	}
 }
 
 //全部使用缓存
-func penetrateSolutionOne(c redis.Conn, db *CacheDb) {
+func penetrateSolutionOne(ctx context.Context, c *redis2.Client, db *CacheDb) {
 	startTime := time.Now().Second()
 
 	for endTime := 0; endTime < executeTime; endTime = time.Now().Second() - startTime {
 		totalCount++
-		key := "key" + string(rand.Intn(randLen))
-		value, err := c.Do("GET", key)
+		key := fmt.Sprintf("key%d", rand.Intn(randLen))
+		value := c.Get(ctx, key)
 		cacheGetCount++
-		if err != nil {
-			fmt.Println("Error", err)
+		if value.Err() != nil {
+			fmt.Println("Error", value.Err())
 			break
 		}
-		if value != nil {
+		if value.Val() != "" {
 			continue
 		}
 
-		value = db.Select(key)
+		dbVal := db.Select(key)
 
-		setCache(key, value.(string), c)
+		if dbVal != "" {
+			setCache(ctx, key, dbVal, c)
+		}
 	}
 }
 
 //使用布隆过滤器
-func penetrateSolutionTwo(c redis.Conn, db *CacheDb, filter *bloom.BloomFilter) {
+func penetrateSolutionTwo(ctx context.Context, c *redis2.Client, db *CacheDb, filter *bloom.BloomFilter) {
 	startTime := time.Now().Second()
 
 	for endTime := 0; endTime < executeTime; endTime = time.Now().Second() - startTime {
 		totalCount++
-		key := "key" + string(rand.Intn(randLen))
+
+		key := fmt.Sprintf("key%d", rand.Intn(randLen))
 		if !filter.Test([]byte(key)) {
 			continue
 		}
-		value, err := c.Do("GET", key)
+		value := c.Get(ctx, key)
 		cacheGetCount++
-		if err != nil {
-			fmt.Println("Error", err)
+		if value.Err() != nil {
+			fmt.Println("Error", value.Err())
 			break
 		}
-		if value != nil {
+		if value.Val() != "" {
 			continue
 		}
 
-		value = db.Select(key)
+		dbVal := db.Select(key)
 
-		if value != "" {
-			setCache(key, value.(string), c)
+		if dbVal != "" {
+			setCache(ctx, key, dbVal, c)
 		}
 	}
 }

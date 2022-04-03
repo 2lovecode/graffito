@@ -5,11 +5,9 @@ go 1.18
 require (
 	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20210506161523-0a1c3e3ce1ca
 	github.com/g3n/engine v0.1.0
-	github.com/garyburd/redigo v1.6.2
 	github.com/go-redis/redis/v8 v8.11.4
 	github.com/graph-gophers/dataloader v5.0.0+incompatible
 	github.com/json-iterator/go v1.1.11
-	github.com/samuel/go-zookeeper v0.0.0-20201211165307-7117e9ea2414
 	github.com/sirupsen/logrus v1.8.0
 	github.com/smartystreets/goconvey v1.6.4
 	github.com/spf13/afero v1.6.0
@@ -38,10 +36,10 @@ require (
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/willf/bitset v1.1.11 // indirect
 	github.com/xuri/efp v0.0.0-20210322160811-ab561f5b45e3 // indirect
-	golang.org/x/crypto v0.0.0-20210711020723-a769d52b0f97 // indirect
+	golang.org/x/crypto v0.0.0-20220331220935-ae2d96664a29 // indirect
 	golang.org/x/image v0.0.0-20210504121937-7319ad40d33e // indirect
-	golang.org/x/net v0.0.0-20210726213435-c6fcb2dbf985 // indirect
-	golang.org/x/sys v0.0.0-20210615035016-665e8c7367d1 // indirect
-	golang.org/x/text v0.3.6 // indirect
+	golang.org/x/net v0.0.0-20220403103023-749bd193bc2b // indirect
+	golang.org/x/sys v0.0.0-20220403020550-483a9cbc67c0 // indirect
+	golang.org/x/text v0.3.7 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
