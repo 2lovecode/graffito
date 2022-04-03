@@ -4,7 +4,6 @@ go 1.18
 
 require (
 	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20210506161523-0a1c3e3ce1ca
-	github.com/g3n/engine v0.1.0
 	github.com/go-redis/redis/v8 v8.11.4
 	github.com/graph-gophers/dataloader v5.0.0+incompatible
 	github.com/json-iterator/go v1.1.11
@@ -19,8 +18,6 @@ require (
 require (
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
-	github.com/go-gl/glfw v0.0.0-20210410170116-ea3d685f79fb // indirect
-	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/jtolds/gls v4.20.0+incompatible // indirect
@@ -41,5 +38,4 @@ require (
 	golang.org/x/net v0.0.0-20220403103023-749bd193bc2b // indirect
 	golang.org/x/sys v0.0.0-20220403020550-483a9cbc67c0 // indirect
 	golang.org/x/text v0.3.7 // indirect
-	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
