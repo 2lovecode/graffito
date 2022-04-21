@@ -3,6 +3,7 @@ package slice_x
 import (
 	"fmt"
 	"net/url"
+	"sort"
 )
 
 func Run_1() {
@@ -94,4 +95,15 @@ func Run_4() {
 	}
 	// "imageMogr2/thumbnail/384x/format/jpg"
 	fmt.Println(finalUrl)
+}
+
+func Run_5() {
+
+	sortStrings := []string{"2", "7", "1", "5"}
+
+	sort.Slice(sortStrings, func(i, j int) bool {
+		return sortStrings[i] < sortStrings[j]
+	})
+
+	fmt.Println(sortStrings)
 }

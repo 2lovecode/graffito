@@ -29,6 +29,8 @@ func NewPracticeCommand() *cobra.Command {
 				slice_x.Run_3()
 			case "4":
 				slice_x.Run_4()
+			case "5":
+				slice_x.Run_5()
 			}
 		}
 
