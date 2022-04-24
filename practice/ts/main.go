@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"net/url"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -15,6 +16,8 @@ import (
 )
 
 func Run() {
+
+	fmt.Println(strconv.Itoa(0))
 
 	if strings.Contains("https://ppp.ttt.com/aaa/ccc", "ppp.ttt.com") {
 		fmt.Println("good good")
