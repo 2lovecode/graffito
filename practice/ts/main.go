@@ -23,6 +23,10 @@ func Run() {
 		fmt.Println("good good")
 	}
 
+	fmt.Println(UrlAddAndReplaceQuery("http://hot.t.ziroom.com/2022/pano-vr/?inv_no=772908110&inv_no=772908110&zrVrId=858922680266300906ffff", map[string]string{
+		"inv_no": "1234",
+	}))
+
 	fmt.Println(time.Now().Format("2006年01月02日 15:04:05"))
 	link := "http://aaa.ccc.com/cs/go/we.html?ddd=.png"
 	u, e := url.Parse(link)
@@ -91,4 +95,20 @@ func Run() {
 
 	}
 	fmt.Println(err, result)
+}
+
+func UrlAddAndReplaceQuery(link string, extraQuery map[string]string) string {
+	if strings.Contains(link, "http") {
+		if linkEntry, err := url.Parse(link); err == nil && linkEntry != nil {
+			query := linkEntry.Query()
+			for key, val := range extraQuery {
+				query.Set(key, val)
+			}
+			linkEntry.RawQuery = query.Encode()
+			return linkEntry.String()
+
+		}
+	}
+
+	return link
 }

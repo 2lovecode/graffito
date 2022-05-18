@@ -13,6 +13,7 @@ require (
 	github.com/spf13/cobra v1.2.1
 	github.com/willf/bloom v2.0.3+incompatible
 	github.com/xuri/excelize/v2 v2.4.1
+	github.com/yanyiwu/gojieba v1.1.2
 )
 
 require (
@@ -33,7 +34,6 @@ require (
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/willf/bitset v1.1.11 // indirect
 	github.com/xuri/efp v0.0.0-20210322160811-ab561f5b45e3 // indirect
-	github.com/yanyiwu/gojieba v1.1.2 // indirect
 	golang.org/x/crypto v0.0.0-20220331220935-ae2d96664a29 // indirect
 	golang.org/x/image v0.0.0-20210504121937-7319ad40d33e // indirect
 	golang.org/x/net v0.0.0-20220403103023-749bd193bc2b // indirect

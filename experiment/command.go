@@ -6,7 +6,6 @@ import (
 	"graffito/experiment/cache"
 	"graffito/experiment/depends"
 	"graffito/experiment/event"
-	"graffito/experiment/jieba"
 	"graffito/experiment/mode0"
 	"graffito/experiment/mode0/card"
 	"graffito/experiment/mode0/handler"
@@ -114,11 +113,6 @@ func NewExperimentCommand() *cobra.Command {
 		search.Run()
 	}, Short: "search"}
 	expCmd.AddCommand(searchCmd)
-
-	jiebaCmd := &cobra.Command{Use: "jieba", Run: func(cmd *cobra.Command, args []string) {
-		jieba.Run()
-	}, Short: "jieba"}
-	expCmd.AddCommand(jiebaCmd)
 
 	return expCmd
 }
