@@ -17,6 +17,8 @@ import (
 
 func Run() {
 
+	Trans()
+
 	fmt.Println(strconv.Itoa(0))
 
 	if strings.Contains("https://ppp.ttt.com/aaa/ccc", "ppp.ttt.com") {
@@ -111,4 +113,17 @@ func UrlAddAndReplaceQuery(link string, extraQuery map[string]string) string {
 	}
 
 	return link
+}
+
+func Trans() {
+	original := "https://hot.ziroom.com/2022/pano-vr/?zrVrId=16559046272702861973"
+
+	originalUrl, err := url.Parse(original)
+
+	if err == nil && originalUrl != nil {
+		originalUrl.Path = strings.TrimRight(originalUrl.Path, "/")
+		fmt.Println(originalUrl.String())
+
+	}
+
 }
