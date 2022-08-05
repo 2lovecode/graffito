@@ -17,6 +17,10 @@ import (
 
 func Run() {
 
+	var b = "Go语言"
+	for idx, valueRune := range b {
+		fmt.Printf("%#U starts at byte position %d\n", valueRune, idx)
+	}
 	fmt.Println(time.Unix(1658196699, 0))
 	Trans()
 
@@ -26,8 +30,8 @@ func Run() {
 		fmt.Println("good good")
 	}
 
-	fmt.Println(UrlAddAndReplaceQuery("http://hot.t.ziroom.com/2022/pano-vr/?inv_no=772908110&inv_no=772908110&zrVrId=858922680266300906ffff", map[string]string{
-		"inv_no": "1234",
+	fmt.Println(UrlAddAndReplaceQuery("http://hot.t.test.com/2022/pano-vr/?iddd=772908110&iddd=772908110&zrVrId=858922680266300906ffff", map[string]string{
+		"iddd": "1234",
 	}))
 
 	fmt.Println(time.Now().Format("2006年01月02日 15:04:05"))
