@@ -2,3 +2,5 @@
 .DS_Store
 vendor
 graffito
+*.o
+ssa.html
