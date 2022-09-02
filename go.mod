@@ -19,6 +19,7 @@ require (
 require (
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
+	github.com/fsnotify/fsnotify v1.5.4 // indirect
 	github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/jtolds/gls v4.20.0+incompatible // indirect
@@ -37,6 +38,6 @@ require (
 	golang.org/x/crypto v0.0.0-20220331220935-ae2d96664a29 // indirect
 	golang.org/x/image v0.0.0-20210504121937-7319ad40d33e // indirect
 	golang.org/x/net v0.0.0-20220403103023-749bd193bc2b // indirect
-	golang.org/x/sys v0.0.0-20220403020550-483a9cbc67c0 // indirect
+	golang.org/x/sys v0.0.0-20220829200755-d48e67d00261 // indirect
 	golang.org/x/text v0.3.7 // indirect
 )
