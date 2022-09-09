@@ -1,0 +1,4 @@
+images/*.png
+!images/hello.png
+data/*.txt
+!data/hello.txt
