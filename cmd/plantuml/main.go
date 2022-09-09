@@ -5,8 +5,6 @@ import (
 	"graffito/utils/file"
 	"log"
 	"os/exec"
-	"path"
-	"strings"
 
 	"github.com/fsnotify/fsnotify"
 )
@@ -36,14 +34,15 @@ func main() {
 					return
 				}
 
-				dataFileName := ""
-				imageFilePath := ""
+				// dataFileName := ""
+				// imageFilePath := ""
 
-				dataFileName = path.Base(event.Name)
-				dataFileExt := path.Ext(dataFileName)
-				imageFilePath = fmt.Sprintf("%s/%s.png", imagesDirPath, strings.TrimSuffix(dataFileName, dataFileExt))
+				// dataFileName = path.Base(event.Name)
+				// dataFileExt := path.Ext(dataFileName)
+				// imageFilePath = fmt.Sprintf("%s/%s.png", imagesDirPath, strings.TrimSuffix(dataFileName, dataFileExt))
+				// fmt.Println(imageFilePath)
 				if event.Op&fsnotify.Write == fsnotify.Write || event.Op&fsnotify.Create == fsnotify.Create {
-					generateCmd := exec.Command("java", "-jar", plantumlPath, event.Name, "-o", imageFilePath)
+					generateCmd := exec.Command("java", "-jar", plantumlPath, event.Name, "-o", imagesDirPath)
 					err := generateCmd.Run()
 					if err != nil {
 						log.Printf("Err: %v", err)
