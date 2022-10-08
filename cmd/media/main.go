@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/hex"
 	"fmt"
-	"io/ioutil"
+	"net/http"
 	"os"
 	"strconv"
 	"strings"
@@ -12,12 +12,14 @@ import (
 )
 
 func main() {
-	f, err := os.Open("/Users/liuhao/Downloads/b03dc8e1c5b6b34bce4d2dd9927b3c649.mov")
+	f, err := os.Open("")
 	if err == nil {
-		fSrc, err := ioutil.ReadAll(f)
-		if err == nil {
-			fmt.Println(GetFileType(fSrc[:6]))
-		}
+		// fSrc, err := ioutil.ReadAll(f)
+		// if err == nil {
+		// 	fmt.Println(GetFileType(fSrc[:6]))
+
+		fmt.Println(GetFileContentType(f))
+		// }
 	} else {
 		fmt.Println("err:", err)
 	}
@@ -131,4 +133,21 @@ func GetFileType(fSrc []byte) string {
 		return true
 	})
 	return fileType
+}
+
+func GetFileContentType(out *os.File) (string, error) {
+
+	// Only the first 512 bytes are used to sniff the content type.
+	buffer := make([]byte, 512)
+
+	_, err := out.Read(buffer)
+	if err != nil {
+		return "", err
+	}
+
+	// Use the net/http package's handy DectectContentType function. Always returns a valid
+	// content-type by returning "application/octet-stream" if no others seemed to match.
+	contentType := http.DetectContentType(buffer)
+
+	return contentType, nil
 }
