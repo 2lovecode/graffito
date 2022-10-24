@@ -6,6 +6,7 @@ import (
 	"graffito/tools/excel"
 	"graffito/tools/helper"
 	"graffito/tools/redis"
+	"graffito/tools/sql2go"
 	"graffito/tools/string_op"
 	"strconv"
 	"strings"
@@ -124,6 +125,11 @@ func NewToolsCommand() *cobra.Command {
 		}
 	}, Short: "Excel读取", Example: "graffito tools excel"}
 	toolsCmd.AddCommand(excelCmd)
+
+	sql2GoCmd := &cobra.Command{Use: "sql2go", Run: func(cmd *cobra.Command, args []string) {
+		sql2go.Run()
+	}, Short: "sql2go", Example: "graffito tools sql2go"}
+	toolsCmd.AddCommand(sql2GoCmd)
 
 	return toolsCmd
 }
