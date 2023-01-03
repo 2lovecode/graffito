@@ -6,36 +6,6 @@ import (
 	"sort"
 )
 
-func Run_1() {
-
-	//实验扩容规则 - 每次添加一个元素
-
-	ms := make([]int, 0)
-
-	oldCap := cap(ms)
-	newCap := oldCap
-
-	fmt.Printf("初始容量: %d\n", oldCap)
-
-	for i := 0; i < 2048; i++ {
-		ms = append(ms, i)
-		newCap = cap(ms)
-		if oldCap != newCap {
-			fmt.Printf("length: %d, old cap: %d, new cap: %d, rate: %f\n", i, oldCap, newCap, float64(newCap)/float64(oldCap))
-			oldCap = newCap
-		}
-	}
-}
-
-func Run_2() {
-	// 实验扩容规则 - 一次添加多个元素
-	ms := []int{1, 2}
-
-	fmt.Printf("初始容量: %d\n", cap(ms))
-	ms = append(ms, 3, 4, 5)
-	fmt.Printf("扩容容量: %d\n", cap(ms))
-}
-
 func myAppend(s []int) []int {
 	s = append(s, 10)
 	return s
@@ -97,7 +67,7 @@ func Run_4() {
 	fmt.Println(finalUrl)
 }
 
-func Run_5() {
+func Sorting() {
 
 	sortStrings := []string{"2", "7", "1", "5"}
 

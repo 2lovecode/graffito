@@ -21,16 +21,18 @@ func NewPracticeCommand() *cobra.Command {
 	slice1OpCmd := &cobra.Command{Use: "slice", Run: func(cmd *cobra.Command, args []string) {
 		if len(args) > 0 {
 			switch args[0] {
-			case "1":
-				slice_x.Run_1()
-			case "2":
-				slice_x.Run_2()
+			case "expansion-one-by-one":
+				slice_x.ExpansionOneByOne()
+			case "expansion-multiple":
+				slice_x.ExpansionMultiple()
 			case "3":
 				slice_x.Run_3()
 			case "4":
 				slice_x.Run_4()
-			case "5":
-				slice_x.Run_5()
+			case "sorting":
+				slice_x.Sorting()
+			case "substr":
+				slice_x.Substr()
 			}
 		}
 
