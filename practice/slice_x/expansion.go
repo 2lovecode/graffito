@@ -21,7 +21,7 @@ func ExpansionOneByOne() {
 	}
 }
 
-// 扩容实验 - 一次添加多个元素
+// 扩容实验 - 一次添加多个元素（内存对齐）
 func ExpansionMultiple() {
 	ms := []int{1, 2}
 
