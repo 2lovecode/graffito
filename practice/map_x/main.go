@@ -5,6 +5,13 @@ import (
 	"sort"
 )
 
+// map的实现原理
+// 什么类型可以作为key，什么类型可以作为value
+// 添加-扩容
+// 删除-缩容
+// 遍历无序
+// 判等
+
 func Run1() {
 	//map赋值是指针赋值
 	map1 := map[string]string{
@@ -58,7 +65,7 @@ func Run2() {
 		D: 1,
 	}
 	s2 := SSS{
-		D:1,
+		D: 1,
 	}
 
 	var tt = map[*SSS]int{}
