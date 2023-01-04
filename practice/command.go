@@ -25,8 +25,8 @@ func NewPracticeCommand() *cobra.Command {
 				slice_x.ExpansionOneByOne()
 			case "expansion-multiple":
 				slice_x.ExpansionMultiple()
-			case "3":
-				slice_x.Run_3()
+			case "func-params":
+				slice_x.FuncParams()
 			case "4":
 				slice_x.Run_4()
 			case "sorting":
