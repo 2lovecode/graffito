@@ -5,6 +5,7 @@ import (
 	"compress/gzip"
 	"encoding/base64"
 	"fmt"
+	"github.com/spf13/cobra"
 	"io/ioutil"
 	"net/url"
 	"path/filepath"
@@ -14,6 +15,12 @@ import (
 	"time"
 	"unicode/utf8"
 )
+
+func NewCommand() *cobra.Command {
+	return &cobra.Command{Use: "ts", Run: func(cmd *cobra.Command, args []string) {
+		Run()
+	}}
+}
 
 func Run() {
 

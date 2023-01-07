@@ -3,11 +3,21 @@ package dataloader_t
 import (
 	"context"
 	"fmt"
+	"github.com/spf13/cobra"
 	"log"
 
 	"github.com/graph-gophers/dataloader"
 )
 
+func NewCommand() *cobra.Command {
+	return &cobra.Command{
+		Use: "dataloader",
+		Run: func(cmd *cobra.Command, args []string) {
+			Run(context.Background())
+		},
+		Short: "dataloader测试",
+	}
+}
 func Run(ctx context.Context) error {
 	batchFn := func(ctx context.Context, keys dataloader.Keys) []*dataloader.Result {
 		var results []*dataloader.Result
