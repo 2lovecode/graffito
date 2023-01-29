@@ -2,9 +2,32 @@ package slice_x
 
 import (
 	"fmt"
+	"github.com/spf13/cobra"
 	"net/url"
 	"sort"
 )
+
+func NewCommand() *cobra.Command {
+	return &cobra.Command{Use: "slice", Run: func(cmd *cobra.Command, args []string) {
+		if len(args) > 0 {
+			switch args[0] {
+			case "expansion-one-by-one":
+				ExpansionOneByOne()
+			case "expansion-multiple":
+				ExpansionMultiple()
+			case "func-params":
+				FuncParams()
+			case "4":
+				Run_4()
+			case "sorting":
+				Sorting()
+			case "substr":
+				Substr()
+			}
+		}
+
+	}}
+}
 
 func Run_4() {
 	s1 := []int{1, 2, 3, 4}

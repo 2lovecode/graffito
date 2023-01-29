@@ -3,6 +3,8 @@ package map_x
 import (
 	"fmt"
 	"sort"
+
+	"github.com/spf13/cobra"
 )
 
 // map的实现原理
@@ -78,4 +80,20 @@ func Run2() {
 	fmt.Println(ttt[s1], ttt[s2])
 
 	fmt.Println(s1 == s2)
+}
+
+func NewCommand() *cobra.Command {
+	return &cobra.Command{
+		Use: "map",
+		Run: func(cmd *cobra.Command, args []string) {
+			if len(args) > 0 {
+				switch args[0] {
+				case "1":
+					Run1()
+				case "2":
+					Run2()
+				}
+			}
+		},
+	}
 }

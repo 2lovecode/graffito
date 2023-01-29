@@ -1,9 +1,10 @@
 package practice
 
 import (
-	"context"
+	"graffito/practice/channel_x"
 	"graffito/practice/dataloader_t"
 	"graffito/practice/generics_x"
+	"graffito/practice/map_x"
 	"graffito/practice/plan9"
 	"graffito/practice/regexp_x"
 	"graffito/practice/schedule_x"
@@ -17,70 +18,18 @@ func NewPracticeCommand() *cobra.Command {
 
 	pracCmd := &cobra.Command{Use: "prac", Short: "练习代码"}
 
-	// 切片
-	slice1OpCmd := &cobra.Command{Use: "slice", Run: func(cmd *cobra.Command, args []string) {
-		if len(args) > 0 {
-			switch args[0] {
-			case "expansion-one-by-one":
-				slice_x.ExpansionOneByOne()
-			case "expansion-multiple":
-				slice_x.ExpansionMultiple()
-			case "func-params":
-				slice_x.FuncParams()
-			case "4":
-				slice_x.Run_4()
-			case "sorting":
-				slice_x.Sorting()
-			case "substr":
-				slice_x.Substr()
-			}
-		}
-
-	}}
-
-	pracCmd.AddCommand(slice1OpCmd)
-
-	// graphql-dataloader
-	dataloaderCmd := &cobra.Command{
-		Use: "dataloader",
-		Run: func(cmd *cobra.Command, args []string) {
-			dataloader_t.Run(context.Background())
-		},
-		Short: "dataloader测试",
+	cmds := []*cobra.Command{
+		slice_x.NewCommand(),      // 切片
+		map_x.NewCommand(),        // map
+		channel_x.NewCommand(),    // channel
+		ts.NewCommand(),           // 测试
+		generics_x.NewCommand(),   // 泛型
+		regexp_x.NewCommand(),     // 正则表达式
+		dataloader_t.NewCommand(), // graphql-dataloader
+		schedule_x.NewCommand(),   // go调度器测试
+		plan9.NewCommand(),        // plan9
 	}
 
-	pracCmd.AddCommand(dataloaderCmd)
-
-	// go调度器测试
-	goScheduleCmd := &cobra.Command{Use: "schedule", Run: func(cmd *cobra.Command, args []string) {
-		schedule_x.Run()
-	}}
-	pracCmd.AddCommand(goScheduleCmd)
-
-	// 测试
-	plan9Cmd := &cobra.Command{Use: "plan9", Run: func(cmd *cobra.Command, args []string) {
-		plan9.GoWithPlan9()
-		plan9.Plan9WithGo()
-	}}
-	pracCmd.AddCommand(plan9Cmd)
-
-	// 正则表达式
-	regCmd := &cobra.Command{Use: "reg", Run: func(cmd *cobra.Command, args []string) {
-		regexp_x.Run()
-	}}
-	pracCmd.AddCommand(regCmd)
-
-	// 泛型
-	genericCmd := &cobra.Command{Use: "generic", Run: func(cmd *cobra.Command, args []string) {
-		generics_x.Run()
-	}}
-	pracCmd.AddCommand(genericCmd)
-
-	// 测试
-	tsCmd := &cobra.Command{Use: "ts", Run: func(cmd *cobra.Command, args []string) {
-		ts.Run()
-	}}
-	pracCmd.AddCommand(tsCmd)
-
+	pracCmd.AddCommand(cmds...)
 	return pracCmd
 }

@@ -2,7 +2,15 @@ package plan9
 
 import (
 	"fmt"
+	"github.com/spf13/cobra"
 )
+
+func NewCommand() *cobra.Command {
+	return &cobra.Command{Use: "plan9", Run: func(cmd *cobra.Command, args []string) {
+		GoWithPlan9()
+		Plan9WithGo()
+	}}
+}
 
 func output(int) (int, int, int)
 
