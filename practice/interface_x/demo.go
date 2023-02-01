@@ -14,7 +14,7 @@ type shape interface {
 
 type square struct {
 	length int
-	width int
+	width  int
 }
 
 type circle struct {
@@ -43,7 +43,7 @@ func (ma myArray) Swap(i, j int) {
 	ma[i], ma[j] = ma[j], ma[i]
 }
 
-type Ele interface {}
+type Ele interface{}
 
 type Ll struct {
 	a [3]Ele
@@ -143,19 +143,6 @@ func Run2() {
 	fmt.Printf("a: %T, %v, %v\n", a, a, a == nil)
 	fmt.Printf("b: %T, %v, %v\n", b, b, b == nil)
 
-}
-
-type iface struct {
-	tab  *itab
-	data unsafe.Pointer
-}
-type itab struct {
-	inter	uintptr
-	_type	uintptr
-	link	uintptr
-	hash	uint32
-	_   	[4]byte
-	fun		[1]uintptr
 }
 
 func Run3() {

@@ -4,6 +4,7 @@ import (
 	"graffito/practice/channel_x"
 	"graffito/practice/dataloader_t"
 	"graffito/practice/generics_x"
+	"graffito/practice/interface_x"
 	"graffito/practice/map_x"
 	"graffito/practice/plan9"
 	"graffito/practice/regexp_x"
@@ -22,6 +23,7 @@ func NewPracticeCommand() *cobra.Command {
 		slice_x.NewCommand(),      // 切片
 		map_x.NewCommand(),        // map
 		channel_x.NewCommand(),    // channel
+		interface_x.NewCommand(),  // interface
 		ts.NewCommand(),           // 测试
 		generics_x.NewCommand(),   // 泛型
 		regexp_x.NewCommand(),     // 正则表达式
