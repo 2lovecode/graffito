@@ -19,6 +19,12 @@ func NewCommand() *cobra.Command {
 				printDynamicTypeAndValue()
 			},
 		},
+		{
+			Use: "check-implement",
+			Run: func(cmd *cobra.Command, args []string) {
+				checkImplement()
+			},
+		},
 	}
 	interfaceCmd.AddCommand(cmds...)
 
