@@ -1,6 +1,6 @@
 module graffito
 
-go 1.18
+go 1.19
 
 require (
 	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20210506161523-0a1c3e3ce1ca
@@ -11,6 +11,7 @@ require (
 	github.com/qmhball/db2gorm v0.1.0
 	github.com/sirupsen/logrus v1.8.0
 	github.com/smartystreets/goconvey v1.6.4
+	github.com/sourcegraph/conc v0.2.0
 	github.com/spf13/afero v1.6.0
 	github.com/spf13/cobra v1.2.1
 	github.com/willf/bloom v2.0.3+incompatible

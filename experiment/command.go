@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"graffito/experiment/cache"
+	"graffito/experiment/concx"
 	"graffito/experiment/depends"
 	"graffito/experiment/event"
 	"graffito/experiment/mode0"
@@ -18,19 +19,9 @@ import (
 )
 
 func NewExperimentCommand() *cobra.Command {
-
-	expCmd := &cobra.Command{Use: "exp", Short: "试验代码"}
-
-	// stringOpCmd := &cobra.Command{Use: "g3n", Run: func(cmd *cobra.Command, args []string) {
-	// 	g3n.Run()
-	// }, Short: "g3n游戏包示例代码"}
-
-	// expCmd.AddCommand(stringOpCmd)
 	cacheCmd := &cobra.Command{Use: "cross-cache", Run: func(cmd *cobra.Command, args []string) {
 		cache.CrossRun()
 	}, Short: "缓存穿透"}
-
-	expCmd.AddCommand(cacheCmd)
 
 	eventCmd := &cobra.Command{Use: "event", Run: func(cmd *cobra.Command, args []string) {
 		mEvent := event.NewMEvent()
@@ -46,7 +37,6 @@ func NewExperimentCommand() *cobra.Command {
 
 		mEvent.Trigger("car", p)
 	}, Short: "事件"}
-	expCmd.AddCommand(eventCmd)
 
 	mode0Cmd := &cobra.Command{Use: "mode0", Run: func(cmd *cobra.Command, args []string) {
 
@@ -77,7 +67,6 @@ func NewExperimentCommand() *cobra.Command {
 		fmt.Println(ret[0], "{\"name\":\"type_big_Big_Big_Hooooooo\"}")
 		fmt.Println(ret[1], "{\"name\":\"Hoooooo_type_small\"}")
 	}, Short: "mode0"}
-	expCmd.AddCommand(mode0Cmd)
 
 	dependsCmd := &cobra.Command{Use: "depends", Run: func(cmd *cobra.Command, args []string) {
 		ctx := context.WithValue(context.TODO(), "q", "test")
@@ -107,12 +96,22 @@ func NewExperimentCommand() *cobra.Command {
 
 		fmt.Println(sAData, sBData, sCData)
 	}, Short: "depends"}
-	expCmd.AddCommand(dependsCmd)
 
 	searchCmd := &cobra.Command{Use: "search", Run: func(cmd *cobra.Command, args []string) {
 		search.Run()
 	}, Short: "search"}
-	expCmd.AddCommand(searchCmd)
 
+	expCmd := &cobra.Command{Use: "exp", Short: "试验代码"}
+
+	cmds := []*cobra.Command{
+		cacheCmd,
+		searchCmd,
+		dependsCmd,
+		mode0Cmd,
+		eventCmd,
+		concx.NewCommand(),
+	}
+
+	expCmd.AddCommand(cmds...)
 	return expCmd
 }
