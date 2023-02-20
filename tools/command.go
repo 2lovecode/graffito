@@ -5,6 +5,7 @@ import (
 	"graffito/tools/color"
 	"graffito/tools/excel"
 	"graffito/tools/helper"
+	"graffito/tools/modg"
 	"graffito/tools/modgv"
 	"graffito/tools/redis"
 	"graffito/tools/sql2go"
@@ -22,6 +23,7 @@ func NewCommand() *cobra.Command {
 		color.NewCommand(),
 		excel.NewCommand(),
 		sql2go.NewCommand(),
+		modg.NewCommand(),
 		modgv.NewCommand(),
 	}
 	toolsCmd.AddCommand(cmds...)
