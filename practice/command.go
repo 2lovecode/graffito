@@ -15,7 +15,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewPracticeCommand() *cobra.Command {
+func NewCommand() *cobra.Command {
 
 	pracCmd := &cobra.Command{Use: "prac", Short: "练习代码"}
 

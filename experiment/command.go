@@ -18,7 +18,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewExperimentCommand() *cobra.Command {
+func NewCommand() *cobra.Command {
 	cacheCmd := &cobra.Command{Use: "cross-cache", Run: func(cmd *cobra.Command, args []string) {
 		cache.CrossRun()
 	}, Short: "缓存穿透"}

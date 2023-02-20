@@ -3,6 +3,7 @@ package main
 import (
 	"graffito/algorithm"
 	"graffito/experiment"
+	"graffito/learn"
 	"graffito/leetcode"
 	"graffito/pattern"
 	"graffito/practice"
@@ -13,13 +14,16 @@ import (
 
 func main() {
 	rootCmd := cobra.Command{Use: "graffito"}
-
-	rootCmd.AddCommand(tools.NewToolsCommand())
-	rootCmd.AddCommand(algorithm.NewAlgorithmCommand())
-	rootCmd.AddCommand(experiment.NewExperimentCommand())
-	rootCmd.AddCommand(practice.NewPracticeCommand())
-	rootCmd.AddCommand(pattern.NewPatternCommand())
-	rootCmd.AddCommand(leetcode.NewLeetcodeCommand())
+	cmds := []*cobra.Command{
+		tools.NewCommand(),
+		algorithm.NewCommand(),
+		experiment.NewCommand(),
+		practice.NewCommand(),
+		pattern.NewCommand(),
+		leetcode.NewCommand(),
+		learn.NewCommand(),
+	}
+	rootCmd.AddCommand(cmds...)
 
 	rootCmd.Execute()
 }

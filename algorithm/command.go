@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewAlgorithmCommand() *cobra.Command {
+func NewCommand() *cobra.Command {
 	algCommand := &cobra.Command{Use: "alg", Short: "数据结构"}
 
 	arrCmd := &cobra.Command{Use: "arr", Run: func(cmd *cobra.Command, args []string) {

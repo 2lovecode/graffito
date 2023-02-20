@@ -14,7 +14,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewToolsCommand() *cobra.Command {
+func NewCommand() *cobra.Command {
 
 	toolsCmd := &cobra.Command{Use: "tools", Short: "工具箱"}
 

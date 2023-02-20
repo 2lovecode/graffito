@@ -1,13 +1,16 @@
-package algorithm
+package learn
 
-import "github.com/spf13/cobra"
+import (
+	"github.com/spf13/cobra"
+	"graffito/learn/algorithm"
+)
 
 func NewCommand() *cobra.Command {
 	rootCmd := &cobra.Command{
-		Use: "alg",
+		Use: "learn",
 	}
 	cmds := []*cobra.Command{
-		NewClimbStair(),
+		algorithm.NewCommand(),
 	}
 	rootCmd.AddCommand(cmds...)
 	return rootCmd
