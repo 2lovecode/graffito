@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"context"
 	"fmt"
+	"github.com/spf13/cobra"
 	"graffito/tools/redis/commands"
 	"os"
 	"strings"
@@ -84,4 +85,20 @@ func (instance *RedisInstance) Run() {
 		}
 	}
 
+}
+
+func NewCommand() *cobra.Command {
+	return &cobra.Command{Use: "redis", Run: func(cmd *cobra.Command, args []string) {
+		host := ""
+		port := ""
+
+		if len(args) > 0 {
+			host = args[0]
+			if len(args) > 1 {
+				port = args[1]
+			}
+		}
+		r := NewRedisInstance(host, port)
+		r.Run()
+	}, Short: "命令列表", Example: "graffito tools helper"}
 }

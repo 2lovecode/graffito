@@ -2,6 +2,7 @@ package sql2go
 
 import (
 	"github.com/qmhball/db2gorm/gen"
+	"github.com/spf13/cobra"
 )
 
 func Run() {
@@ -15,4 +16,10 @@ func Run() {
 		Stdout:    false,
 		Overwrite: true,
 	}, tblName)
+}
+
+func NewCommand() *cobra.Command {
+	return &cobra.Command{Use: "sql2go", Run: func(cmd *cobra.Command, args []string) {
+		Run()
+	}, Short: "sql2go", Example: "graffito tools sql2go"}
 }

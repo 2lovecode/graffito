@@ -1,5 +1,10 @@
 package string_op
 
+import (
+	"fmt"
+	"github.com/spf13/cobra"
+)
+
 const (
 	t1 = 0b00000000
 	tx = 0b10000000
@@ -113,4 +118,16 @@ func (strOp *StringOp) Count() (n int) {
 		i += size
 	}
 	return n
+}
+
+func NewCommand() *cobra.Command {
+	return &cobra.Command{Use: "count", Run: func(cmd *cobra.Command, args []string) {
+		str := ""
+		if len(args) > 0 {
+			str = args[0]
+		}
+		strOp := NewStringOp(str)
+
+		fmt.Println(strOp.Count())
+	}, Short: "字符个数", Example: "graffito tools count abc"}
 }

@@ -3,6 +3,7 @@ package helper
 import (
 	"bytes"
 	"encoding/json"
+	"github.com/spf13/cobra"
 	tips2 "graffito/tools/helper/tips"
 	"io"
 
@@ -67,4 +68,15 @@ func readAll(r io.Reader, capacity int64) (b []byte, err error) {
 	}()
 	_, err = buf.ReadFrom(r)
 	return buf.Bytes(), err
+}
+
+func NewCommand() *cobra.Command {
+	return &cobra.Command{Use: "helper", Run: func(cmd *cobra.Command, args []string) {
+		str := ""
+		if len(args) > 0 {
+			str = args[0]
+		}
+		h := NewHelper(str)
+		h.Run()
+	}, Short: "命令列表", Example: "graffito tools helper"}
 }

@@ -2,8 +2,11 @@ package color
 
 import (
 	"errors"
+	"fmt"
+	"github.com/spf13/cobra"
 	"image/color"
 	"regexp"
+	"strings"
 )
 
 type ColorFormat string
@@ -67,4 +70,25 @@ func ValidateColorFormat(color string, format ColorFormat) (flag bool, err error
 		return regexp.MatchString(reg, color)
 	}
 	return false, errors.New("不支持该格颜色式！")
+}
+
+func NewCommand() *cobra.Command {
+	return &cobra.Command{Use: "color", Run: func(cmd *cobra.Command, args []string) {
+		if len(args) >= 3 {
+			res, err := ConvertColorFormat(args[0], ColorFormat(strings.ToUpper(args[1])), ColorFormat(strings.ToUpper(args[2])))
+			if err == nil {
+				fmt.Println(res)
+			} else {
+				fmt.Println(err)
+			}
+		} else {
+			fmt.Println("缺少参数！")
+		}
+
+		// fmt.Println(color.ConvertColorFormat("#FFC7A68D", color.ColorFormatAHEX, color.ColorFormatRGBA))
+		// fmt.Println(color.ConvertColorFormat("rgba(199, 166, 141, 1)", color.ColorFormatRGBA, color.ColorFormatAHEX))
+		// fmt.Println(color.ConvertColorFormat("#FFC7A68D", color.ColorFormatAHEX, color.ColorFormatRGBA))
+		// fmt.Println(color.ConvertColorFormat("#FFC7A68D", color.ColorFormatAHEX, color.ColorFormatRGBA))
+		// fmt.Println(color.ConvertColorFormat("#FFC7A68D", color.ColorFormatAHEX, color.ColorFormatRGBA))
+	}, Short: "颜色转换", Example: "graffito tools color"}
 }
