@@ -1,11 +1,22 @@
 package modg
 
-type hashmap struct {
-	pool map[pkgID]*pkg
+type HashMap struct {
+	pool map[PkgID]*Pkg
 }
 
-func newHashmap() *hashmap {
-	o := new(hashmap)
-	o.pool = make(map[pkgID]*pkg)
+func NewHashMap() *HashMap {
+	o := new(HashMap)
+	o.pool = make(map[PkgID]*Pkg)
 	return o
+}
+
+func (hm *HashMap) Add(p *Pkg) {
+	hm.pool[p.ID()] = p
+}
+
+func (hm *HashMap) Find(id PkgID) *Pkg {
+	if _, ok := hm.pool[id]; ok {
+		return hm.pool[id]
+	}
+	return nil
 }

@@ -1,25 +1,64 @@
 package modg
 
-type pkgID string
+import (
+	"crypto/md5"
+	"io"
+)
 
-type pkg struct {
-	id             pkgID
+type PkgID string
+
+type Pkg struct {
+	id             PkgID
 	name           string
 	version        string
-	depends        []*pkg
-	reverseDepends []*pkg
+	depends        []PkgID
+	reverseDepends []PkgID
+	IsVisit        bool
 }
 
-func newPkg(name string, version string) *pkg {
-	o := new(pkg)
-	o.id = ""
+func NewPkg(name string, version string) *Pkg {
+	o := new(Pkg)
+	o.name = name
+	o.version = version
+	o.id = o.uniqID()
 	return o
 }
 
-func (o *pkg) addDep(p *pkg) {
-	o.depends = append(o.depends, p)
+func (o *Pkg) uniqID() PkgID {
+	h := md5.New()
+	_, _ = io.WriteString(h, o.name)
+	_, _ = io.WriteString(h, o.version)
+	b := h.Sum(nil)
+	return PkgID(b)
 }
 
-func (o *pkg) addRDep(p *pkg) {
-	o.reverseDepends = append(o.reverseDepends, p)
+func (o *Pkg) ID() PkgID {
+	return o.id
+}
+
+func (o *Pkg) AddDep(id PkgID) {
+	hasExist := false
+	for _, each := range o.depends {
+		if each == id {
+			hasExist = true
+			break
+		}
+	}
+	if !hasExist {
+		o.depends = append(o.depends, id)
+	}
+
+}
+
+func (o *Pkg) AddRDep(id PkgID) {
+	hasExist := false
+	for _, each := range o.reverseDepends {
+		if each == id {
+			hasExist = true
+			break
+		}
+	}
+	if !hasExist {
+		o.reverseDepends = append(o.reverseDepends, id)
+	}
 }
