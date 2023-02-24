@@ -8,6 +8,7 @@ func NewCommand() *cobra.Command {
 	}
 	cmds := []*cobra.Command{
 		NewClimbStair(),
+		NewIntersectLink(),
 	}
 	rootCmd.AddCommand(cmds...)
 	return rootCmd

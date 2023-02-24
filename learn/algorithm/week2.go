@@ -1,6 +1,7 @@
 package algorithm
 
 import (
+	"fmt"
 	"github.com/spf13/cobra"
 	"graffito/algorithm/link"
 )
@@ -11,27 +12,30 @@ func NewIntersectLink() *cobra.Command {
 	return &cobra.Command{
 		Use: "intersect-link",
 		Run: func(cmd *cobra.Command, args []string) {
+			a, b := link.GenTwoIntersectLink(8, 13, 5)
 
-			// 构造两个链表
-			s1 := []int{1, 2, 3, 9}
-			s2 := []int{3, 7}
+			fmt.Println("方法一：暴力破解 O(m*n),O(1)")
 
-			s3 := []int{9, 10, 8, 10}
+			fmt.Println("方法二：hashmap O(m+n),O(n)")
 
-			sl1 := link.NewSingleLink[int]()
-			sl2 := link.NewSingleLink[int]()
-			sl3 := link.NewSingleLink[int]()
-
-			for _, each := range s1 {
-				sl1.Append(link.NewNode(each))
+			fmt.Println("方法三：双指针 O(m+n),O(1)")
+			p1 := a.Head()
+			p2 := b.Head()
+			for p1 != p2 {
+				if p1 == nil {
+					p1 = p2
+				}
+				if p2 == nil {
+					p2 = p1
+				}
+				p1 = p1.Next()
+				p2 = p2.Next()
 			}
-			for _, each := range s2 {
-				sl2.Append(link.NewNode(each))
-			}
-			for _, each := range s3 {
-				sl3.Append(link.NewNode(each))
+			if p1 != nil {
+				p1.Print()
 			}
 
+			fmt.Println("方法四：对齐长度遍历 O(m+n),O(1)")
 		},
 	}
 }

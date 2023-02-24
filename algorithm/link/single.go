@@ -1,5 +1,7 @@
 package link
 
+import "fmt"
+
 type Node[T any] struct {
 	value T
 	next  *Node[T]
@@ -9,6 +11,14 @@ func NewNode[T any](v T) *Node[T] {
 	o := new(Node[T])
 	o.value = v
 	return o
+}
+
+func (n *Node[T]) Next() *Node[T] {
+	return n.next
+}
+
+func (n *Node[T]) Print() {
+	fmt.Print(n.value)
 }
 
 type SingleLink[T any] struct {
@@ -38,4 +48,13 @@ func (sl *SingleLink[T]) Merge(al *SingleLink[T]) {
 
 func (sl *SingleLink[T]) Head() *Node[T] {
 	return sl.head
+}
+
+func (sl *SingleLink[T]) Print() {
+	now := sl.head
+	for now != nil {
+		now.Print()
+		fmt.Print(",")
+		now = now.next
+	}
 }
