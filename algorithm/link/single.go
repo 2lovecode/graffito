@@ -17,6 +17,11 @@ func (n *Node[T]) Next() *Node[T] {
 	return n.next
 }
 
+func (n *Node[T]) SetNext(next *Node[T]) *Node[T] {
+	n.next = next
+	return n
+}
+
 func (n *Node[T]) Print() {
 	fmt.Print(n.value)
 }
