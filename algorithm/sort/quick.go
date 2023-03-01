@@ -1,6 +1,6 @@
-package algorithm
+package sort
 
-func QuickSort(list []int, left int, right int) {
+func Quick(list []int, left int, right int) {
 	start := left
 	end := right
 
@@ -21,6 +21,6 @@ func QuickSort(list []int, left int, right int) {
 	}
 	list[left] = flagNum
 
-	QuickSort(list, start, left-1)
-	QuickSort(list, right+1, end)
+	Quick(list, start, left-1)
+	Quick(list, right+1, end)
 }

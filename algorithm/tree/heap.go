@@ -1,4 +1,4 @@
-package algorithm
+package tree
 
 // 数组实现最大堆
 type MaxIntHeap struct {

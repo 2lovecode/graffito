@@ -1,4 +1,4 @@
-package algorithm
+package link
 
 type MyArray struct {
 	List []int

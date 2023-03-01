@@ -1,4 +1,4 @@
-package algorithm
+package hashmap
 
 import (
 	"testing"

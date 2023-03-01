@@ -1,4 +1,4 @@
-package algorithm
+package hashmap
 
 import (
 	"crypto/md5"
@@ -26,7 +26,7 @@ func BatchGet(h HashInterface, d map[string]string) {
 	fmt.Println("")
 }
 
-//开放寻址
+// 开放寻址
 type KeyValue struct {
 	Key   string
 	Value string
@@ -79,7 +79,7 @@ func (h *OpenAddrHash) Get(key string) string {
 	}
 }
 
-//分离链表法
+// 分离链表法
 type LinkNode struct {
 	Key   string
 	Value string

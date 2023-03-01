@@ -1,4 +1,4 @@
-package algorithm
+package tree
 
 import (
 	"sort"
@@ -18,7 +18,6 @@ const (
 	removeMax                  // removes largest item in the subtree
 )
 
-
 type Item interface {
 	// Less tests whether the current item is less than the given argument.
 	//
@@ -35,7 +34,6 @@ type Int int
 func (a Int) Less(b Item) bool {
 	return a < b.(Int)
 }
-
 
 type items []Item
 
@@ -65,7 +63,6 @@ func (s *items) truncate(index int) {
 	}
 }
 
-
 func (s *items) removeAt(index int) Item {
 	item := (*s)[index]
 	copy((*s)[index:], (*s)[index+1:])
@@ -81,7 +78,6 @@ func (s *items) pop() (out Item) {
 	*s = (*s)[:index]
 	return
 }
-
 
 ///
 
@@ -118,7 +114,6 @@ func (c *copyOnWriteContext) freeNode(n *node) freeType {
 		return ftNotOwned
 	}
 }
-
 
 ///
 
@@ -265,7 +260,6 @@ func (n *node) split(i int) (Item, *node) {
 	}
 	return item, next
 }
-
 
 func (n *node) mutableChild(i int) *node {
 	c := n.children[i].mutableFor(n.cow)
@@ -433,8 +427,7 @@ func (n *node) iterate(dir direction, start, stop Item, includeStart bool, hit b
 	return hit, true
 }
 
-
-///
+// /
 type BTree struct {
 	degree int
 	length int

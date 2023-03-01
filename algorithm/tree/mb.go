@@ -1,7 +1,7 @@
-package algorithm
+package tree
 
 type mBTreeNode struct {
-	items []int
+	items    []int
 	children []*mBTreeNode
 }
 
@@ -14,7 +14,7 @@ func (mn *mBTreeNode) insert(value int) {
 }
 
 // 节点分裂
-func (mn *mBTreeNode) split(i int) (value int, next *mBTreeNode){
+func (mn *mBTreeNode) split(i int) (value int, next *mBTreeNode) {
 	value = mn.items[i]
 	next = newMBTreeNode()
 	next.items = append(next.items, mn.items[i+1:]...)
@@ -26,20 +26,17 @@ func (mn *mBTreeNode) split(i int) (value int, next *mBTreeNode){
 	return
 }
 
-
-
 type MBTree struct {
-	num int
+	num  int
 	root *mBTreeNode
 }
 
 func NewMBTree() *MBTree {
 	return &MBTree{
-		num : 4,
+		num:  4,
 		root: nil,
 	}
 }
-
 
 func (mt *MBTree) Insert(value int) {
 	if mt.root == nil {
@@ -59,7 +56,6 @@ func (mt *MBTree) Insert(value int) {
 		mt.root.insert(value)
 	}
 }
-
 
 func (mt *MBTree) Range(sValue int, eValue int) []int {
 	return []int{}

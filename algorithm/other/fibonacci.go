@@ -1,4 +1,4 @@
-package algorithm
+package other
 
 // ##### 两种方式
 //    1.正常

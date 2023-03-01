@@ -1,4 +1,4 @@
-package algorithm
+package sort
 
 import (
 	"testing"
@@ -9,7 +9,7 @@ import (
 func Test_QuickSort(t *testing.T) {
 	Convey("QuickSort", t, func() {
 		s := []int{4, 5, 6, 3, 7, 9}
-		QuickSort(s, 0, len(s)-1)
+		Quick(s, 0, len(s)-1)
 		So(s[0], ShouldEqual, 3)
 		So(s[5], ShouldEqual, 9)
 	})

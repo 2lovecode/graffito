@@ -39,20 +39,26 @@
 
 ### 数据结构&算法
 
-#### [数组实现](algorithm/array.go)
- - 命令：```./graffito alg arr```
+#### [数组实现](algorithm/link/array.go)
+ - 命令：```./graffito alg link array```
 
-#### [斐波那契数列](algorithm/fibonacci.go)
- - 命令：```./graffito alg fibo```
+#### [哈希表-开放寻址](algorithm/hashmap/hash.go)
+ - 命令：```./graffito alg hashmap open-addressing```
 
-#### [哈希表](algorithm/hash.go)
- - 命令：```./graffito alg hash```
+#### [哈希表-分离链表](algorithm/hashmap/hash.go)
+- 命令：```./graffito alg hashmap separate-chaining```
 
-#### [堆](algorithm/heap.go)
- - 命令：```./graffito alg heap```
+#### [哈希表-分离链表重哈希](algorithm/hashmap/hash.go)
+- 命令：```./graffito alg hashmap separate-chaining-rehash```
 
-#### [快排](algorithm/quicksort.go)
- - 命令：```./graffito alg qs```
+#### [最大堆](algorithm/tree/heap.go)
+ - 命令：```./graffito alg tree max-heap```
+
+#### [快排](algorithm/sort/quick.go)
+ - 命令：```./graffito alg sort quick```
+
+#### [斐波那契数列](algorithm/other/fibonacci.go)
+- 命令：```./graffito alg other fibonacci```
 
 ### 实验代码
 

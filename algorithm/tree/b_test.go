@@ -1,5 +1,4 @@
-package algorithm
-
+package tree
 
 import (
 	"fmt"
@@ -26,7 +25,6 @@ func Test_BTree(t *testing.T) {
 		}
 
 		var got []Item
-
 
 		tr.AscendGreaterOrEqual(Int(40), func(a Item) bool {
 			got = append(got, a)
