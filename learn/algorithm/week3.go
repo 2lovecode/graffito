@@ -14,47 +14,42 @@ func NewReverseLink() *cobra.Command {
 			fmt.Println("反转单链表：")
 			fmt.Println("step1: 生成单链表")
 			var head *link.Node[int]
-			var current *link.Node[int]
+			head = GenSingleLinkedList([]int{1, 3, 4, 5, 9})
 
-			lv := []int{1, 3, 4, 5, 9}
-			for _, each := range lv {
-				if head == nil {
-					head = link.NewNode(each)
-					current = head
-				} else {
-					newNode := link.NewNode(each)
-					current.SetNext(newNode)
-					current = newNode
-				}
-			}
-			linkPrint(head)
+			LinkPrint(head)
 			fmt.Println("")
 			fmt.Println("step2: 反转后")
-			head = linkReverse(head)
-			linkPrint(head)
+			head = LinkReverse(head)
+			LinkPrint(head)
 		},
 	}
 }
 
-func linkPrint(now *link.Node[int]) {
-	if now != nil {
-		now.Print()
-		fmt.Print(",")
-		now = now.Next()
-		linkPrint(now)
+// 单链表倒数第k个节点
+func NewKthFromBottom() *cobra.Command {
+	return &cobra.Command{
+		Use: "kth-from-bottom",
+		Run: func(cmd *cobra.Command, args []string) {
+			// 1. 遍历获得链表长度，计算正数节点数，再次遍历
+			// 2. 快慢指针，快指针先移动k，随后快慢指针一起移动，快指针到达尾部后，慢指针指向倒数k
+			linkedList := GenSingleLinkedList([]int{1, 2, 3, 4, 5, 6, 7})
+
+			var fast *link.Node[int]
+			var slow *link.Node[int]
+
+			k := 2
+
+			fast = linkedList
+			slow = linkedList
+
+			for i := 0; i < k; i++ {
+				fast = fast.Next()
+			}
+			for fast != nil {
+				fast = fast.Next()
+				slow = slow.Next()
+			}
+			fmt.Println(slow.Value())
+		},
 	}
-}
-
-func linkReverse(head *link.Node[int]) *link.Node[int] {
-	var pre *link.Node[int]
-	current := head
-
-	for current != nil {
-		next := current.Next()
-		current.SetNext(pre)
-
-		pre = current
-		current = next
-	}
-	return pre
 }

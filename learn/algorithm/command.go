@@ -10,6 +10,7 @@ func NewCommand() *cobra.Command {
 		NewClimbStair(),
 		NewIntersectLink(),
 		NewReverseLink(),
+		NewKthFromBottom(),
 	}
 	rootCmd.AddCommand(cmds...)
 	return rootCmd

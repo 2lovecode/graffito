@@ -5,7 +5,7 @@ import (
 	"math/rand"
 )
 
-func GenTwoIntersectLink(a int, b int, c int) (*SingleLink[int], *SingleLink[int]) {
+func GenTwoIntersectLink(a int, b int, c int) (*SingleLinkedList[int], *SingleLinkedList[int]) {
 	if a <= 0 {
 		panic("错误")
 	}
@@ -32,18 +32,18 @@ func GenTwoIntersectLink(a int, b int, c int) (*SingleLink[int], *SingleLink[int
 		s3[i] = rand.Intn(c)
 	}
 
-	sl1 := NewSingleLink[int]()
-	sl2 := NewSingleLink[int]()
-	sl3 := NewSingleLink[int]()
+	sl1 := NewSingleLinkedList[int]()
+	sl2 := NewSingleLinkedList[int]()
+	sl3 := NewSingleLinkedList[int]()
 
 	for _, each := range s1 {
-		sl1.Append(NewNode(each))
+		sl1.Add(each)
 	}
 	for _, each := range s2 {
-		sl2.Append(NewNode(each))
+		sl2.Add(each)
 	}
 	for _, each := range s3 {
-		sl3.Append(NewNode(each))
+		sl3.Add(each)
 	}
 
 	sl1.Merge(sl3)

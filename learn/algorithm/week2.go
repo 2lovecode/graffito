@@ -32,7 +32,7 @@ func NewIntersectLink() *cobra.Command {
 				p2 = p2.Next()
 			}
 			if p1 != nil {
-				p1.Print()
+				fmt.Println(p1.Value())
 			}
 
 			fmt.Println("方法四：对齐长度遍历 O(m+n),O(1)")

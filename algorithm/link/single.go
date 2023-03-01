@@ -2,64 +2,112 @@ package link
 
 import "fmt"
 
-type Node[T any] struct {
-	value T
-	next  *Node[T]
-}
+//type SingleLink[T comparable] struct {
+//	head *Node[T]
+//	tail *Node[T]
+//}
+//
+//func NewSingleLink[T comparable]() *SingleLink[T] {
+//	o := new(SingleLink[T])
+//	return o
+//}
+//
+//func (sl *SingleLink[T]) Append(n *Node[T]) {
+//	if sl.head == nil {
+//		sl.head = n
+//		sl.tail = n
+//	} else {
+//		sl.tail.next = n
+//		sl.tail = n
+//	}
+//}
+//
+//func (sl *SingleLink[T]) Merge(al *SingleLink[T]) {
+//	sl.tail.next = al.head
+//	sl.tail = al.tail
+//}
+//
+//func (sl *SingleLink[T]) Head() *Node[T] {
+//	return sl.head
+//}
+//
+//func (sl *SingleLink[T]) Print() {
+//	now := sl.head
+//	for now != nil {
+//
+//		fmt.Printf("%s,", now.Value())
+//		now = now.next
+//	}
+//}
 
-func NewNode[T any](v T) *Node[T] {
-	o := new(Node[T])
-	o.value = v
-	return o
-}
-
-func (n *Node[T]) Next() *Node[T] {
-	return n.next
-}
-
-func (n *Node[T]) SetNext(next *Node[T]) *Node[T] {
-	n.next = next
-	return n
-}
-
-func (n *Node[T]) Print() {
-	fmt.Print(n.value)
-}
-
-type SingleLink[T any] struct {
+type SingleLinkedList[T comparable] struct {
 	head *Node[T]
-	tail *Node[T]
 }
 
-func NewSingleLink[T any]() *SingleLink[T] {
-	o := new(SingleLink[T])
+func NewSingleLinkedList[T comparable]() *SingleLinkedList[T] {
+	o := new(SingleLinkedList[T])
 	return o
 }
 
-func (sl *SingleLink[T]) Append(n *Node[T]) {
+func (sl *SingleLinkedList[T]) Add(v T) {
+	newNode := NewNode(v)
 	if sl.head == nil {
-		sl.head = n
-		sl.tail = n
+		sl.head = newNode
 	} else {
-		sl.tail.next = n
-		sl.tail = n
+		var pre, now *Node[T]
+		now = sl.head
+		for now != nil {
+			pre = now
+			now = now.Next()
+		}
+		pre.SetNext(newNode)
 	}
 }
 
-func (sl *SingleLink[T]) Merge(al *SingleLink[T]) {
-	sl.tail.next = al.head
-	sl.tail = al.tail
+func (sl *SingleLinkedList[T]) Del(v T) {
+	if !sl.Empty() {
+		pre, now := sl.Seek(v)
+		if now != nil {
+			pre.SetNext(now.Next())
+		}
+	}
 }
 
-func (sl *SingleLink[T]) Head() *Node[T] {
+func (sl *SingleLinkedList[T]) Seek(v T) (pre *Node[T], now *Node[T]) {
+	if !sl.Empty() {
+		now = sl.head
+		for now != nil && now.Value() != v {
+			pre = now
+			now = now.Next()
+		}
+	}
+	return
+}
+
+func (sl *SingleLinkedList[T]) Empty() bool {
+	return sl.head == nil
+}
+
+func (sl *SingleLinkedList[T]) Merge(al *SingleLinkedList[T]) {
+	if !sl.Empty() {
+		var pre, now *Node[T]
+		now = sl.head
+		for now != nil {
+			pre = now
+			now = now.Next()
+		}
+		pre.SetNext(al.Head())
+	}
+}
+
+func (sl *SingleLinkedList[T]) Head() *Node[T] {
 	return sl.head
 }
 
-func (sl *SingleLink[T]) Print() {
+func (sl *SingleLinkedList[T]) Print() {
 	now := sl.head
 	for now != nil {
-		now.Print()
-		fmt.Print(",")
+		fmt.Printf("%s,", now.Value())
 		now = now.next
 	}
 }
