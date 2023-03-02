@@ -107,7 +107,7 @@ func (sl *SingleLinkedList[T]) Head() *Node[T] {
 func (sl *SingleLinkedList[T]) Print() {
 	now := sl.head
 	for now != nil {
-		fmt.Printf("%s,", now.Value())
+		fmt.Printf("%v,", now.Value())
 		now = now.next
 	}
 }

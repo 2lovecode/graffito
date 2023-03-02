@@ -24,7 +24,7 @@ func GenSingleLinkedList[T comparable](l []T) *link.Node[T] {
 
 func LinkPrint(now *link.Node[int]) {
 	if now != nil {
-		fmt.Printf("%s,", now.Value())
+		fmt.Printf("%v,", now.Value())
 		now = now.Next()
 		LinkPrint(now)
 	}
