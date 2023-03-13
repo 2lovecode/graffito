@@ -11,6 +11,7 @@ func NewCommand() *cobra.Command {
 		NewIntersectLink(),
 		NewReverseLink(),
 		NewKthFromBottom(),
+		NewLeetcode(),
 	}
 	rootCmd.AddCommand(cmds...)
 	return rootCmd
