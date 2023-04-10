@@ -14,6 +14,13 @@ func NewCommand() *cobra.Command {
 		NewBinaryTreePostOrder(),
 		NewBinaryTreePreOrder(),
 		NewBinaryTreeMidOrder(),
+		NewReverseBinaryTree(),
+		NewBinaryTreeMaxDepth(),
+		NewJudgeBalanceBinaryTree(),
+		NewJudgeSymmetricalBinaryTree(),
+		NewOnlyOnceInArray(),
+		NewBitOneNum(),
+		NewCalcHammingDistance(),
 	}
 	rootCmd.AddCommand(cmds...)
 	return rootCmd
