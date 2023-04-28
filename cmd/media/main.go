@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/hex"
 	"fmt"
+	"math"
 	"net/http"
 	"os"
 	"strconv"
@@ -12,17 +13,29 @@ import (
 )
 
 func main() {
-	f, err := os.Open("")
-	if err == nil {
-		// fSrc, err := ioutil.ReadAll(f)
-		// if err == nil {
-		// 	fmt.Println(GetFileType(fSrc[:6]))
+	xPi := math.Pi * 3000.0 / 180.0
 
-		fmt.Println(GetFileContentType(f))
-		// }
-	} else {
-		fmt.Println("err:", err)
-	}
+	lng := 116.393776
+	lat := 39.948972
+
+	z := math.Sqrt(lng*lng+lat*lat) + 0.00002*math.Sin(lat*xPi)
+	theta := math.Atan2(lat, lng) + 0.000003*math.Cos(lng*xPi)
+	toLng := z*math.Cos(theta) + 0.0065
+	toLat := z*math.Sin(theta) + 0.006
+
+	fmt.Println(toLng, toLat)
+
+	//f, err := os.Open("")
+	//if err == nil {
+	//	// fSrc, err := ioutil.ReadAll(f)
+	//	// if err == nil {
+	//	// 	fmt.Println(GetFileType(fSrc[:6]))
+	//
+	//	fmt.Println(GetFileContentType(f))
+	//	// }
+	//} else {
+	//	fmt.Println("err:", err)
+	//}
 	// c := colly.NewCollector()
 
 	// // Find and visit all links
@@ -38,6 +51,8 @@ func main() {
 }
 
 var fileTypeMap sync.Map
+
+//}
 
 func init() {
 	fileTypeMap.Store("ffd8ffe000104a464946", "jpg")  //JPEG (jpg)

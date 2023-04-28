@@ -10,6 +10,7 @@ import (
 	"graffito/tools/redis"
 	"graffito/tools/sql2go"
 	"graffito/tools/string_op"
+	"graffito/tools/subway"
 )
 
 func NewCommand() *cobra.Command {
@@ -25,6 +26,7 @@ func NewCommand() *cobra.Command {
 		sql2go.NewCommand(),
 		modg.NewCommand(),
 		modgv.NewCommand(),
+		subway.NewCommand(),
 	}
 	toolsCmd.AddCommand(cmds...)
 
