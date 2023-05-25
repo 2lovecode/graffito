@@ -5,6 +5,7 @@ import (
 	"graffito/experiment"
 	"graffito/learn"
 	"graffito/leetcode"
+	"graffito/other"
 	"graffito/pattern"
 	"graffito/practice"
 	"graffito/tools"
@@ -22,6 +23,7 @@ func main() {
 		pattern.NewCommand(),
 		leetcode.NewCommand(),
 		learn.NewCommand(),
+		other.NewCommand(),
 	}
 	rootCmd.AddCommand(cmds...)
 

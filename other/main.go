@@ -1,14 +1,21 @@
-package main
+package other
 
 import (
-	"fmt"
+	"github.com/spf13/cobra"
+	"graffito/other/universe"
 	"strconv"
 	"strings"
 )
 
-func main() {
-	fmt.Println(VersionCompare("7.08.9", "7.8.8", ">"))
-	fmt.Println(("7.08.9" > "7.8.8"))
+func NewCommand() *cobra.Command {
+	rootCmd := &cobra.Command{
+		Use: "other",
+	}
+	cmds := []*cobra.Command{
+		universe.NewCommand(),
+	}
+	rootCmd.AddCommand(cmds...)
+	return rootCmd
 }
 
 func VersionCompare(version1, version2, operator string) bool {
