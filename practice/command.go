@@ -1,8 +1,10 @@
 package practice
 
 import (
+	"graffito/practice/aop"
 	"graffito/practice/channel_x"
 	"graffito/practice/dataloader_t"
+	"graffito/practice/err"
 	"graffito/practice/generics_x"
 	"graffito/practice/interface_x"
 	"graffito/practice/map_x"
@@ -30,6 +32,8 @@ func NewCommand() *cobra.Command {
 		dataloader_t.NewCommand(), // graphql-dataloader
 		schedule_x.NewCommand(),   // go调度器测试
 		plan9.NewCommand(),        // plan9
+		aop.NewCommand(),
+		err.NewCommand(),
 	}
 
 	pracCmd.AddCommand(cmds...)
