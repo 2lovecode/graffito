@@ -61,10 +61,6 @@
 - 命令：```./graffito alg other fibonacci```
 
 ### 实验代码
-
-#### [缓存穿透及解决方案模拟](experiment/cache)
- - 命令：``` ./graffito exp cross-cache ```
-
 #### [事件绑定与触发](experiment/event)
  - 命令：``` ./graffito exp event ```
 
