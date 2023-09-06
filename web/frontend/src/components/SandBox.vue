@@ -1,19 +1,11 @@
 <template>
     <el-row>
-        <el-col :span="10">
-            <el-input
-                type="textarea"
-                placeholder="请输入内容"
-                v-model="inputData"
-                rows="20"
-                show-word-limit
-                >
-                </el-input>
+        <el-col :span="14">
+            <div id="editor" style="width: 100%; height: 100%;"></div>
         </el-col>
-        <el-col :span="2">
+       
+        <el-col :span="6" :offset="1">
             <el-button id="exec" @click="run" round>执行</el-button>
-        </el-col>
-        <el-col :span="8">
             <el-input
                 type="textarea"
                 placeholder="请输入内容"
@@ -29,23 +21,54 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { sandboxRun } from '../api'
+import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
+
+let editor = null as monaco.editor.IStandaloneCodeEditor | null
 
 export default defineComponent({
-    data() {
-        return {
-            inputData: '',
-            outputData: ''
-        }
-    },
-    methods: {
-        run() {
-            const me = this
-            sandboxRun({
-                sourceCode: me.inputData
-            }).then(function(data){
-                me.outputData = data.content
-            })
-        }
+  data() {
+    return {
+      outputData: '',
+      selectedLanguage: 'go' // 默认语言
     }
-})
+  },
+  methods: {
+    async run() {
+      try {
+        let code = ''
+        if (editor) {
+            code = editor?.getValue()
+        }
+        const data = await sandboxRun({
+          sourceCode: code,
+        });
+        this.outputData = data.content;
+      } catch (error) {
+        console.error('Error running code:', error)
+      }
+    }
+  },
+  mounted() {
+    // 创建编辑器实例
+    
+    const editorElement = document.getElementById("editor") as HTMLElement;
+
+    editor = monaco.editor.create(editorElement, {
+      value: 'println("hello world!")',
+      language: this.selectedLanguage
+    });
+
+    // 添加其他编辑器配置和操作
+    // ...
+
+    // 监听编辑器事件
+    // editor.onDidChangeModelContent(event => {
+        
+        
+    // });
+  },
+  beforeUnmount() {
+    editor?.dispose()
+  }
+});
 </script>

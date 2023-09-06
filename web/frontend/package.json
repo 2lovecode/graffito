@@ -9,7 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "ace-builds": "^1.24.1",
     "element-plus": "^2.3.12",
+    "monaco-editor": "^0.41.0",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4"
   },
