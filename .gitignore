@@ -4,3 +4,4 @@ vendor
 graffito
 *.o
 ssa.html
+/main

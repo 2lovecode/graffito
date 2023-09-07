@@ -5,8 +5,9 @@
         - 进入项目目录 ```cd graffito```
         - 构建 ```go build```
   2. 使用各个功能
-        - 查看命令帮助 ```./graffito -h```
-        - 执行命令，例如 ```./graffito tools count abc``` 计算字符串abc的字符数
+        - 查看命令帮助 ```{{path/to/exe}} -h```
+        - 执行命令，例如 ```{{path/to/exe}} cli tools count abc``` 计算字符串abc的字符数
+        - 启动web平台 ```{{path/to/exe}} web```
   ![image](images/build.png)
     
 ## 二. 目录说明
@@ -23,52 +24,52 @@
 
 ### 百宝工具箱
 #### [计算字符串字符个数](tools/string_op)
- - 命令：```./graffito tools count abc```
+ - 命令：```{{path/to/exe}} cli tools count abc```
 #### [简易redis命令行客户端](tools/redis)
- - 命令：```./graffito tools redis 127.0.0.1 6379```
+ - 命令：```{{path/to/exe}} cli tools redis 127.0.0.1 6379```
  - ![image](images/redis.png)
  - 目前支持的命令: ``` set get hset hget hgetall```
 #### [自定义命令帮助工具](tools/helper)
- - 命令：``` ./graffito tools helper  ~/Development/Tools/tips.json  ```
+ - 命令：```{{path/to/exe}} cli tools helper  ~/Development/Tools/tips.json  ```
  - tips.json文件 可以参考[tips.json](tools/helper/tips.json)
  - ![image](images/helper.png)
 #### [颜色格式转换工具](tools/color)
- - ``` ./graffito tools color "rgb(199, 166, 141)" rgb ahex ```
+ - ```{{path/to/exe}} cli tools color "rgb(199, 166, 141)" rgb ahex ```
  - ![image](images/color.png)
 
 
 ### 数据结构&算法
 
 #### [数组实现](algorithm/link/array.go)
- - 命令：```./graffito alg link array```
+ - 命令：```{{path/to/exe}} cli alg link array```
 
 #### [哈希表-开放寻址](algorithm/hashmap/hash.go)
- - 命令：```./graffito alg hashmap open-addressing```
+ - 命令：```{{path/to/exe}} cli alg hashmap open-addressing```
 
 #### [哈希表-分离链表](algorithm/hashmap/hash.go)
-- 命令：```./graffito alg hashmap separate-chaining```
+- 命令：```{{path/to/exe}} cli alg hashmap separate-chaining```
 
 #### [哈希表-分离链表重哈希](algorithm/hashmap/hash.go)
-- 命令：```./graffito alg hashmap separate-chaining-rehash```
+- 命令：```{{path/to/exe}} cli alg hashmap separate-chaining-rehash```
 
 #### [最大堆](algorithm/tree/heap.go)
- - 命令：```./graffito alg tree max-heap```
+ - 命令：```{{path/to/exe}} cli alg tree max-heap```
 
 #### [快排](algorithm/sort/quick.go)
- - 命令：```./graffito alg sort quick```
+ - 命令：```{{path/to/exe}} cli alg sort quick```
 
 #### [斐波那契数列](algorithm/other/fibonacci.go)
-- 命令：```./graffito alg other fibonacci```
+- 命令：```{{path/to/exe}} cli alg other fibonacci```
 
 ### 实验代码
 #### [事件绑定与触发](experiment/event)
- - 命令：``` ./graffito exp event ```
+ - 命令：```{{path/to/exe}} cli exp event ```
 
 #### [有依赖关系的并行模型](experiment/depends)
  - 详情见 https://github.com/2lovecode/depends
- - 命令：``` ./graffito exp depends ```
+ - 命令：```{{path/to/exe}} cli exp depends ```
 #### [一种批量多样数据的处理模式](experiment/mode0)
- - 命令：``` ./graffito exp mode0 ```
+ - 命令：```{{path/to/exe}} cli exp mode0 ```
 
 ### LeetCode
 | 功能  | 说明  | 备注                       |

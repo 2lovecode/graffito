@@ -1,6 +1,6 @@
 module graffito
 
-go 1.19
+go 1.20
 
 require (
 	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20210506161523-0a1c3e3ce1ca
