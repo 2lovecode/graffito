@@ -1,7 +1,7 @@
 <template>
     <el-row>
         <el-col :span="14">
-            <div id="editor" style="width: 100%; height: 100%;"></div>
+            <div id="editor" style="width: 100%; height: 100vh;"></div>
         </el-col>
        
         <el-col :span="6" :offset="1">
