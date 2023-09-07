@@ -6,6 +6,9 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    outDir: 'release',
+  },
   plugins: [
     vue(),
     AutoImport({
