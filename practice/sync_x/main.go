@@ -58,6 +58,7 @@ func read(x int) {
 
 }
 
+// 读写锁
 func Run2() {
 	go write()
 	time.Sleep(10 * time.Millisecond)
