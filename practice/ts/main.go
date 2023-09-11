@@ -5,7 +5,6 @@ import (
 	"compress/gzip"
 	"encoding/base64"
 	"fmt"
-	"github.com/spf13/cobra"
 	"io/ioutil"
 	"net/url"
 	"path/filepath"
@@ -14,6 +13,8 @@ import (
 	"sync"
 	"time"
 	"unicode/utf8"
+
+	"github.com/spf13/cobra"
 )
 
 func NewCommand() *cobra.Command {
