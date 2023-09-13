@@ -30,6 +30,7 @@ func NewWebCommand() *cobra.Command {
 			appsAPI.Any("/sandbox/run", sandboxCtrl.Run)
 		}
 
+		// 前端
 		web.Get("/", controllers.NewHome().Index)
 		web.Get("/{apps}", controllers.NewHome().Index)
 
