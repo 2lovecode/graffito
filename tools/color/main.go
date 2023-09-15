@@ -3,10 +3,11 @@ package color
 import (
 	"errors"
 	"fmt"
-	"github.com/spf13/cobra"
 	"image/color"
 	"regexp"
 	"strings"
+
+	"github.com/spf13/cobra"
 )
 
 type ColorFormat string
@@ -37,6 +38,10 @@ var ColorHandlerMap = map[ColorFormat]ColorHandler{
 	ColorFormatRGBA: &RGBAColorHandler{},
 	// ColorFormatHSL:  &HSLColorHandler{},
 	// ColorFormatHSLA: &HSLAColorHandler{},
+}
+
+var Colors = []ColorFormat{
+	ColorFormatHEX, ColorFormatAHEX, ColorFormatHEXA, ColorFormatRGB, ColorFormatRGBA,
 }
 
 func ConvertColorFormat(before string, from ColorFormat, to ColorFormat) (after string, err error) {
@@ -73,16 +78,16 @@ func ValidateColorFormat(color string, format ColorFormat) (flag bool, err error
 }
 
 func NewCommand() *cobra.Command {
-	return &cobra.Command{Use: "color", Run: func(cmd *cobra.Command, args []string) {
-		if len(args) >= 3 {
-			res, err := ConvertColorFormat(args[0], ColorFormat(strings.ToUpper(args[1])), ColorFormat(strings.ToUpper(args[2])))
-			if err == nil {
-				fmt.Println(res)
-			} else {
-				fmt.Println(err)
-			}
+	value := ""
+	source := ""
+	target := ""
+	colorCmd := &cobra.Command{Use: "color", Run: func(cmd *cobra.Command, args []string) {
+
+		res, err := ConvertColorFormat(value, ColorFormat(strings.ToUpper(source)), ColorFormat(strings.ToUpper(target)))
+		if err == nil {
+			fmt.Println(res)
 		} else {
-			fmt.Println("缺少参数！")
+			fmt.Println(err)
 		}
 
 		// fmt.Println(color.ConvertColorFormat("#FFC7A68D", color.ColorFormatAHEX, color.ColorFormatRGBA))
@@ -90,5 +95,10 @@ func NewCommand() *cobra.Command {
 		// fmt.Println(color.ConvertColorFormat("#FFC7A68D", color.ColorFormatAHEX, color.ColorFormatRGBA))
 		// fmt.Println(color.ConvertColorFormat("#FFC7A68D", color.ColorFormatAHEX, color.ColorFormatRGBA))
 		// fmt.Println(color.ConvertColorFormat("#FFC7A68D", color.ColorFormatAHEX, color.ColorFormatRGBA))
-	}, Short: "颜色转换", Example: "graffito tools color"}
+	}, Short: "颜色转换", Example: "{path/to/exe} cli tools color"}
+
+	colorCmd.Flags().StringVarP(&value, "value", "v", "", "颜色值")
+	colorCmd.Flags().StringVarP(&source, "source", "s", "", fmt.Sprintf("原始颜色格式%v", Colors))
+	colorCmd.Flags().StringVarP(&target, "target", "t", "", fmt.Sprintf("目标颜色格式%v", Colors))
+	return colorCmd
 }
