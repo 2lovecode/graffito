@@ -39,5 +39,7 @@ func NewWebCommand() *cobra.Command {
 			fmt.Println("Error: ", err)
 			return
 		}
-	}}
+	},
+		Short: "web工具",
+	}
 }

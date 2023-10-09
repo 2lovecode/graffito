@@ -16,7 +16,8 @@ import (
 
 func NewCliCommand() *cobra.Command {
 	cli := &cobra.Command{
-		Use: "cli",
+		Use:   "cli",
+		Short: "命令行工具",
 	}
 	cmds := []*cobra.Command{
 		app.NewSandboxCommand(),
