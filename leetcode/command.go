@@ -8,14 +8,28 @@ import (
 func NewCommand() *cobra.Command {
 	leetCmd := &cobra.Command{Use: "leet", Short: "leetcode题解"}
 
-	var stairsCount int
+	var count int
 
 	cmds := []*cobra.Command{
 		{
 			Use:   "climb_stairs",
 			Short: "爬楼梯",
 			Run: func(cmd *cobra.Command, args []string) {
-				fibonacci.TestClimbStairs(stairsCount)
+				fibonacci.TestClimbStairs(count)
+			},
+		},
+		{
+			Use:   "fib",
+			Short: "斐波那契",
+			Run: func(cmd *cobra.Command, args []string) {
+				fibonacci.TestFib(count)
+			},
+		},
+		{
+			Use:   "trib",
+			Short: "泰波那契",
+			Run: func(cmd *cobra.Command, args []string) {
+				fibonacci.TestTribonacci(count)
 			},
 		},
 	}
@@ -23,7 +37,11 @@ func NewCommand() *cobra.Command {
 	for _, cmd := range cmds {
 		switch cmd.Use {
 		case "climb_stairs":
-			cmd.Flags().IntVar(&stairsCount, "count", 1, "楼梯总数")
+			cmd.Flags().IntVar(&count, "count", 1, "楼梯总数")
+		case "fib":
+			cmd.Flags().IntVar(&count, "count", 1, "n")
+		case "trib":
+			cmd.Flags().IntVar(&count, "count", 1, "n")
 		}
 	}
 

@@ -1,5 +1,7 @@
 package fibonacci
 
+import "fmt"
+
 //509. 斐波那契数
 //简单
 //相关标签
@@ -39,6 +41,11 @@ package fibonacci
 //0 <= n <= 30
 
 var fibMap = make(map[int]int)
+
+func TestFib(n int) {
+	fmt.Println("n = ", n)
+	fmt.Println("num = ", fib(n))
+}
 
 func fib(n int) int {
 	y := 0
