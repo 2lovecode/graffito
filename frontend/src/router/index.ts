@@ -1,41 +1,37 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import { layouts } from '../layouts/index';
-import HomePage from '../pages/Home.page.vue';
-import NotFound from '../pages/404.page.vue';
-import { tools } from '../tools';
-import { config } from '../config';
-import { routes as demoRoutes } from '../ui/demo/demo.routes';
+import { createRouter, createWebHistory } from 'vue-router'
+import HomePage from '../components/HomePage.vue'
+import ToolsMain from '../components/tools/ToolsMain.vue'
+import Sandbox from '../components/tools/Sandbox.vue'
 
-const toolsRoutes = tools.map(({ path, name, component, ...config }) => ({
-  path,
-  name,
-  component,
-  meta: { isTool: true, layout: layouts.toolLayout, name, ...config },
-}));
-const toolsRedirectRoutes = tools
-  .filter(({ redirectFrom }) => redirectFrom && redirectFrom.length > 0)
-  .flatMap(
-    ({ path, redirectFrom }) => redirectFrom?.map(redirectSource => ({ path: redirectSource, redirect: path })) ?? [],
-  );
+// 2. 定义一些路由
+// 每个路由都需要映射到一个组件。
+// 我们后面再讨论嵌套路由。
+const routes = [
+  {
+    path: '/',
+    component: HomePage 
+  },
+  { 
+    path: '/tools',
+    children:[
+      {
+        path: '',
+        component: ToolsMain,
+      },
+      {
+        path: 'sandbox',
+        component: Sandbox,
+      }
+    ]
+  },
+]
 
-const router = createRouter({
-  history: createWebHistory(config.app.baseUrl),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomePage,
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: () => import('../pages/About.vue'),
-    },
-    ...toolsRoutes,
-    ...toolsRedirectRoutes,
-    ...(config.app.env === 'development' ? demoRoutes : []),
-    { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
-  ],
-});
+// 3. 创建路由实例并传递 `routes` 配置
+// 你可以在这里输入更多的配置，但我们在这里
+// 暂时保持简单
+const AppRouter = createRouter({
+  history: createWebHistory(),
+  routes, // `routes: routes` 的缩写
+})
 
-export default router;
+export default AppRouter

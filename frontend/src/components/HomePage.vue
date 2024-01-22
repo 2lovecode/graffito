@@ -1,11 +1,11 @@
+<script setup lang="ts">
+</script>
+
 <template>
   <div>
-    <router-link to="/sandbox">沙箱</router-link>
+    <h1>欢迎欢迎，热烈欢迎</h1>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({})
-</script>
+<style scoped>
+</style>
