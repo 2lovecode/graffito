@@ -1,7 +1,27 @@
 <script setup lang="ts">
-// import { ref } from 'vue'
+import { ref } from 'vue'
 
-// const menu = ref([{'path': "/tools", 'name': "工具"}])
+const menu = ref([
+    {
+        'name': "首页",
+        'index': "1",
+        'icon': "House",
+        'path': "/"
+    },
+    {
+        'name': "菜单",
+        'index': "2",
+        'icon': "Menu",
+        'path': "",
+        'chirldren': [
+            {
+                'path': "/tools",
+                'index': "2-1",
+                'name': "工具",
+            }
+        ]
+    }
+    ])
 </script>
 
 <template>
@@ -9,41 +29,21 @@
         <el-col>
             <h5>Graffito</h5>
             <el-menu
-                active-text-color="#ffd04b"
-                background-color="#545c64"
-                class="el-menu-vertical-demo"
-                default-active="2"
-                text-color="#fff"
+                default-active="1"
             >
-                <el-sub-menu index="1">
-                <template #title>
-                    <el-icon><location /></el-icon>
-                    <span>Navigator One</span>
-                </template>
-                <el-menu-item-group title="Group One">
-                    <el-menu-item index="1-1">item one</el-menu-item>
-                    <el-menu-item index="1-2">item two</el-menu-item>
-                </el-menu-item-group>
-                <el-menu-item-group title="Group Two">
-                    <el-menu-item index="1-3">item three</el-menu-item>
-                </el-menu-item-group>
-                <el-sub-menu index="1-4">
-                    <template #title>item four</template>
-                    <el-menu-item index="1-4-1">item one</el-menu-item>
+                <dev v-for="(item, index) in menu" :key="index">
+                    <el-menu-item v-if="item.chirldren == undefined" :index="item.index" @click="$router.push(item.path)">
+                        <el-icon><component :is="item.icon" /></el-icon>
+                        <template #title>{{ item.name }}</template>
+                    </el-menu-item>
+                    <el-sub-menu v-if="item.chirldren != undefined" :index="item.index">
+                    <template #title>
+                        <el-icon><component :is="item.icon" /></el-icon>
+                        <span>{{ item.name }}</span>
+                    </template>
+                    <el-menu-item v-for="(child, index) in item.chirldren" :key="index" :index="child.index" @click="$router.push(child.path)">{{ child.name }}</el-menu-item>
                 </el-sub-menu>
-                </el-sub-menu>
-                <el-menu-item index="2">
-                <el-icon><icon-menu /></el-icon>
-                <span>Navigator Two</span>
-                </el-menu-item>
-                <el-menu-item index="3" disabled>
-                <el-icon><document /></el-icon>
-                <span>Navigator Three</span>
-                </el-menu-item>
-                <el-menu-item index="4">
-                <el-icon><setting /></el-icon>
-                <span>Navigator Four</span>
-                </el-menu-item>
+                </dev>
             </el-menu>
         </el-col>
     </el-row>
