@@ -5,7 +5,7 @@ import (
 	"io/fs"
 )
 
-//go:embed release/*
+//go:embed prod/*
 var staticDir embed.FS
 
 func AssetsDir() fs.FS {
@@ -19,7 +19,7 @@ func AssetsDir() fs.FS {
 }
 
 func WebDir() fs.FS {
-	releaseDir, releaseErr := fs.Sub(staticDir, "release")
+	releaseDir, releaseErr := fs.Sub(staticDir, "prod")
 
 	if releaseErr != nil {
 		panic(releaseErr)

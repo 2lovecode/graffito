@@ -6,6 +6,6 @@ import monacoEditorPlugin from 'vite-plugin-monaco-editor'
 export default defineConfig({
   plugins: [vue(),  monacoEditorPlugin({})],
   build: {
-    outDir: 'release'
+    outDir: 'prod'
   }
 })
