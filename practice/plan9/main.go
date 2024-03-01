@@ -1,31 +1,11 @@
-package plan9
+package main
 
-import (
-	"fmt"
-	"github.com/spf13/cobra"
-)
-
-func NewCommand() *cobra.Command {
-	return &cobra.Command{Use: "plan9", Run: func(cmd *cobra.Command, args []string) {
-		GoWithPlan9()
-		Plan9WithGo()
-	}}
+func mmadd(a int, b int) (c int, d int) {
+	return a + b, a - b
 }
 
-func output(int) (int, int, int)
-
-func GoWithPlan9() {
-	a, b, c := output(987654321)
-	fmt.Println(a, b, c)
-}
-
-func output1(a, b int) int
-
-func add(a, b int) int {
-	return a + b
-}
-
-func Plan9WithGo() {
-	s := output1(10, 30)
-	fmt.Println(s)
+func main() {
+	a := 22
+	c, d := mmadd(50, 30)
+	println(a, c, d)
 }

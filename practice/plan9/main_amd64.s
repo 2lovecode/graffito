@@ -19,3 +19,9 @@ TEXT ·output1(SB), NOSPLIT, $24-24
     MOVQ AX, ret+16(FP)
     RET
 
+TEXT ·add(SB), NOSPLIT, $24-16
+    MOVQ a+0(FP), AX
+    MOVQ b+8(FP), BX
+    ADDQ AX, BX
+    MOVQ BX, ret+16(FP)
+    RET
