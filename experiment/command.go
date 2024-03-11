@@ -10,7 +10,6 @@ import (
 	"graffito/experiment/mode0/card"
 	"graffito/experiment/mode0/handler"
 	"graffito/experiment/mode0/source"
-	"graffito/experiment/search"
 	"graffito/topic/cache"
 	"graffito/utils/params"
 	"time"
@@ -97,15 +96,10 @@ func NewCommand() *cobra.Command {
 		fmt.Println(sAData, sBData, sCData)
 	}, Short: "depends"}
 
-	searchCmd := &cobra.Command{Use: "search", Run: func(cmd *cobra.Command, args []string) {
-		search.Run()
-	}, Short: "search"}
-
 	expCmd := &cobra.Command{Use: "exp", Short: "试验代码"}
 
 	cmds := []*cobra.Command{
 		cacheCmd,
-		searchCmd,
 		dependsCmd,
 		mode0Cmd,
 		eventCmd,

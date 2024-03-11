@@ -8,7 +8,6 @@ import (
 	"graffito/practice/generics_x"
 	"graffito/practice/interface_x"
 	"graffito/practice/map_x"
-	"graffito/practice/plan9"
 	"graffito/practice/regexp_x"
 	"graffito/practice/schedule_x"
 	"graffito/practice/slice_x"
@@ -31,7 +30,6 @@ func NewCommand() *cobra.Command {
 		regexp_x.NewCommand(),     // 正则表达式
 		dataloader_t.NewCommand(), // graphql-dataloader
 		schedule_x.NewCommand(),   // go调度器测试
-		plan9.NewCommand(),        // plan9
 		aop.NewCommand(),
 		err.NewCommand(),
 	}

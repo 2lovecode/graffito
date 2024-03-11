@@ -21,6 +21,7 @@ func NewCliCommand() *cobra.Command {
 	}
 	cmds := []*cobra.Command{
 		app.NewSandboxCommand(),
+		app.NewSearchCommand(),
 		tools.NewCommand(),
 		algorithm.NewCommand(),
 		experiment.NewCommand(),
