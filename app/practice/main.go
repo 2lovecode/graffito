@@ -5,6 +5,7 @@ import (
 	"graffito/app/base"
 	base2 "graffito/app/practice/base"
 	"graffito/app/practice/chapter1_map"
+	"graffito/app/practice/chapter2_slice"
 	"graffito/pkg/json"
 )
 
@@ -45,12 +46,12 @@ func (app *Application) Exec(ctx context.Context, in base.Input) (out base.Outpu
 				all := make(map[string]string)
 				q := qa.GetQ(ctx)
 				if q != nil {
-					all["q"] = q.String()
+					all["question"] = q.String()
 				}
 				a := qa.GetA(ctx)
 				if a != nil {
-					all["a"] = a.String()
-					all["r"] = a.Run(ctx)
+					all["answer"] = a.String()
+					all["result"] = a.Run(ctx)
 				}
 				so.Data, _ = json.JsonParser().MarshalToString(&all)
 			}
@@ -63,6 +64,7 @@ func (app *Application) Exec(ctx context.Context, in base.Input) (out base.Outpu
 
 func (app *Application) init() {
 	app.chapter = map[string]base2.Chapter{
-		"map": chapter1_map.New(),
+		"map":   chapter1_map.New(),
+		"slice": chapter2_slice.New(),
 	}
 }

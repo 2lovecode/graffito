@@ -1,11 +1,38 @@
-package slice_x
+package chapter2_slice
 
 import (
+	"context"
 	"fmt"
 	"github.com/spf13/cobra"
+	"graffito/app/practice/base"
+	"graffito/app/practice/chapter2_slice/help"
+	"graffito/app/practice/chapter2_slice/qa1"
 	"net/url"
 	"sort"
 )
+
+type CSlice struct {
+	numbers map[int]base.QA
+}
+
+func New() *CSlice {
+	cm := &CSlice{}
+	cm.init()
+	return cm
+}
+
+func (cm *CSlice) GetQA(ctx context.Context, number int) base.QA {
+	if _, ok := cm.numbers[number]; ok {
+		return cm.numbers[number]
+	}
+	return help.New()
+}
+
+func (cm *CSlice) init() {
+	cm.numbers = map[int]base.QA{
+		1: qa1.New(),
+	}
+}
 
 func NewCommand() *cobra.Command {
 	return &cobra.Command{Use: "slice", Run: func(cmd *cobra.Command, args []string) {

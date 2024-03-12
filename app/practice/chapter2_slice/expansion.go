@@ -1,4 +1,4 @@
-package slice_x
+package chapter2_slice
 
 import "fmt"
 
