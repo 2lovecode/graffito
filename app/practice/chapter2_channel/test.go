@@ -1,4 +1,4 @@
-package channel_x
+package chapter2_channel
 
 import (
 	"time"
@@ -40,7 +40,6 @@ func go2(ch chan int) {
 	ch <- 2
 }
 
-
 /*
  * time.Tick(a) 创建一个通道，每隔a时间，往通道中写入值。
  * time.After(a) 创建一个通道，在a时间后，往通道中写入值。
@@ -66,7 +65,7 @@ EE1:
 /*
  * 超时处理方案1
  */
-func Run3() (r string){
+func Run3() (r string) {
 	timeout := make(chan int)
 
 	go func() {

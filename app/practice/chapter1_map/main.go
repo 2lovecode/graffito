@@ -1,7 +1,11 @@
-package map_x
+package chapter1_map
 
 import (
+	"context"
 	"fmt"
+	"graffito/app/practice/base"
+	"graffito/app/practice/chapter1_map/help"
+	"graffito/app/practice/chapter1_map/qa1"
 	"math/rand"
 	"sort"
 
@@ -15,6 +19,29 @@ import (
 // 删除-缩容
 // 遍历无序
 // 判等
+
+type CMap struct {
+	numbers map[int]base.QA
+}
+
+func New() *CMap {
+	cm := &CMap{}
+	cm.init()
+	return cm
+}
+
+func (cm *CMap) GetQA(ctx context.Context, number int) base.QA {
+	if _, ok := cm.numbers[number]; ok {
+		return cm.numbers[number]
+	}
+	return help.New()
+}
+
+func (cm *CMap) init() {
+	cm.numbers = map[int]base.QA{
+		1: qa1.New(),
+	}
+}
 
 func Run1() {
 	//map赋值是指针赋值

@@ -2,13 +2,14 @@ package cmd
 
 import (
 	"graffito/algorithm"
-	"graffito/app"
+	"graffito/cli/practice"
+	"graffito/cli/sandbox"
+	"graffito/cli/search"
 	"graffito/experiment"
 	"graffito/learn"
 	"graffito/leetcode"
 	"graffito/other"
 	"graffito/pattern"
-	"graffito/practice"
 	"graffito/tools"
 
 	"github.com/spf13/cobra"
@@ -20,12 +21,12 @@ func NewCliCommand() *cobra.Command {
 		Short: "命令行工具",
 	}
 	cmds := []*cobra.Command{
-		app.NewSandboxCommand(),
-		app.NewSearchCommand(),
+		sandbox.NewCommand(),
+		search.NewCommand(),
+		practice.NewCommand(),
 		tools.NewCommand(),
 		algorithm.NewCommand(),
 		experiment.NewCommand(),
-		practice.NewCommand(),
 		pattern.NewCommand(),
 		leetcode.NewCommand(),
 		learn.NewCommand(),

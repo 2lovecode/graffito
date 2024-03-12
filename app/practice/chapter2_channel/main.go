@@ -1,4 +1,4 @@
-package channel_x
+package chapter2_channel
 
 import (
 	"fmt"
