@@ -1,54 +1,16 @@
-package main
+package media
 
 import (
 	"bytes"
 	"encoding/hex"
 	"fmt"
-	"math"
+	"github.com/spf13/cobra"
 	"net/http"
 	"os"
 	"strconv"
 	"strings"
 	"sync"
 )
-
-func main() {
-	xPi := math.Pi * 3000.0 / 180.0
-
-	lng := 116.393776
-	lat := 39.948972
-
-	z := math.Sqrt(lng*lng+lat*lat) + 0.00002*math.Sin(lat*xPi)
-	theta := math.Atan2(lat, lng) + 0.000003*math.Cos(lng*xPi)
-	toLng := z*math.Cos(theta) + 0.0065
-	toLat := z*math.Sin(theta) + 0.006
-
-	fmt.Println(toLng, toLat)
-
-	//f, err := os.Open("")
-	//if err == nil {
-	//	// fSrc, err := ioutil.ReadAll(f)
-	//	// if err == nil {
-	//	// 	fmt.Println(GetFileType(fSrc[:6]))
-	//
-	//	fmt.Println(GetFileContentType(f))
-	//	// }
-	//} else {
-	//	fmt.Println("err:", err)
-	//}
-	// c := colly.NewCollector()
-
-	// // Find and visit all links
-	// c.OnHTML("a[href]", func(e *colly.HTMLElement) {
-	// 	e.Request.Visit(e.Attr("href"))
-	// })
-
-	// c.OnRequest(func(r *colly.Request) {
-	// 	fmt.Println("Visiting", r.URL)
-	// })
-
-	// c.Visit("http://go-colly.org/")
-}
 
 var fileTypeMap sync.Map
 
@@ -165,4 +127,24 @@ func GetFileContentType(out *os.File) (string, error) {
 	contentType := http.DetectContentType(buffer)
 
 	return contentType, nil
+}
+
+func NewFileTypeCommand() *cobra.Command {
+	file := ""
+
+	cmd := &cobra.Command{Use: "file-type", Run: func(cmd *cobra.Command, args []string) {
+		f, err := os.Open(file)
+		if err == nil {
+			// fSrc, err := ioutil.ReadAll(f)
+			// if err == nil {
+			// 	fmt.Println(GetFileType(fSrc[:6]))
+
+			fmt.Println(GetFileContentType(f))
+			// }
+		} else {
+			fmt.Println("err:", err)
+		}
+	}, Short: "识别文件类型"}
+	cmd.Flags().StringVarP(&file, "file", "f", "", "指定文件")
+	return cmd
 }
