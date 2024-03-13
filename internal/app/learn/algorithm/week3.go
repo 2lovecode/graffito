@@ -2,8 +2,8 @@ package algorithm
 
 import (
 	"fmt"
+	"github.com/2lovecode/graffito/pkg/algorithm/link"
 	"github.com/spf13/cobra"
-	"graffito/algorithm/link"
 )
 
 // 单链表反转

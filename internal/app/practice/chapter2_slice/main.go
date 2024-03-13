@@ -3,10 +3,10 @@ package chapter2_slice
 import (
 	"context"
 	"fmt"
+	"github.com/2lovecode/graffito/internal/app/practice/base"
+	"github.com/2lovecode/graffito/internal/app/practice/chapter2_slice/help"
+	"github.com/2lovecode/graffito/internal/app/practice/chapter2_slice/qa1"
 	"github.com/spf13/cobra"
-	"graffito/app/practice/base"
-	"graffito/app/practice/chapter2_slice/help"
-	"graffito/app/practice/chapter2_slice/qa1"
 	"net/url"
 	"sort"
 )

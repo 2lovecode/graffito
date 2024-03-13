@@ -2,11 +2,11 @@ package algorithm
 
 import (
 	"fmt"
+	"github.com/2lovecode/graffito/pkg/algorithm/hashmap"
+	"github.com/2lovecode/graffito/pkg/algorithm/link"
+	sort2 "github.com/2lovecode/graffito/pkg/algorithm/sort"
+	"github.com/2lovecode/graffito/pkg/algorithm/tree"
 	"github.com/spf13/cobra"
-	"graffito/algorithm/hashmap"
-	"graffito/algorithm/link"
-	sort2 "graffito/algorithm/sort"
-	"graffito/algorithm/tree"
 )
 
 func NewCommand() *cobra.Command {

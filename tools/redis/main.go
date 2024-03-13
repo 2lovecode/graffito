@@ -4,8 +4,8 @@ import (
 	"bufio"
 	"context"
 	"fmt"
+	"github.com/2lovecode/graffito/tools/redis/commands"
 	"github.com/spf13/cobra"
-	"graffito/tools/redis/commands"
 	"os"
 	"strings"
 

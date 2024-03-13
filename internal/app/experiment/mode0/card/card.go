@@ -2,7 +2,7 @@ package card
 
 import (
 	"context"
-	"graffito/experiment/mode0/handler"
+	"github.com/2lovecode/graffito/internal/app/experiment/mode0/handler"
 )
 
 type ICard interface {
@@ -14,7 +14,7 @@ type ICard interface {
 }
 
 type BaseCard struct {
-	Ctx context.Context `json:"-"`
+	Ctx        context.Context             `json:"-"`
 	HandlerMap map[string]handler.IHandler `json:"-"`
 }
 

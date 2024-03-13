@@ -1,8 +1,8 @@
 package other
 
 import (
+	"github.com/2lovecode/graffito/internal/app/other/universe"
 	"github.com/spf13/cobra"
-	"graffito/internal/app/other/universe"
 	"strconv"
 	"strings"
 )

@@ -2,9 +2,9 @@ package algorithm
 
 import (
 	"fmt"
+	"github.com/2lovecode/graffito/pkg/algorithm/link"
+	"github.com/2lovecode/graffito/pkg/algorithm/tree"
 	"github.com/spf13/cobra"
-	"graffito/algorithm/link"
-	"graffito/algorithm/tree"
 )
 
 // 二叉树中序遍历

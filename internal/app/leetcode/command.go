@@ -1,8 +1,8 @@
 package leetcode
 
 import (
+	"github.com/2lovecode/graffito/internal/app/leetcode/dynamic_programming/fibonacci"
 	"github.com/spf13/cobra"
-	"graffito/leetcode/dynamic_programming/fibonacci"
 )
 
 func NewCommand() *cobra.Command {

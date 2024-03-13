@@ -3,9 +3,9 @@ package chapter1_map
 import (
 	"context"
 	"fmt"
-	"graffito/app/practice/base"
-	"graffito/app/practice/chapter1_map/help"
-	"graffito/app/practice/chapter1_map/qa1"
+	"github.com/2lovecode/graffito/internal/app/practice/base"
+	"github.com/2lovecode/graffito/internal/app/practice/chapter1_map/help"
+	"github.com/2lovecode/graffito/internal/app/practice/chapter1_map/qa1"
 	"math/rand"
 	"sort"
 

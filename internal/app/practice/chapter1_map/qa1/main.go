@@ -2,7 +2,7 @@ package qa1
 
 import (
 	"context"
-	"graffito/app/practice/base"
+	"github.com/2lovecode/graffito/internal/app/practice/base"
 )
 
 type QA struct {

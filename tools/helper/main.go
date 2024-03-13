@@ -3,8 +3,8 @@ package helper
 import (
 	"bytes"
 	"encoding/json"
+	tips2 "github.com/2lovecode/graffito/tools/helper/tips"
 	"github.com/spf13/cobra"
-	tips2 "graffito/tools/helper/tips"
 	"io"
 
 	"github.com/spf13/afero"

@@ -1,8 +1,8 @@
 package learn
 
 import (
+	"github.com/2lovecode/graffito/internal/app/learn/algorithm"
 	"github.com/spf13/cobra"
-	"graffito/internal/app/learn/algorithm"
 )
 
 func NewCommand() *cobra.Command {

@@ -1,6 +1,6 @@
 package practice
 
-import "graffito/app/base"
+import "github.com/2lovecode/graffito/internal/app/base"
 
 type Input struct {
 	Chapter string // 章节

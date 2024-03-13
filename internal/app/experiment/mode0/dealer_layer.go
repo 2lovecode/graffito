@@ -3,19 +3,19 @@ package mode0
 import (
 	"context"
 	"errors"
-	"graffito/experiment/mode0/card"
-	"graffito/experiment/mode0/handler"
+	"github.com/2lovecode/graffito/internal/app/experiment/mode0/card"
+	"github.com/2lovecode/graffito/internal/app/experiment/mode0/handler"
 )
 
 type DealerLayer struct {
-	data OutData
+	data    OutData
 	cardMap map[string]card.ICard
 }
 
-func NewDealerLayer(data OutData) (dl *DealerLayer){
+func NewDealerLayer(data OutData) (dl *DealerLayer) {
 	dl = &DealerLayer{
-		data: data,
-		cardMap:make(map[string]card.ICard),
+		data:    data,
+		cardMap: make(map[string]card.ICard),
 	}
 	return dl
 }
@@ -27,7 +27,7 @@ func (dl *DealerLayer) Output() []interface{} {
 		c, err := dl.GetCard(v.Type)
 		if err == nil {
 			ctx = context.WithValue(context.Background(), "data", &handler.InputData{
-				Data:  v,
+				Data: v,
 			})
 			c.Input(ctx)
 			out = append(out, c.Output())
@@ -47,4 +47,3 @@ func (dl *DealerLayer) GetCard(t string) (c card.ICard, e error) {
 	}
 	return
 }
-

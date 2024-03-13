@@ -2,7 +2,7 @@ package algorithm
 
 import (
 	"fmt"
-	"graffito/algorithm/link"
+	"github.com/2lovecode/graffito/pkg/algorithm/link"
 )
 
 func GenSingleLinkedList[T comparable](l []T) *link.Node[T] {

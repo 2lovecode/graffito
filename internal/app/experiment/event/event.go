@@ -2,7 +2,7 @@ package event
 
 import (
 	"fmt"
-	"graffito/pkg/params"
+	"github.com/2lovecode/graffito/pkg/params"
 )
 
 type MEvent struct {

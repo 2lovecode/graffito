@@ -10,7 +10,7 @@ import (
 	"io"
 	"strings"
 
-	"graffito/tools/modgv/text"
+	"github.com/2lovecode/graffito/tools/modgv/text"
 )
 
 // Render translates “go mod graph” output taken from

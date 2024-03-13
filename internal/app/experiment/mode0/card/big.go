@@ -1,9 +1,10 @@
 package card
 
 import (
+	"github.com/2lovecode/graffito/internal/app/experiment/mode0/handler"
 	jsoniter "github.com/json-iterator/go"
-	"graffito/experiment/mode0/handler"
 )
+
 type BigCard struct {
 	BaseCard
 	Name string `json:"name"`
@@ -24,6 +25,6 @@ func (hc *BigCard) Output() string {
 		nameHandler.Input(hc.Ctx)
 		hc.Name = nameHandler.Output().(string)
 	}
-	data, _  := jsoniter.MarshalToString(hc)
+	data, _ := jsoniter.MarshalToString(hc)
 	return data
 }

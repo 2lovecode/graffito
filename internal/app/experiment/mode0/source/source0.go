@@ -1,8 +1,8 @@
 package source
 
 import (
-	"graffito/experiment/mode0"
-	"graffito/experiment/mode0/handler"
+	"github.com/2lovecode/graffito/internal/app/experiment/mode0"
+	"github.com/2lovecode/graffito/internal/app/experiment/mode0/handler"
 )
 
 type S0Resp struct {
@@ -13,7 +13,7 @@ type S0 struct {
 	Resp []S0Resp
 }
 
-func NewS0() S0{
+func NewS0() S0 {
 
 	s := S0{}
 	return s

@@ -1,10 +1,10 @@
 package mode0
 
-import "graffito/experiment/mode0/handler"
+import "github.com/2lovecode/graffito/internal/app/experiment/mode0/handler"
 
 type OutData struct {
 	CommonData interface{}
-	Data []handler.DataItem
+	Data       []handler.DataItem
 }
 
 type DataSource interface {
@@ -27,7 +27,6 @@ func Source(s DataSource) DataOption {
 	}
 }
 
-
 func NewDataAggregationLayer(opts ...DataOption) DataAggregationLayer {
 	opt := DataOptions{
 		Source: nil,
@@ -37,12 +36,11 @@ func NewDataAggregationLayer(opts ...DataOption) DataAggregationLayer {
 		o(&opt)
 	}
 
-
-	dataAggLayer := DataAggregationLayer{ds:opt.Source}
+	dataAggLayer := DataAggregationLayer{ds: opt.Source}
 
 	return dataAggLayer
 }
 
-func (al DataAggregationLayer) Output() OutData{
+func (al DataAggregationLayer) Output() OutData {
 	return al.ds.Output()
 }
