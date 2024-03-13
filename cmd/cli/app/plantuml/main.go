@@ -1,13 +1,13 @@
-package main
+package plantuml
 
 import (
 	"fmt"
 	"github.com/2lovecode/graffito/pkg/fs"
+	"github.com/fsnotify/fsnotify"
+	"github.com/spf13/cobra"
 	"log"
 	"os"
 	"os/exec"
-
-	"github.com/fsnotify/fsnotify"
 )
 
 type runtime struct {
@@ -18,54 +18,57 @@ type runtime struct {
 	plantumlLib    string
 }
 
-func main() {
-	r := buildRuntime()
-	if checkErr := checkEnv(r); checkErr != nil {
-		log.Fatal(checkErr)
-	}
-
-	watcher, err := fsnotify.NewWatcher()
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer func() {
-		closeErr := watcher.Close()
-		if closeErr != nil {
-			log.Fatal(closeErr)
+func NewCommand() *cobra.Command {
+	cmd := &cobra.Command{Use: "plantuml", Run: func(cmd *cobra.Command, args []string) {
+		r := buildRuntime()
+		if checkErr := checkEnv(r); checkErr != nil {
+			log.Fatal(checkErr)
 		}
-	}()
 
-	done := make(chan bool)
-	go func() {
-		for {
-			select {
-			case event, ok := <-watcher.Events:
-				if !ok {
-					return
-				}
-				if event.Op&fsnotify.Write == fsnotify.Write || event.Op&fsnotify.Create == fsnotify.Create {
-					generateCmd := exec.Command("java", "-jar", r.plantumlLib, event.Name, "-o", r.imageDir)
-					runErr := generateCmd.Run()
-					if runErr != nil {
-						log.Printf("Err: %v", err)
+		watcher, err := fsnotify.NewWatcher()
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer func() {
+			closeErr := watcher.Close()
+			if closeErr != nil {
+				log.Fatal(closeErr)
+			}
+		}()
+
+		done := make(chan bool)
+		go func() {
+			for {
+				select {
+				case event, ok := <-watcher.Events:
+					if !ok {
+						return
+					}
+					if event.Op&fsnotify.Write == fsnotify.Write || event.Op&fsnotify.Create == fsnotify.Create {
+						generateCmd := exec.Command("java", "-jar", r.plantumlLib, event.Name, "-o", r.imageDir)
+						runErr := generateCmd.Run()
+						if runErr != nil {
+							log.Printf("Err: %v", err)
+							return
+						}
+					}
+				case watchErr, ok := <-watcher.Errors:
+					log.Println("error:", watchErr)
+					if !ok {
 						return
 					}
 				}
-			case watchErr, ok := <-watcher.Errors:
-				log.Println("error:", watchErr)
-				if !ok {
-					return
-				}
 			}
+		}()
+
+		err = watcher.Add(r.dataDir)
+		if err != nil {
+			log.Fatal(err)
 		}
-	}()
 
-	err = watcher.Add(r.dataDir)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	<-done
+		<-done
+	}, Short: "画图（uml/时序等）工具"}
+	return cmd
 }
 
 func buildRuntime() *runtime {

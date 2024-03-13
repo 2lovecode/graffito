@@ -49,7 +49,7 @@ func NewCommand() *cobra.Command {
 			return
 		}
 		fmt.Println("Output: ", so.Data)
-	}}
+	}, Short: "Go在线运行沙箱"}
 	cmd.Flags().StringVarP(&file, "file", "f", "", "指定文件")
 	cmd.Flags().StringVarP(&source, "source", "s", "", "指定源代码")
 	return cmd
