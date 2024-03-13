@@ -4,3 +4,4 @@
 vendor
 *.o
 ssa.html
+bin/

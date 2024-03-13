@@ -2,9 +2,9 @@ package controllers
 
 import (
 	"context"
+	"github.com/2lovecode/graffito/internal/app/sandbox"
+	"github.com/2lovecode/graffito/pkg/response"
 	"github.com/kataras/iris/v12"
-	"graffito/app/sandbox"
-	"graffito/pkg/response"
 )
 
 type Sandbox struct{}

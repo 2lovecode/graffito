@@ -1,4 +1,4 @@
-module graffito
+module github.com/2lovecode/graffito
 
 go 1.20
 
