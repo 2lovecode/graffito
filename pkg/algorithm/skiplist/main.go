@@ -38,5 +38,5 @@ func (l *List[K, V]) Find(key K) *Node[K, V] {
 }
 
 func (l *List[K, V]) Delete(key K) {
-
+	println("hello")
 }
