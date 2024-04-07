@@ -3,12 +3,14 @@ package search
 import (
 	"context"
 	"fmt"
+
 	"github.com/2lovecode/graffito/internal/app/base"
 	"github.com/2lovecode/graffito/internal/app/search/pkg"
 )
 
 type Application struct{}
 
+// NewApplication 返回一个指向Application类型的新实例的指针
 func NewApplication() *Application {
 	return &Application{}
 }
@@ -24,8 +26,9 @@ func (app *Application) Exec(ctx context.Context, in base.Input) (out base.Outpu
 	doc2 := []string{"谷歌", "推出", "开源", "人工", "智能", "系统", "工具"}
 	doc3 := []string{"互联网", "的", "未来", "在", "人工", "智能"}
 	doc4 := []string{"谷歌", "开源", "机器", "学习", "工具"}
+	doc5 := []string{"这是", "什么", "人工", "智能"}
 
-	docs := [][]string{doc1, doc2, doc3, doc4}
+	docs := [][]string{doc1, doc2, doc3, doc4, doc5}
 
 	tfIdf := pkg.NewTfIdf(docs)
 	fmt.Println("tf:", tfIdf.Tf(1, "谷歌"))

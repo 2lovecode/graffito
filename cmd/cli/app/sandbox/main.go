@@ -4,10 +4,11 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	sandbox2 "github.com/2lovecode/graffito/internal/app/sandbox"
-	"github.com/spf13/cobra"
 	"io"
 	"os"
+
+	sandbox2 "github.com/2lovecode/graffito/internal/app/sandbox"
+	"github.com/spf13/cobra"
 )
 
 func NewCommand() *cobra.Command {
