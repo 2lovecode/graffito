@@ -2,6 +2,12 @@
 GO := go
 GOFLAGS := -ldflags="-s -w"
 
+# 默认参数为空
+ARGS ?=
+
+# 通过过滤 $(MAKEFLAGS) 来获取外部传递的所有参数
+ARGS += $(filter-out --%,$(MAKEFLAGS))
+
 # 项目名称
 WEB_NAME := gf-web
 CLI_NAME := gf-cli
@@ -60,13 +66,13 @@ check_build:
 
 # dev
 run-web: check_build
-	$(GO) run -mod=vendor $(WEB_SOURCES)
+	$(GO) run -mod=vendor $(WEB_SOURCES) $(ARGS)
 
 run-cli:
-	$(GO) run -mod=vendor $(CLI_SOURCES)
+	$(GO) run -mod=vendor $(CLI_SOURCES) $(ARGS)
 
 run-uml:
-	$(GO) run -mod=vendor $(UML_SOURCES)
+	$(GO) run -mod=vendor $(UML_SOURCES) $(ARGS)
 
 
 
