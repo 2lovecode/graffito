@@ -5,6 +5,7 @@ import (
 	"github.com/2lovecode/graffito/internal/app/base"
 	"github.com/traefik/yaegi/interp"
 	"github.com/traefik/yaegi/stdlib"
+	"os"
 )
 
 type Application struct {
@@ -40,6 +41,7 @@ func (sand *Application) Exec(ctx context.Context, in base.Input) (out base.Outp
 	outIO := &StringIO{data: make([]byte, 0)}
 
 	inter := interp.New(interp.Options{
+		GoPath: os.Getenv("GOPATH"),
 		Stdout: outIO,
 	})
 
