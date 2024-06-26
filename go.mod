@@ -3,7 +3,6 @@ module github.com/2lovecode/graffito
 go 1.20
 
 require (
-	github.com/antlr/antlr4/runtime/Go/antlr v0.0.0-20210506161523-0a1c3e3ce1ca
 	github.com/fsnotify/fsnotify v1.7.0
 	github.com/go-redis/redis/v8 v8.11.4
 	github.com/graph-gophers/dataloader v5.0.0+incompatible

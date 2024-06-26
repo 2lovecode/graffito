@@ -2,15 +2,14 @@ package practice
 
 import (
 	"context"
+	"fmt"
 	"github.com/2lovecode/graffito/internal/app/base"
 	base2 "github.com/2lovecode/graffito/internal/app/practice/base"
-	"github.com/2lovecode/graffito/internal/app/practice/chapter1_map"
-	"github.com/2lovecode/graffito/internal/app/practice/chapter2_slice"
-	"github.com/2lovecode/graffito/pkg/json"
+	"github.com/2lovecode/graffito/internal/app/practice/xsync/xmutex"
 )
 
 type Application struct {
-	chapter map[string]base2.Chapter
+	all map[base2.Name]base2.Question
 }
 
 func NewApplication() *Application {
@@ -28,43 +27,20 @@ func (app *Application) Exec(ctx context.Context, in base.Input) (out base.Outpu
 		return
 	}
 
-	if c, ok := app.chapter[si.Chapter]; ok {
-		qa := c.GetQA(ctx, si.Number)
-		if qa != nil {
-			switch si.Part {
-			case "q":
-				q := qa.GetQ(ctx)
-				if q != nil {
-					so.Data = q.String()
-				}
-			case "a":
-				a := qa.GetA(ctx)
-				if a != nil {
-					so.Data = a.String()
-				}
-			case "all":
-				all := make(map[string]string)
-				q := qa.GetQ(ctx)
-				if q != nil {
-					all["question"] = q.String()
-				}
-				a := qa.GetA(ctx)
-				if a != nil {
-					all["answer"] = a.String()
-					all["result"] = a.Run(ctx)
-				}
-				so.Data, _ = json.JsonParser().MarshalToString(&all)
-			}
+	if si.List {
+		for _, v := range app.all {
+			so.Data += fmt.Sprintf("\nQ: %s\nD: %s\n", v.Name(), v.Description())
 		}
+	} else if c, ok := app.all[base2.Name(si.Question)]; ok {
+		so.Data, so.Error = c.Run(ctx)
 	}
-
 	out = so
 	return
 }
 
 func (app *Application) init() {
-	app.chapter = map[string]base2.Chapter{
-		"map":   chapter1_map.New(),
-		"slice": chapter2_slice.New(),
+	xmutex1 := xmutex.NewSimpleMutexImpl()
+	app.all = map[base2.Name]base2.Question{
+		xmutex1.Name(): xmutex1,
 	}
 }

@@ -3,7 +3,8 @@ package practice
 import "github.com/2lovecode/graffito/internal/app/base"
 
 type Output struct {
-	Data string
+	Error error
+	Data  string
 }
 
 func (out *Output) Serialization() (target []byte, err error) {

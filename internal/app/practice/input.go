@@ -3,9 +3,8 @@ package practice
 import "github.com/2lovecode/graffito/internal/app/base"
 
 type Input struct {
-	Chapter string // 章节
-	Number  int    // 题目序号
-	Part    string // q-问题，a-答案，all-问题+答案+执行结果
+	List     bool
+	Question string
 }
 
 func (in *Input) Serialization() (target []byte, err error) {
