@@ -40,7 +40,11 @@ func (app *Application) Exec(ctx context.Context, in base.Input) (out base.Outpu
 
 func (app *Application) init() {
 	xmutex1 := xmutex.NewSimpleMutexImpl()
+	xmutex2 := xmutex.NewSimpleMutexImplSema()
+	xmutex3 := xmutex.NewSimpleMutexImplSemaCAS()
 	app.all = map[base2.Name]base2.Question{
 		xmutex1.Name(): xmutex1,
+		xmutex2.Name(): xmutex2,
+		xmutex3.Name(): xmutex3,
 	}
 }

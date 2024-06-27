@@ -27,30 +27,30 @@ func (s *sm1) unlock() {
 	fmt.Println("after-unlock", s.state)
 }
 
-type SimpleMutexImpl struct {
+type SimpleMutexImplCAS struct {
 }
 
-func NewSimpleMutexImpl() *SimpleMutexImpl {
-	return &SimpleMutexImpl{}
+func NewSimpleMutexImpl() *SimpleMutexImplCAS {
+	return &SimpleMutexImplCAS{}
 }
 
-func (s *SimpleMutexImpl) Name() base.Name {
-	return base.SimpleMutexImpl
+func (s *SimpleMutexImplCAS) Name() base.Name {
+	return base.SimpleMutexImplCAS
 }
 
-func (s *SimpleMutexImpl) Description() string {
-	return "互斥锁Mutex的简单实现，用简单的自旋CAS实现。这种实现因为在不断自旋，会占用大量的cpu资源，所以不建议使用。"
+func (s *SimpleMutexImplCAS) Description() string {
+	return "互斥锁Mutex的简单实现：用自旋CAS实现。这种实现因为在不断自旋，所以会占用大量的cpu资源。"
 }
 
-func (s *SimpleMutexImpl) Run(ctx context.Context) (string, error) {
+func (s *SimpleMutexImplCAS) Run(ctx context.Context) (string, error) {
 	m1 := &sm1{}
 
 	cnt := 999
 	num := 0
 	total := 0
 
-	fmt.Println("写-加锁")
 	m1.lock()
+	fmt.Println("写-已加锁")
 	go func() {
 		for i := 0; i <= cnt; i++ {
 			num += i
@@ -60,8 +60,8 @@ func (s *SimpleMutexImpl) Run(ctx context.Context) (string, error) {
 		fmt.Println("写-已解锁")
 	}()
 
-	fmt.Println("读-加锁")
 	m1.lock()
+	fmt.Println("读-已加锁")
 	total = num
 	fmt.Println("已读")
 	m1.unlock()
