@@ -42,9 +42,11 @@ func (app *Application) init() {
 	xmutex1 := xmutex.NewSimpleMutexImpl()
 	xmutex2 := xmutex.NewSimpleMutexImplSema()
 	xmutex3 := xmutex.NewSimpleMutexImplSemaCAS()
+	xmutex4 := xmutex.NewSimpleMutexImplSemaCas2()
 	app.all = map[base2.Name]base2.Question{
 		xmutex1.Name(): xmutex1,
 		xmutex2.Name(): xmutex2,
 		xmutex3.Name(): xmutex3,
+		xmutex4.Name(): xmutex4,
 	}
 }
