@@ -71,12 +71,18 @@ func readAll(r io.Reader, capacity int64) (b []byte, err error) {
 }
 
 func NewCommand() *cobra.Command {
-	return &cobra.Command{Use: "helper", Run: func(cmd *cobra.Command, args []string) {
+	helpCmd := &cobra.Command{Use: "helper", Run: func(cmd *cobra.Command, args []string) {
 		str := ""
 		if len(args) > 0 {
 			str = args[0]
 		}
 		h := NewHelper(str)
 		h.Run()
-	}, Short: "命令列表", Example: "graffito tools helper"}
+	}, Short: "命令备忘录，可以添加命令备忘，列出所有命令", Example: "{path/to/exe} tools helper"}
+
+	//helpCmd.AddCommand([]*cobra.Command{
+	//	cmd.NewAddCommand(),
+	//}...)
+
+	return helpCmd
 }

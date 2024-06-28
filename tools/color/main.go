@@ -81,7 +81,7 @@ func NewCommand() *cobra.Command {
 	value := ""
 	source := ""
 	target := ""
-	colorCmd := &cobra.Command{Use: "color", Run: func(cmd *cobra.Command, args []string) {
+	colorCmd := &cobra.Command{Use: "convert-color-format", Run: func(cmd *cobra.Command, args []string) {
 
 		res, err := ConvertColorFormat(value, ColorFormat(strings.ToUpper(source)), ColorFormat(strings.ToUpper(target)))
 		if err == nil {
@@ -95,7 +95,7 @@ func NewCommand() *cobra.Command {
 		// fmt.Println(color.ConvertColorFormat("#FFC7A68D", color.ColorFormatAHEX, color.ColorFormatRGBA))
 		// fmt.Println(color.ConvertColorFormat("#FFC7A68D", color.ColorFormatAHEX, color.ColorFormatRGBA))
 		// fmt.Println(color.ConvertColorFormat("#FFC7A68D", color.ColorFormatAHEX, color.ColorFormatRGBA))
-	}, Short: "颜色转换", Example: "{path/to/exe} cli tools color"}
+	}, Short: "转换颜色格式", Example: "将颜色从AHEX转为RGBA: {path/to/exe} tools convert-color-format -v=#ffc7a68d -s=ahex -t=rgba"}
 
 	colorCmd.Flags().StringVarP(&value, "value", "v", "", "颜色值")
 	colorCmd.Flags().StringVarP(&source, "source", "s", "", fmt.Sprintf("原始颜色格式%v", Colors))

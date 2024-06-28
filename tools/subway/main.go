@@ -72,9 +72,13 @@ type SubwayStation struct {
 }
 
 func NewCommand() *cobra.Command {
-	return &cobra.Command{Use: "fetch-subway", Run: func(cmd *cobra.Command, args []string) {
+	return &cobra.Command{Use: "fetch-subway-from-amap", Run: func(cmd *cobra.Command, args []string) {
+		if len(args) <= 0 {
+			fmt.Println("请输入城市代码【北京:1100, 上海:3100, 广州:4401, 重庆:5000, 南京:3201, 武汉:4201, 成都:5101, 苏州:3205, 徐州:3203, 杭州:3301, 深圳:4403】")
+			return
+		}
 
-		focusCity := []string{"1100", "3100", "4401", "5000", "3201", "4201", "5101", "3205", "3203", "3301", "4403"}
+		focusCity := []string{args[0]}
 		client := &http.Client{}
 
 		clResponse := &CityListResponse{}
@@ -135,6 +139,5 @@ func NewCommand() *cobra.Command {
 				}
 			}
 		}
-
-	}, Short: "获取地铁信息", Example: "graffito tools fetch-subway"}
+	}, Short: "从高德地图获取城市地铁信息，并将坐标转为百度坐标", Example: "获取北京地铁信息: {path/to/exe} tools fetch-subway 1100"}
 }
