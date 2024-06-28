@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/2lovecode/graffito/internal/app/base"
 	base2 "github.com/2lovecode/graffito/internal/app/practice/base"
+	"github.com/2lovecode/graffito/internal/app/practice/xsync/xgroup"
 	"github.com/2lovecode/graffito/internal/app/practice/xsync/xmutex"
 )
 
@@ -39,11 +40,14 @@ func (app *Application) Exec(ctx context.Context, in base.Input) (out base.Outpu
 }
 
 func (app *Application) init() {
+	xgroup1 := xgroup.NewSimpleGroup()
+
 	xmutex1 := xmutex.NewSimpleMutexImpl()
 	xmutex2 := xmutex.NewSimpleMutexImplSema()
 	xmutex3 := xmutex.NewSimpleMutexImplSemaCAS()
 	xmutex4 := xmutex.NewSimpleMutexImplSemaCas2()
 	app.all = map[base2.Name]base2.Question{
+		xgroup1.Name(): xgroup1,
 		xmutex1.Name(): xmutex1,
 		xmutex2.Name(): xmutex2,
 		xmutex3.Name(): xmutex3,
