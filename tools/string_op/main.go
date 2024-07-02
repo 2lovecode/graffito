@@ -129,5 +129,5 @@ func NewCommand() *cobra.Command {
 		strOp := NewStringOp(str)
 
 		fmt.Println(strOp.Count())
-	}, Short: "字符个数", Example: "graffito tools count abc"}
+	}, Short: "字符个数", Example: "graffito tools count onezero"}
 }

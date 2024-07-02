@@ -6,6 +6,7 @@ import (
 	"github.com/2lovecode/graffito/tools/helper"
 	"github.com/2lovecode/graffito/tools/modg"
 	"github.com/2lovecode/graffito/tools/modgv"
+	"github.com/2lovecode/graffito/tools/onezero"
 	"github.com/2lovecode/graffito/tools/redis"
 	"github.com/2lovecode/graffito/tools/sql2go"
 	"github.com/2lovecode/graffito/tools/string_op"
@@ -27,6 +28,7 @@ func NewCommand() *cobra.Command {
 		modg.NewCommand(),
 		modgv.NewCommand(),
 		subway.NewCommand(),
+		onezero.NewCommand(),
 	}
 	toolsCmd.AddCommand(cmds...)
 
