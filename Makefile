@@ -18,6 +18,7 @@ CLI_NAME := gf-cli
 SRCDIR := cmd
 # 编译输出目录
 BINDIR := bin
+WEBDIR := web
 
 # 源文件列表
 WEB_SOURCES := $(wildcard $(SRCDIR)/web/*.go)
@@ -25,7 +26,7 @@ CLI_SOURCES := $(wildcard $(SRCDIR)/cli/*.go)
 UML_SOURCES := $(wildcard $(SRCDIR)/plantuml/*.go)
 
 # 文件路径
-FRONTEND_DIR := web
+FRONTEND_DIR :=  $(wildcard $(WEBDIR))
 FRONTEND_ENTER_FILE := $(FRONTEND_DIR)/prod/index.html
 
 # 目标文件（可执行文件）
@@ -51,7 +52,7 @@ $(CLI_TARGET): $(CLI_SOURCES)
 check_build:
 	@if [ ! -f $(FRONTEND_ENTER_FILE) ]; then \
 		echo "重新构建前端项目..."; \
-		cd web; \
+		cd $(FRONTEND_DIR); \
 		if which cnpm > /dev/null; then \
 			echo "使用 cnpm 命令构建..."; \
 			cnpm install; \

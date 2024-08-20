@@ -11,4 +11,8 @@ const (
 	SimpleMutexImplSemaCAS2 Name = "simple_mutex_impl_sema_cas2"
 	SimpleMutexImplV0       Name = "simple_mutex_impl_v0"
 	SimpleMutexImplV1       Name = "simple_mutex_impl_v1"
+
+	SimpleChannelImpl Name = "simple_channel_impl"
+
+	SimpleGMPImpl Name = "simple_gmp_impl"
 )

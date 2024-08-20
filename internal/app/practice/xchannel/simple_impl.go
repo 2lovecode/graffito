@@ -2,21 +2,11 @@ package xchannel
 
 import (
 	"context"
-	"fmt"
 	"github.com/2lovecode/graffito/internal/app/practice/base"
 	"sync"
 )
 
 type xg struct {
-	f func(g *xg)
-}
-
-func newxg(f func(g *xg)) *xg {
-	return &xg{f: f}
-}
-
-func (g *xg) run() {
-	g.f(g)
 }
 
 type xchan struct {
@@ -70,24 +60,24 @@ func (s *SimpleChannelImpl) Description() string {
 
 func (s *SimpleChannelImpl) Run(ctx context.Context) (string, error) {
 
-	gl := make([]*xg, 0, 100)
-	ch := makechan()
-
-	gl = append(gl, []*xg{
-		newxg(func(g *xg) {
-			v, _ := chanrecv(ch, g)
-			fmt.Println(v)
-		}),
-		newxg(func(g *xg) {
-			chansend(ch, g, 1)
-		}),
-	}...)
-
-	g0 := newxg(func(g *xg) {
-
-	})
-
-	g0.run()
+	//gl := make([]*xg, 0, 100)
+	//ch := makechan()
+	//
+	//gl = append(gl, []*xg{
+	//	newxg(func(g *xg) {
+	//		v, _ := chanrecv(ch, g)
+	//		fmt.Println(v)
+	//	}),
+	//	newxg(func(g *xg) {
+	//		chansend(ch, g, 1)
+	//	}),
+	//}...)
+	//
+	//g0 := newxg(func(g *xg) {
+	//
+	//})
+	//
+	//g0.run()
 
 	return "", nil
 }
