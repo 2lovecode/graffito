@@ -27,7 +27,7 @@ func NewPOICommand() *cobra.Command {
 
 		// 设置请求参数
 		params := url.Values{
-			"query":    []string{"高等院校"},
+			"query":    []string{"中餐厅"},
 			"location": []string{"39.93118123,116.53187525"},
 			"radius":   []string{"3000"},
 			//"tag":          []string{"高等院校"},
