@@ -18,6 +18,7 @@ Golang代码集。包含一些小工具的实现，试验性质的代码片段�
 - `make cli` 构建cli命令行工具
 
 ## 开发环境启动
+-  需要在根目录先执行 `go mod vendor`
 -  `make run-web` 启动web服务
 -  `make run-cli` 执行cli命令
 
