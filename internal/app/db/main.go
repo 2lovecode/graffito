@@ -2,9 +2,10 @@ package sandbox
 
 import (
 	"context"
+
+	"github.com/2lovecode/graffito/internal/app/base"
 	"github.com/traefik/yaegi/interp"
 	"github.com/traefik/yaegi/stdlib"
-	"graffito/app/base"
 )
 
 type Application struct {

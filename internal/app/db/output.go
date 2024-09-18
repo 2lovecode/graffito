@@ -1,6 +1,6 @@
 package sandbox
 
-import "graffito/app/base"
+import "github.com/2lovecode/graffito/internal/app/base"
 
 type Output struct {
 	Data string

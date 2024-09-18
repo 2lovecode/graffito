@@ -2,10 +2,11 @@ package experiment
 
 import (
 	"fmt"
-	"graffito/experiment/ginx"
 	"net/http"
 	"testing"
 	"time"
+
+	"github.com/2lovecode/graffito/internal/app/experiment/ginx"
 )
 
 func TestGinx_Run(t *testing.T) {

@@ -3,9 +3,10 @@ package experiment
 import (
 	"context"
 	"fmt"
-	"graffito/experiment/depends"
 	"testing"
 	"time"
+
+	"github.com/2lovecode/graffito/internal/app/experiment/depends"
 )
 
 func TestDepends_Execute(t *testing.T) {
@@ -53,7 +54,6 @@ func BenchmarkDepends_Execute(b *testing.B) {
 		hd.Register(sB)
 		hd.Register(sC)
 
-
 		hd.AddDepend(sC, []depends.IService{sB})
 		hd.AddDepend(sB, []depends.IService{sA})
 
@@ -61,7 +61,6 @@ func BenchmarkDepends_Execute(b *testing.B) {
 		sAData := depends.ServiceAData{}
 		sBData := depends.ServiceBData{}
 		sCData := depends.ServiceCData{}
-
 
 		sA.Decode(&sAData)
 		sB.Decode(&sBData)

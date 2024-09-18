@@ -2,15 +2,16 @@ package ginx
 
 import (
 	"fmt"
-	"graffito/experiment/ginx/render"
 	"net/http"
 	"time"
+
+	"github.com/2lovecode/graffito/internal/app/experiment/ginx/render"
 )
 
 type XContext struct {
 	engine *Engine
 
-	Request *http.Request
+	Request        *http.Request
 	ResponseWriter http.ResponseWriter
 }
 
@@ -19,7 +20,6 @@ func (c *XContext) Render(code int, r render.Render) {
 		fmt.Println("error!")
 	}
 }
-
 
 /******** 实现 context.Context 接口 ********/
 

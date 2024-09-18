@@ -1,9 +1,10 @@
 package practice
 
 import (
-	"github.com/smartystreets/goconvey/convey"
-	"graffito/practice/context_x"
 	"testing"
+
+	"github.com/2lovecode/graffito/internal/app/practice/context_x"
+	"github.com/smartystreets/goconvey/convey"
 )
 
 func TestContext_Run1(t *testing.T) {

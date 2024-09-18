@@ -1,11 +1,12 @@
 package experiment
 
 import (
-	"graffito/experiment/mode0"
-	"graffito/experiment/mode0/card"
-	"graffito/experiment/mode0/handler"
-	"graffito/experiment/mode0/source"
 	"testing"
+
+	"github.com/2lovecode/graffito/internal/app/experiment/mode0"
+	"github.com/2lovecode/graffito/internal/app/experiment/mode0/card"
+	"github.com/2lovecode/graffito/internal/app/experiment/mode0/handler"
+	"github.com/2lovecode/graffito/internal/app/experiment/mode0/source"
 
 	. "github.com/smartystreets/goconvey/convey"
 )

@@ -2,7 +2,8 @@ package rule
 
 import (
 	"context"
-	"graffito/app/base"
+
+	"github.com/2lovecode/graffito/internal/app/base"
 )
 
 type Application struct{}

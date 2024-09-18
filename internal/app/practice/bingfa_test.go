@@ -1,11 +1,11 @@
 package practice
 
 import (
-	"github.com/smartystreets/goconvey/convey"
-	"graffito/practice/bingfa"
 	"testing"
-)
 
+	"github.com/2lovecode/graffito/internal/app/practice/bingfa"
+	"github.com/smartystreets/goconvey/convey"
+)
 
 func TestBingfa_Run(t *testing.T) {
 	convey.Convey("Bingfa_1", t, func() {

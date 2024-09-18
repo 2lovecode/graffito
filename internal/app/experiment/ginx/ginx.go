@@ -1,9 +1,10 @@
 package ginx
 
 import (
-	"graffito/experiment/ginx/render"
 	"net/http"
 	"sync"
+
+	"github.com/2lovecode/graffito/internal/app/experiment/ginx/render"
 )
 
 type Engine struct {
@@ -56,4 +57,3 @@ func (engine *Engine) addRoute(method, path string, handlers HandlersChain) {
 
 	}
 }
-

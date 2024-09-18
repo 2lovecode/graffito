@@ -1,8 +1,9 @@
 package myconc
 
 import (
-	"graffito/experiment/concx/myconc/panics"
 	"sync"
+
+	"github.com/2lovecode/graffito/internal/app/experiment/concx/myconc/panics"
 )
 
 type WaitGroup struct {

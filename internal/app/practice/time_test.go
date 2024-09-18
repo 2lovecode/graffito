@@ -1,9 +1,10 @@
 package practice
 
 import (
-	"github.com/smartystreets/goconvey/convey"
-	"graffito/practice/time_x"
 	"testing"
+
+	"github.com/2lovecode/graffito/internal/app/practice/time_x"
+	"github.com/smartystreets/goconvey/convey"
 )
 
 func TestTime_Run1(t *testing.T) {

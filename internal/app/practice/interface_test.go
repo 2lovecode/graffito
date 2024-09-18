@@ -1,11 +1,11 @@
 package practice
 
 import (
-	"github.com/smartystreets/goconvey/convey"
-	"graffito/practice/interface_x"
 	"testing"
-)
 
+	"github.com/2lovecode/graffito/internal/app/practice/interface_x"
+	"github.com/smartystreets/goconvey/convey"
+)
 
 func TestInterface_Run1(t *testing.T) {
 	convey.Convey("Test Run1:\n", t, func() {

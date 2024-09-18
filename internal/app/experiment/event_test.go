@@ -1,9 +1,10 @@
 package experiment
 
 import (
-	"graffito/experiment/event"
-	"graffito/pkg/params"
 	"testing"
+
+	"github.com/2lovecode/graffito/internal/app/experiment/event"
+	"github.com/2lovecode/graffito/pkg/params"
 
 	. "github.com/smartystreets/goconvey/convey"
 )
