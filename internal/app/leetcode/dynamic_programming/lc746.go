@@ -1,4 +1,4 @@
-package fibonacci
+package dynamic_programming
 
 //746. 使用最小花费爬楼梯
 //简单

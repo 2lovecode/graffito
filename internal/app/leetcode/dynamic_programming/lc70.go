@@ -1,6 +1,4 @@
-package fibonacci
-
-import "fmt"
+package dynamic_programming
 
 //70. 爬楼梯
 //简单
@@ -38,10 +36,6 @@ import "fmt"
 //1 <= n <= 45
 
 var climbStairsMap = make(map[int]int)
-
-func TestClimbStairs(n int) {
-	fmt.Println("爬楼种数：", climbStairs(n))
-}
 
 func climbStairs(n int) int {
 	y := 0

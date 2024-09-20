@@ -1,6 +1,4 @@
-package fibonacci
-
-import "fmt"
+package dynamic_programming
 
 //1137. 第 N 个泰波那契数
 //简单
@@ -38,11 +36,6 @@ import "fmt"
 //
 
 var tribMap = make(map[int]int)
-
-func TestTribonacci(n int) {
-	fmt.Println("n = ", n)
-	fmt.Println("num = ", tribonacci(n))
-}
 
 func tribonacci(n int) int {
 	y := 0

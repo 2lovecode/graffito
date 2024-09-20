@@ -1,7 +1,7 @@
 package leetcode
 
 import (
-	"github.com/2lovecode/graffito/internal/app/leetcode/dynamic_programming/fibonacci"
+	"github.com/2lovecode/graffito/internal/app/leetcode/dynamic_programming"
 	"github.com/spf13/cobra"
 )
 
@@ -15,21 +15,21 @@ func NewCommand() *cobra.Command {
 			Use:   "climb_stairs",
 			Short: "爬楼梯",
 			Run: func(cmd *cobra.Command, args []string) {
-				fibonacci.TestClimbStairs(count)
+				dynamic_programming.TestClimbStairs(count)
 			},
 		},
 		{
 			Use:   "fib",
 			Short: "斐波那契",
 			Run: func(cmd *cobra.Command, args []string) {
-				fibonacci.TestFib(count)
+				dynamic_programming.TestFib(count)
 			},
 		},
 		{
 			Use:   "trib",
 			Short: "泰波那契",
 			Run: func(cmd *cobra.Command, args []string) {
-				fibonacci.TestTribonacci(count)
+				dynamic_programming.TestTribonacci(count)
 			},
 		},
 	}
