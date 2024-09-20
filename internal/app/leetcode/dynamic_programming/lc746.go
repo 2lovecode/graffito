@@ -43,5 +43,6 @@ package dynamic_programming
 //0 <= cost[i] <= 999
 
 func minCostClimbingStairs(cost []int) int {
+
 	return 0
 }
