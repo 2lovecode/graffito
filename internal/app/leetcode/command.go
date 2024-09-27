@@ -1,7 +1,6 @@
 package leetcode
 
 import (
-	"github.com/2lovecode/graffito/internal/app/leetcode/dynamic_programming"
 	"github.com/spf13/cobra"
 )
 
@@ -10,29 +9,7 @@ func NewCommand() *cobra.Command {
 
 	var count int
 
-	cmds := []*cobra.Command{
-		{
-			Use:   "climb_stairs",
-			Short: "爬楼梯",
-			Run: func(cmd *cobra.Command, args []string) {
-				dynamic_programming.TestClimbStairs(count)
-			},
-		},
-		{
-			Use:   "fib",
-			Short: "斐波那契",
-			Run: func(cmd *cobra.Command, args []string) {
-				dynamic_programming.TestFib(count)
-			},
-		},
-		{
-			Use:   "trib",
-			Short: "泰波那契",
-			Run: func(cmd *cobra.Command, args []string) {
-				dynamic_programming.TestTribonacci(count)
-			},
-		},
-	}
+	cmds := []*cobra.Command{}
 	// 设置 "climb_stairs" 子命令的参数
 	for _, cmd := range cmds {
 		switch cmd.Use {
