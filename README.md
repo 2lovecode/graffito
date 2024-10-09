@@ -12,7 +12,7 @@
 
 ### 开发环境运行
 -  `make run-web` 启动web服务
--  `go run cmd/cli/main.go` 执行cli命令
+-  `go run -mod=vendor cmd/cli/main.go` 执行cli命令(vendor模式)
 
 ### 构建二进制文件
 - `make all` 同时构建web和cli
