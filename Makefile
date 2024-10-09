@@ -69,9 +69,6 @@ check_build:
 run-web: check_build
 	$(GO) run -mod=vendor $(WEB_SOURCES) $(ARGS)
 
-run-cli:
-	$(GO) run -mod=vendor $(CLI_SOURCES) $(ARGS)
-
 run-uml:
 	$(GO) run -mod=vendor $(UML_SOURCES) $(ARGS)
 
