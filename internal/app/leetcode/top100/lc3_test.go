@@ -14,4 +14,13 @@ func TestLengthOfLongestSubstring(t *testing.T) {
 		convey.So(lengthOfLongestSubstring("au"), convey.ShouldEqual, 2)
 		convey.So(lengthOfLongestSubstring("dvdf"), convey.ShouldEqual, 3)
 	})
+
+	convey.Convey("无重复子串长度2", t, func() {
+		convey.So(lengthOfLongestSubstring2("abcabcbb"), convey.ShouldEqual, 3)
+		convey.So(lengthOfLongestSubstring2("bbbbb"), convey.ShouldEqual, 1)
+		convey.So(lengthOfLongestSubstring2("pwwkew"), convey.ShouldEqual, 3)
+		convey.So(lengthOfLongestSubstring2("b"), convey.ShouldEqual, 1)
+		convey.So(lengthOfLongestSubstring2("au"), convey.ShouldEqual, 2)
+		convey.So(lengthOfLongestSubstring2("dvdf"), convey.ShouldEqual, 3)
+	})
 }
