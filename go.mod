@@ -19,6 +19,7 @@ require (
 	github.com/speps/go-hashids/v2 v2.0.1
 	github.com/spf13/afero v1.6.0
 	github.com/spf13/cobra v1.2.1
+	github.com/stretchr/testify v1.9.0
 	github.com/traefik/yaegi v0.15.1
 	github.com/willf/bloom v2.0.3+incompatible
 	github.com/xuri/excelize/v2 v2.4.1
@@ -48,6 +49,7 @@ require (
 	github.com/andybalholm/brotli v1.0.5 // indirect
 	github.com/aymerick/douceur v0.2.0 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
+	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/fatih/structs v1.1.0 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
@@ -77,6 +79,7 @@ require (
 	github.com/microcosm-cc/bluemonday v1.0.24 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180228061459-e0a39a4cb421 // indirect
 	github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826 // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/richardlehane/mscfb v1.0.3 // indirect
 	github.com/richardlehane/msoleps v1.0.1 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
