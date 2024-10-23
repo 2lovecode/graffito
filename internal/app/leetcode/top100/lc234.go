@@ -9,5 +9,34 @@ package top100
  * }
  */
 func isPalindrome(head *ListNode) bool {
-	return false
+	slow, fast := head, head
+
+	for fast != nil {
+		slow = slow.Next
+		if fast.Next == nil {
+			fast = fast.Next
+		} else {
+			fast = fast.Next.Next
+		}
+	}
+
+	sh := slow
+
+	var pre *ListNode
+	for sh != nil {
+		next := sh.Next
+		sh.Next = pre
+		pre = sh
+		sh = next
+	}
+
+	for pre != nil {
+		if pre.Val != head.Val {
+			return false
+		}
+		pre = pre.Next
+		head = head.Next
+	}
+
+	return true
 }
