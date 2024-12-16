@@ -5,6 +5,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/2lovecode/graffito/internal/app/experiment/apiflow"
 	"io/ioutil"
 	"os/exec"
 	"time"
@@ -127,12 +128,20 @@ func NewCommand() *cobra.Command {
 
 	expCmd := &cobra.Command{Use: "exp", Short: "试验代码"}
 
+	apiflowCmd := &cobra.Command{Use: "apiflow", Run: func(cmd *cobra.Command, args []string) {
+		flow := apiflow.NewApiFlow()
+		time.Sleep(500 * time.Millisecond)
+		flow.Add(apiflow.NewNode().WithHandler(func(ctx context.Context) {
+			fmt.Println("hello")
+		}).WithUpstreams())
+	}, Short: "apiflow"}
 	cmds := []*cobra.Command{
 		cacheCmd,
 		dependsCmd,
 		mode0Cmd,
 		eventCmd,
 		pingCmd,
+		apiflowCmd,
 		concx.NewCommand(),
 	}
 
