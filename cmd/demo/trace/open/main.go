@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/opentracing/opentracing-go"
-	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	otelBridge "go.opentelemetry.io/otel/bridge/opentracing"
 	"go.opentelemetry.io/otel/exporters/jaeger" //nolint:staticcheck // This is deprecated and will be removed in the next release.
@@ -45,8 +44,7 @@ func main() {
 	tp, _ := tracerProvider("")
 	otelTracer := tp.Tracer("tracer_name")
 
-	aa, wrapperTracerProvider := otelBridge.NewTracerPair(otelTracer)
-	otel.SetTracerProvider(wrapperTracerProvider)
+	aa, _ := otelBridge.NewTracerPair(otelTracer)
 	aa.SetTextMapPropagator(propagation.TraceContext{})
 
 	header := http.Header{}
