@@ -3,11 +3,14 @@ package apiflow
 import "context"
 
 type Node struct {
+	name    string
 	handler Handler
 }
 
-func NewNode() *Node {
-	return &Node{}
+func NewNode(name string) *Node {
+	return &Node{
+		name: name,
+	}
 }
 
 func (n *Node) WithHandler(h Handler) *Node {
