@@ -5,6 +5,7 @@ go 1.22
 toolchain go1.22.3
 
 require (
+	github.com/2lovecode/apiflow v0.0.0-20241231042909-f60d1463040a
 	github.com/fsnotify/fsnotify v1.7.0
 	github.com/go-redis/redis/v8 v8.11.4
 	github.com/graph-gophers/dataloader v5.0.0+incompatible
@@ -15,7 +16,7 @@ require (
 	github.com/qmhball/db2gorm v0.1.0
 	github.com/sirupsen/logrus v1.8.1
 	github.com/smartystreets/goconvey v1.6.4
-	github.com/sourcegraph/conc v0.2.0
+	github.com/sourcegraph/conc v0.3.0
 	github.com/speps/go-hashids/v2 v2.0.1
 	github.com/spf13/afero v1.6.0
 	github.com/spf13/cobra v1.2.1

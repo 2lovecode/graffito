@@ -5,7 +5,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/2lovecode/graffito/internal/app/experiment/apiflow"
 	"io/ioutil"
 	"os/exec"
 	"time"
@@ -24,6 +23,7 @@ import (
 	"golang.org/x/text/encoding/simplifiedchinese"
 	"golang.org/x/text/transform"
 
+	"github.com/2lovecode/apiflow"
 	"github.com/spf13/cobra"
 )
 
@@ -129,11 +129,62 @@ func NewCommand() *cobra.Command {
 	expCmd := &cobra.Command{Use: "exp", Short: "试验代码"}
 
 	apiflowCmd := &cobra.Command{Use: "apiflow", Run: func(cmd *cobra.Command, args []string) {
-		flow := apiflow.NewApiFlow()
-		time.Sleep(500 * time.Millisecond)
-		flow.Add(apiflow.NewNode().WithHandler(func(ctx context.Context) {
-			fmt.Println("hello")
-		}).WithUpstreams())
+		ctx := context.Background()
+
+		flow := apiflow.NewApiFlow(1 * time.Second)
+
+		nodeA := apiflow.NewNode("A", func(ctx context.Context, node *apiflow.Node, inputs map[string]interface{}) (interface{}, error) {
+			fmt.Printf("Executing node %s\n", node.ID)
+			time.Sleep(100 * time.Millisecond)
+			m := make(map[string]string)
+			m["node_a_1"] = "goodsA"
+			m["node_a_2"] = "morningA"
+			return m, nil
+		})
+
+		nodeB := apiflow.NewNode("B", func(ctx context.Context, node *apiflow.Node, inputs map[string]interface{}) (interface{}, error) {
+			fmt.Printf("Executing node %s\n", node.ID)
+			if inputs != nil {
+				if aa, ok := inputs["A"]; ok {
+					fmt.Println("bbbbbb: ", aa)
+				}
+			}
+			time.Sleep(200 * time.Millisecond)
+			m := make(map[string]string)
+			m["node_b_1"] = "goodB"
+			m["node_b_2"] = "morningB"
+			return m, nil
+		})
+
+		nodeC := apiflow.NewNode("C", func(ctx context.Context, node *apiflow.Node, inputs map[string]interface{}) (interface{}, error) {
+			fmt.Printf("Executing node %s\n", node.ID)
+			if inputs != nil {
+				if aa, ok := inputs["A"]; ok {
+					fmt.Println("cccc: ", aa)
+				}
+				if bb, ok := inputs["B"]; ok {
+					fmt.Println("cccc: ", bb)
+				}
+			}
+			time.Sleep(100 * time.Millisecond)
+			return nil, fmt.Errorf("error in node %s", node.ID)
+		})
+
+		nodeD := apiflow.NewNode("D", func(ctx context.Context, node *apiflow.Node, inputs map[string]interface{}) (interface{}, error) {
+			fmt.Printf("Executing node %s\n", node.ID)
+			time.Sleep(300 * time.Millisecond)
+			return nil, nil
+		})
+
+		// Adding nodes with dependencies
+		flow.AddNode(nodeA, []string{})
+		flow.AddNode(nodeB, []string{"A"})
+		flow.AddNode(nodeC, []string{"B"})
+		flow.AddNode(nodeD, []string{"A"})
+
+		// Run the API flow
+
+		flow.Run(ctx)
 	}, Short: "apiflow"}
 	cmds := []*cobra.Command{
 		cacheCmd,
