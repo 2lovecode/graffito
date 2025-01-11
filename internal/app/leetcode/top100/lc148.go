@@ -8,6 +8,14 @@ package top100
  * }
  */
 func sortList(head *ListNode) *ListNode {
+	//
+	length := 23
+
+	step := 1
+
+	for step < length {
+
+	}
 
 	return nil
 }
