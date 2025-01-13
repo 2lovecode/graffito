@@ -14,14 +14,12 @@ func sortList(head *ListNode) *ListNode {
 	step := 1
 
 	for step < length {
-
 	}
 
 	return nil
 }
 
-func sort(head *ListNode, tail *ListNode) *ListNode {
-
+func sort1(head *ListNode, tail *ListNode) *ListNode {
 	return nil
 }
 
