@@ -8,48 +8,140 @@ package top100
  * }
  */
 func sortList(head *ListNode) *ListNode {
-	//
-	length := 23
+	return top2bottomMergeSort(head, nil)
+}
 
-	step := 1
-
-	for step < length {
+func top2bottomMergeSort(head *ListNode, tail *ListNode) *ListNode {
+	if head == nil {
+		return head
 	}
+	if head.Next == tail {
+		head.Next = nil
+		return head
+	}
+	mid := middleListNode(head, tail)
 
-	return nil
+	return mergeTwoSortedList(top2bottomMergeSort(head, mid), top2bottomMergeSort(mid, tail))
 }
 
-func sort1(head *ListNode, tail *ListNode) *ListNode {
-	return nil
-}
+func bottom2topMergeSort(head *ListNode) *ListNode {
+	length := listLength(head)
 
-func sortMerge(list1 *ListNode, list2 *ListNode) *ListNode {
-	var head *ListNode
-	cur := head
-	for list1 != nil && list2 != nil {
-		if list1.Val < list2.Val {
-			cur = list1
-			cur = cur.Next
-			list1 = list1.Next
-		} else if list1.Val > list2.Val {
-			cur = list2
-			cur = cur.Next
-			list2 = list2.Next
-		} else {
-			cur = list1
-			cur = cur.Next
-			cur = list2
-			cur = cur.Next
-			list1 = list1.Next
-			list2 = list2.Next
+	dummyHead := &ListNode{Next: head}
+
+	for subLength := 1; subLength < length; subLength *= 2 {
+		prev, cur := dummyHead, dummyHead.Next
+		for cur != nil {
+			head1 := cur
+			for i := 1; i < subLength && cur.Next != nil; i++ {
+				cur = cur.Next
+			}
+			head2 := cur.Next
+			cur.Next = nil
+			cur = head2
+			for i := 1; i < subLength && cur != nil && cur.Next != nil; i++ {
+				cur = cur.Next
+			}
+
+			var next *ListNode
+			if cur != nil {
+				next = cur.Next
+				cur.Next = nil
+			}
+
+			nHead, nTail := mergeTwoSortedList2(head1, head2)
+
+			prev.Next = nHead
+			prev = nTail
+
+			cur = next
 		}
 	}
 
-	if list1 != nil {
-		cur = list1
+	return dummyHead.Next
+}
+
+func listLength(head *ListNode) int {
+	l := 0
+	cur := head
+	for cur != nil {
+		l++
+		cur = cur.Next
 	}
-	if list2 != nil {
-		cur = list2
+	return l
+}
+
+func middleListNode(head *ListNode, tail *ListNode) *ListNode {
+	fast, slow := head, head
+
+	for fast != tail {
+		slow = slow.Next
+		fast = fast.Next
+		if fast != tail {
+			fast = fast.Next
+		}
 	}
-	return head
+
+	return slow
+}
+
+func mergeTwoSortedList(head1 *ListNode, head2 *ListNode) *ListNode {
+	dummyHead := &ListNode{}
+
+	temp, temp1, temp2 := dummyHead, head1, head2
+
+	for temp1 != nil && temp2 != nil {
+		if temp1.Val <= temp2.Val {
+			temp.Next = temp1
+			temp1 = temp1.Next
+		} else if temp1.Val > temp2.Val {
+			temp.Next = temp2
+			temp2 = temp2.Next
+		}
+		temp = temp.Next
+	}
+
+	if temp1 != nil {
+		temp.Next = temp1
+	}
+
+	if temp2 != nil {
+		temp.Next = temp2
+	}
+
+	return dummyHead.Next
+}
+
+func mergeTwoSortedList2(head1 *ListNode, head2 *ListNode) (*ListNode, *ListNode) {
+	dummyHead := &ListNode{}
+
+	temp, temp1, temp2 := dummyHead, head1, head2
+
+	for temp1 != nil && temp2 != nil {
+		if temp1.Val <= temp2.Val {
+			temp.Next = temp1
+			temp1 = temp1.Next
+		} else if temp1.Val > temp2.Val {
+			temp.Next = temp2
+			temp2 = temp2.Next
+		}
+		temp = temp.Next
+	}
+
+	if temp1 != nil {
+		temp.Next = temp1
+	}
+
+	if temp2 != nil {
+		temp.Next = temp2
+	}
+
+	var tail *ListNode
+
+	for temp != nil {
+		tail = temp
+		temp = temp.Next
+	}
+
+	return dummyHead.Next, tail
 }
