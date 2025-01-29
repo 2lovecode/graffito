@@ -9,9 +9,5 @@ package top100
  * }
  */
 func diameterOfBinaryTree(root *TreeNode) int {
-
-}
-
-func depth(root *TreeNode) int {
-
+	return 0
 }
