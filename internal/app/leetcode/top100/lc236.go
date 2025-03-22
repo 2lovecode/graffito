@@ -9,5 +9,7 @@ package top100
  * }
  */
 func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
+
+	println("test")
 	return nil
 }
