@@ -5,3 +5,4 @@ vendor
 *.o
 ssa.html
 bin/
+*.bleve
