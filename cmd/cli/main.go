@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/2lovecode/graffito/cmd/cli/app/geo"
+	"github.com/2lovecode/graffito/cmd/cli/app/image2"
 	"github.com/2lovecode/graffito/cmd/cli/app/media"
 	"github.com/2lovecode/graffito/cmd/cli/app/plantuml"
 	"github.com/2lovecode/graffito/cmd/cli/app/poi"
@@ -35,6 +36,7 @@ func main() {
 	rootCmd.AddCommand(geo.NewTransCommand())
 	rootCmd.AddCommand(media.NewFileTypeCommand())
 	rootCmd.AddCommand(poi.NewPOICommand())
+	rootCmd.AddCommand(image2.NewCommand())
 
 	_ = rootCmd.Execute()
 }
