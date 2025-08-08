@@ -2,10 +2,11 @@ package sandbox
 
 import (
 	"context"
-	"github.com/2lovecode/graffito/internal/app/base"
+	"os"
+
+	dto "github.com/2lovecode/graffito/internal/dto/sandbox"
 	"github.com/traefik/yaegi/interp"
 	"github.com/traefik/yaegi/stdlib"
-	"os"
 )
 
 type Application struct {
@@ -29,15 +30,7 @@ func (so *StringIO) String() string {
 	return string(so.data)
 }
 
-func (sand *Application) Exec(ctx context.Context, in base.Input) (out base.Output, err error) {
-	si := &Input{}
-	so := &Output{}
-	err = si.From(in)
-
-	if err != nil {
-		return
-	}
-
+func (sand *Application) Exec(ctx context.Context, in dto.Input) (out dto.Output, err error) {
 	outIO := &StringIO{data: make([]byte, 0)}
 
 	inter := interp.New(interp.Options{
@@ -51,14 +44,15 @@ func (sand *Application) Exec(ctx context.Context, in base.Input) (out base.Outp
 		return
 	}
 
-	_, err = inter.Eval(si.SourceCode)
+	_, err = inter.Eval(in.SourceCode)
 
 	if err != nil {
 		return
 	}
-	so.Data = outIO.String()
 
-	out = so
+	out = dto.Output{
+		Data: outIO.String(),
+	}
 	return
 }
 

@@ -7,7 +7,8 @@ import (
 	"io"
 	"os"
 
-	sandbox2 "github.com/2lovecode/graffito/internal/app/sandbox"
+	dto "github.com/2lovecode/graffito/internal/dto/sandbox"
+	srv "github.com/2lovecode/graffito/internal/services/sandbox"
 	"github.com/spf13/cobra"
 )
 
@@ -33,8 +34,8 @@ func NewCommand() *cobra.Command {
 			sourceCode = buffer.String()
 		}
 
-		sandboxApp := sandbox2.NewApplication()
-		out, err := sandboxApp.Exec(context.Background(), &sandbox2.Input{
+		sandboxApp := srv.NewApplication()
+		out, err := sandboxApp.Exec(context.Background(), dto.Input{
 			SourceCode: sourceCode,
 		})
 
@@ -42,14 +43,12 @@ func NewCommand() *cobra.Command {
 			fmt.Println("Error: ", err)
 			return
 		}
-		so := sandbox2.Output{}
-		err = out.To(&so)
 
 		if err != nil {
 			fmt.Println("Error: ", err)
 			return
 		}
-		fmt.Println("Output: ", so.Data)
+		fmt.Println("Output: ", out.Data)
 	}, Short: "Go在线运行沙箱"}
 	cmd.Flags().StringVarP(&file, "file", "f", "", "指定文件")
 	cmd.Flags().StringVarP(&source, "source", "s", "", "指定源代码")

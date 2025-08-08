@@ -1,4 +1,4 @@
-package main
+package cli
 
 import (
 	"github.com/2lovecode/graffito/cmd/cli/app/geo"
@@ -19,24 +19,26 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func main() {
-	rootCmd := &cobra.Command{}
+func NewCommand() *cobra.Command {
+	cliCmd := &cobra.Command{
+		Use: "cli",
+	}
 
-	rootCmd.AddCommand(sandbox.NewCommand())
-	rootCmd.AddCommand(plantuml.NewCommand())
-	rootCmd.AddCommand(search.NewCommand())
-	rootCmd.AddCommand(practice.NewCommand())
-	rootCmd.AddCommand(tools.NewCommand())
-	rootCmd.AddCommand(algorithm.NewCommand())
-	rootCmd.AddCommand(experiment.NewCommand())
-	rootCmd.AddCommand(pattern.NewCommand())
-	rootCmd.AddCommand(leetcode.NewCommand())
-	rootCmd.AddCommand(learn.NewCommand())
-	rootCmd.AddCommand(other.NewCommand())
-	rootCmd.AddCommand(geo.NewTransCommand())
-	rootCmd.AddCommand(media.NewFileTypeCommand())
-	rootCmd.AddCommand(poi.NewPOICommand())
-	rootCmd.AddCommand(image2.NewCommand())
+	cliCmd.AddCommand(sandbox.NewCommand())
+	cliCmd.AddCommand(plantuml.NewCommand())
+	cliCmd.AddCommand(search.NewCommand())
+	cliCmd.AddCommand(practice.NewCommand())
+	cliCmd.AddCommand(tools.NewCommand())
+	cliCmd.AddCommand(algorithm.NewCommand())
+	cliCmd.AddCommand(experiment.NewCommand())
+	cliCmd.AddCommand(pattern.NewCommand())
+	cliCmd.AddCommand(leetcode.NewCommand())
+	cliCmd.AddCommand(learn.NewCommand())
+	cliCmd.AddCommand(other.NewCommand())
+	cliCmd.AddCommand(geo.NewTransCommand())
+	cliCmd.AddCommand(media.NewFileTypeCommand())
+	cliCmd.AddCommand(poi.NewPOICommand())
+	cliCmd.AddCommand(image2.NewCommand())
 
-	_ = rootCmd.Execute()
+	return cliCmd
 }

@@ -2,7 +2,9 @@ package controllers
 
 import (
 	"context"
-	"github.com/2lovecode/graffito/internal/app/sandbox"
+
+	dto "github.com/2lovecode/graffito/internal/dto/sandbox"
+	"github.com/2lovecode/graffito/internal/services/sandbox"
 	"github.com/2lovecode/graffito/pkg/response"
 	"github.com/kataras/iris/v12"
 )
@@ -30,7 +32,7 @@ func (sd *Sandbox) Run(ctx iris.Context) {
 	}
 
 	sandboxApp := sandbox.NewApplication()
-	out, err := sandboxApp.Exec(context.Background(), &sandbox.Input{
+	out, err := sandboxApp.Exec(context.Background(), dto.Input{
 		SourceCode: runJ.SourceCode,
 	})
 
@@ -38,8 +40,6 @@ func (sd *Sandbox) Run(ctx iris.Context) {
 		response.Failure(ctx, "400", err.Error())
 		return
 	}
-	so := sandbox.Output{}
-	err = out.To(&so)
 
 	if err != nil {
 		response.Failure(ctx, "400", err.Error())
@@ -47,6 +47,6 @@ func (sd *Sandbox) Run(ctx iris.Context) {
 	}
 
 	response.Success(ctx, &RunData{
-		Content: so.Data,
+		Content: out.Data,
 	})
 }
