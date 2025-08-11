@@ -11,6 +11,7 @@ import (
 
 type semacas struct {
 	state   int32
+	mu      sync.Mutex // 仅示例
 	waiters int32
 	sema    *semaphore.Weighted
 }
@@ -31,23 +32,24 @@ func (m *semacas) lock() {
 		}
 	}
 
-	atomic.AddInt32(&m.waiters, 1)
-	defer atomic.AddInt32(&m.waiters, -1)
 	// 慢路径：进入阻塞等待
 	for {
-		atomic.AddInt32(&m.waiters, 1)
-		if atomic.LoadInt32(&m.state) == 0 {
-			if atomic.CompareAndSwapInt32(&m.state, 0, 1) {
-				return
-			}
+		m.mu.Lock()
+		m.waiters++
+		m.mu.Unlock()
+		if atomic.CompareAndSwapInt32(&m.state, 0, 1) {
+			m.mu.Lock()
+			m.waiters--
+			m.mu.Unlock()
+			return
 		}
 
 		// 阻塞等待
-		if err := m.sema.Acquire(context.Background(), 1); err == nil {
-			// 被唤醒后尝试获取锁
-			if atomic.CompareAndSwapInt32(&m.state, 0, 1) {
-				return
-			}
+		if err := m.sema.Acquire(context.Background(), 1); err != nil {
+			panic(err.Error())
+		}
+		if atomic.CompareAndSwapInt32(&m.state, 0, 1) {
+			return
 		}
 	}
 }
@@ -57,9 +59,13 @@ func (m *semacas) unlock() {
 		panic("unlock of unlocked mutex")
 	}
 
-	// 如果有等待者，释放信号量
-	if atomic.LoadInt32(&m.waiters) > 0 {
+	m.mu.Lock()
+	if m.waiters > 0 {
+		m.waiters--
+		m.mu.Unlock()
 		m.sema.Release(1)
+	} else {
+		m.mu.Unlock()
 	}
 }
 
@@ -68,7 +74,9 @@ func newsemacas() *semacas {
 		sema:  semaphore.NewWeighted(1),
 		state: 0,
 	}
-	// _ = s.sema.TryAcquire(1)
+	if !s.sema.TryAcquire(1) {
+		panic("init semaphore fail")
+	}
 	return s
 }
 

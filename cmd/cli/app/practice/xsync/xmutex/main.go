@@ -42,25 +42,9 @@ func NewCommand() *cobra.Command {
 		Short: "自旋+信号量",
 	})
 	cmd.AddCommand(&cobra.Command{
-		Use: "sm3",
-		Run: func(cmd *cobra.Command, args []string) {
-			xmsrv.NewSimpleMutexImplSemaCas2()
-
-		},
-		Short: "Mutex实现示例",
-	})
-	cmd.AddCommand(&cobra.Command{
 		Use: "sm4",
 		Run: func(cmd *cobra.Command, args []string) {
 			xmsrv.NewSimpleMutexImplV0()
-
-		},
-		Short: "Mutex实现示例",
-	})
-	cmd.AddCommand(&cobra.Command{
-		Use: "sm5",
-		Run: func(cmd *cobra.Command, args []string) {
-			xmsrv.NewSimpleMutexImplSemaCas2()
 
 		},
 		Short: "Mutex实现示例",
