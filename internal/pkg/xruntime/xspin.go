@@ -1,0 +1,3 @@
+package xruntime
+
+func DoSpin()
