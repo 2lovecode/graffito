@@ -1,4 +1,4 @@
-package xgroup
+package xother
 
 import (
 	"context"
@@ -6,14 +6,14 @@ import (
 	"sync"
 )
 
-type SimpleGroup struct {
+type WaitGroup struct {
 }
 
-func NewSimpleGroup() *SimpleGroup {
-	return &SimpleGroup{}
+func NewWaitGroup() *WaitGroup {
+	return &WaitGroup{}
 }
 
-func (s *SimpleGroup) Run(ctx context.Context) (string, error) {
+func (s *WaitGroup) Run(ctx context.Context) (string, error) {
 
 	wg := &sync.WaitGroup{}
 
