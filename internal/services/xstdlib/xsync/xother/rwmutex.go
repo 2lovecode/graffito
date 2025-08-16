@@ -67,3 +67,21 @@ func (rw *RWMutex) RUnlock() {
 		rw.writerSemWaiterMu.Unlock()
 	}
 }
+
+type RWMutexImpl struct {
+}
+
+func (r *RWMutexImpl) Run(ctx context.Context) {
+	rw := NewRWMutex()
+	for {
+		select {
+		case <-ctx.Done():
+			return
+		default:
+			rw.RLock()
+			rw.RUnlock()
+			rw.Lock()
+			rw.Unlock()
+		}
+	}
+}
