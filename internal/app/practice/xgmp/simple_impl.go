@@ -2,6 +2,7 @@ package xgmp
 
 import (
 	"context"
+
 	"github.com/2lovecode/graffito/internal/app/practice/base"
 )
 
@@ -10,6 +11,10 @@ var queue = make([]*xg, 100)
 type xm struct {
 }
 
+type AA struct {
+	M string
+	S string
+}
 type xp struct {
 	m     *xm
 	queue []*xg
