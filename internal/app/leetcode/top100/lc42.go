@@ -102,6 +102,8 @@ func trap3(height []int) int {
 			}
 			lidx := stack[len(stack)-1]
 			h := min(height[lidx], height[i]) - height[bidx]
+			// 不是 sum += h 而是 sum += (i - lidx - 1) * h 的原因?
+			// 考虑到连续height相等的情况
 			sum += (i - lidx - 1) * h
 		}
 		stack = append(stack, i)
