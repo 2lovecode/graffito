@@ -15,7 +15,7 @@ type linkNode struct {
 	next  *linkNode
 }
 
-func Constructor(capacity int) LRUCache {
+func Constructor146(capacity int) LRUCache {
 	return LRUCache{
 		cap:      capacity,
 		length:   0,

@@ -6,7 +6,7 @@ import (
 )
 
 func TestLRUCache(t *testing.T) {
-	cache := Constructor(2)
+	cache := Constructor146(2)
 	cache.Put(1, 1)
 	cache.Put(2, 2)
 	// fmt.Println(cache.linkHead.value, cache.linkTail.value)
