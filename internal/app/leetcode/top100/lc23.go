@@ -58,3 +58,8 @@ func mergeKLists(lists []*ListNode) *ListNode {
 	}
 	return mergeTwoLists(mergeKLists(lists[:l/2]), mergeKLists(lists[l/2:]))
 }
+
+// 最小堆实现
+func mergeKLists2(lists []*ListNode) *ListNode {
+	return nil
+}
