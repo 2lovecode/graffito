@@ -18,7 +18,7 @@ require (
 	github.com/modern-go/reflect2 v1.0.2
 	github.com/opentracing/opentracing-go v1.2.0
 	github.com/qmhball/db2gorm v0.1.0
-	github.com/sirupsen/logrus v1.8.1
+	github.com/sirupsen/logrus v1.8.3
 	github.com/smartystreets/goconvey v1.6.4
 	github.com/sourcegraph/conc v0.3.0
 	github.com/speps/go-hashids/v2 v2.0.1
