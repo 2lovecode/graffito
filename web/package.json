@@ -8,7 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "element-plus": "^2.5.1",
+    "element-plus": "^2.11.0",
     "pinia": "^2.1.7",
     "vite-plugin-monaco-editor": "^1.1.0",
     "vue": "^3.3.11",
@@ -18,7 +18,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.2",
     "typescript": "^5.5.3",
-    "vite": ">=5.4.19",
+    "vite": ">=5.4.21",
     "esbuild": ">=0.25.0",
     "vue-tsc": "^2.0.28"
   }
