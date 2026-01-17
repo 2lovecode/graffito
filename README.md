@@ -200,6 +200,23 @@ go test -mod=vendor ./pkg/algorithm/...
 
 ## 📝 开发指南
 
+### 开发环境设置
+
+```bash
+# 1. 确保Go版本 >= 1.24
+go version
+
+# 2. 克隆项目
+git clone https://github.com/2lovecode/graffito.git
+cd graffito
+
+# 3. 安装依赖
+make vendor
+
+# 4. 构建项目
+make build
+```
+
 ### 添加新命令
 
 1. **确定命令所属领域**
@@ -226,8 +243,13 @@ go test -mod=vendor ./pkg/algorithm/...
            Long: `详细描述和使用示例`,
            Run: func(cmd *cobra.Command, args []string) {
                // 使用共享工具
-               // 使用logging记录日志
-               // 使用统一的错误处理
+               sourceCode, err := base.ReadSourceCode(file, source)
+               if err != nil {
+                   logging.Errorf("读取失败: %v", err)
+                   fmt.Fprintf(cmd.ErrOrStderr(), "错误: %v\n", err)
+                   return
+               }
+               // 实现逻辑...
            },
        }
    }
@@ -238,22 +260,17 @@ go test -mod=vendor ./pkg/algorithm/...
 
 ### 代码规范
 
-- 遵循 [Go代码规范](https://golang.org/doc/effective_go)
-- 使用 `make fmt` 格式化代码
-- 使用 `make lint` 检查代码（需要安装 golangci-lint）
-- 编写单元测试
+- **命名规范**：包名小写，类型名PascalCase，函数名PascalCase（导出）或camelCase（内部）
+- **格式化**：使用 `make fmt` 格式化代码
+- **代码检查**：使用 `make lint` 检查代码（需要安装 golangci-lint）
+- **测试**：编写单元测试，使用 `make test` 运行
 
-### 错误处理和日志
+### 最佳实践
 
 **使用共享工具：**
 ```go
 base := &shared.CLIBase{}
 sourceCode, err := base.ReadSourceCode(file, source)
-if err != nil {
-    logging.Errorf("读取失败: %v", err)
-    fmt.Fprintf(cmd.ErrOrStderr(), "错误: %v\n", err)
-    return
-}
 ```
 
 **统一日志记录：**
@@ -272,25 +289,29 @@ if err != nil {
 }
 ```
 
-### 配置管理
-
-使用环境变量配置：
-
+**配置管理：**
 ```bash
-# 日志级别
+# 环境变量
 export LOG_LEVEL=debug
-
-# 沙箱超时时间（秒）
 export SANDBOX_TIMEOUT=60
 ```
 
-或使用代码：
 ```go
+// 代码中使用
 import "github.com/2lovecode/graffito/pkg/config"
-
 cfg := config.Get()
 timeout := cfg.Sandbox.Timeout
 ```
+
+### 提交规范
+
+建议遵循 [Conventional Commits](https://www.conventionalcommits.org/)：
+- `feat:` 新功能
+- `fix:` 修复bug
+- `docs:` 文档更新
+- `refactor:` 代码重构
+- `test:` 测试相关
+- `chore:` 构建/工具相关
 
 ## 🛠️ 常用命令 (Makefile)
 
@@ -301,9 +322,33 @@ make test-cover # 运行测试并生成覆盖率报告
 make clean      # 清理编译文件
 make vendor     # 更新vendor依赖
 make fmt        # 格式化代码
-make lint       # 代码检查
+make lint       # 代码检查（需要安装golangci-lint）
 make install    # 安装到系统
 ```
+
+## 📋 更新日志
+
+### 最新版本
+
+**新增功能：**
+- ✨ 完善README文档，添加详细的项目介绍和使用说明
+- ✨ 添加统一的错误处理包 `pkg/errors`
+- ✨ 添加配置管理包 `pkg/config`，支持环境变量配置
+- ✨ 改进日志系统 `pkg/logging`，支持日志级别配置
+- ✨ 添加Makefile，简化常用操作
+- ✨ 优化CLI命令组织，按三大领域分类（tools/learn/labs）
+- ✨ 使用共享工具减少代码重复
+
+**改进：**
+- 🔧 重组项目结构，将功能模块统一到 `internal/app/`
+- 🔧 将工具程序移动到 `cmd/tools/`
+- 🔧 统一错误处理和日志记录
+- 🔧 完善命令帮助信息和使用示例
+
+**修复：**
+- 🐛 修复未使用的导入问题
+- 🐛 修复日志系统初始化问题
+- 🐛 修复Context超时函数类型错误
 
 ## 🤝 贡献
 
