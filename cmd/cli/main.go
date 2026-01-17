@@ -1,44 +1,36 @@
 package cli
 
 import (
-	"github.com/2lovecode/graffito/cmd/cli/app/geo"
-	"github.com/2lovecode/graffito/cmd/cli/app/image2"
-	"github.com/2lovecode/graffito/cmd/cli/app/media"
-	"github.com/2lovecode/graffito/cmd/cli/app/plantuml"
-	"github.com/2lovecode/graffito/cmd/cli/app/poi"
-	"github.com/2lovecode/graffito/cmd/cli/app/practice"
-	"github.com/2lovecode/graffito/cmd/cli/app/sandbox"
-	"github.com/2lovecode/graffito/cmd/cli/app/search"
-	"github.com/2lovecode/graffito/internal/app/experiment"
-	"github.com/2lovecode/graffito/internal/app/learn"
-	"github.com/2lovecode/graffito/internal/app/leetcode"
-	"github.com/2lovecode/graffito/internal/app/other"
-	"github.com/2lovecode/graffito/pkg/algorithm"
-	"github.com/2lovecode/graffito/pkg/pattern"
-	"github.com/2lovecode/graffito/tools"
+	"github.com/2lovecode/graffito/cmd/web"
+	"github.com/2lovecode/graffito/internal/app/labs"
+	"github.com/2lovecode/graffito/internal/app/learning"
+	"github.com/2lovecode/graffito/internal/app/tools"
 	"github.com/spf13/cobra"
 )
 
 func NewCommand() *cobra.Command {
 	cliCmd := &cobra.Command{
-		Use: "cli",
+		Use:   "cli",
+		Short: "Graffito命令行工具",
+		Long: `Graffito - Go开发工具箱
+
+提供三大类功能：
+  - tools  : 开发工具集（沙箱、时序图、图片处理等）
+  - learn  : 学习资源集（LeetCode、算法、设计模式等）
+  - labs   : 实验功能集（实验代码、实践探索等）
+
+使用示例：
+  graffito cli tools sandbox --source "package main..."
+  graffito cli learn leetcode list
+  graffito cli labs experiment depends
+`,
 	}
 
-	cliCmd.AddCommand(sandbox.NewCommand())
-	cliCmd.AddCommand(plantuml.NewCommand())
-	cliCmd.AddCommand(search.NewCommand())
-	cliCmd.AddCommand(practice.NewCommand())
+	// 三大类命令
 	cliCmd.AddCommand(tools.NewCommand())
-	cliCmd.AddCommand(algorithm.NewCommand())
-	cliCmd.AddCommand(experiment.NewCommand())
-	cliCmd.AddCommand(pattern.NewCommand())
-	cliCmd.AddCommand(leetcode.NewCommand())
-	cliCmd.AddCommand(learn.NewCommand())
-	cliCmd.AddCommand(other.NewCommand())
-	cliCmd.AddCommand(geo.NewTransCommand())
-	cliCmd.AddCommand(media.NewFileTypeCommand())
-	cliCmd.AddCommand(poi.NewPOICommand())
-	cliCmd.AddCommand(image2.NewCommand())
+	cliCmd.AddCommand(learning.NewCommand())
+	cliCmd.AddCommand(labs.NewCommand())
+	cliCmd.AddCommand(web.NewCommand())
 
 	return cliCmd
 }

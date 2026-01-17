@@ -4,6 +4,8 @@ import (
 	"fmt"
 
 	"github.com/2lovecode/graffito/internal/controllers"
+	"github.com/2lovecode/graffito/pkg/config"
+	"github.com/2lovecode/graffito/pkg/logging"
 	web2 "github.com/2lovecode/graffito/web"
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/middleware/cors"
@@ -12,8 +14,17 @@ import (
 
 func NewCommand() *cobra.Command {
 	webCmd := &cobra.Command{
-		Use: "web",
+		Use:   "web",
+		Short: "启动Web服务",
+		Long:  "启动Graffito Web服务，提供Web界面和API接口",
 		Run: func(cmd *cobra.Command, args []string) {
+			// 加载配置
+			cfg, err := config.Load()
+			if err != nil {
+				logging.Errorf("加载配置失败: %v", err)
+				cfg = config.Get() // 使用默认配置
+			}
+
 			web := iris.New()
 			web.RegisterView(iris.HTML(web2.WebDir(), ".html"))
 
@@ -35,9 +46,11 @@ func NewCommand() *cobra.Command {
 			web.Get("/", controllers.NewHome().Index)
 			web.Get("/{apps}", controllers.NewHome().Index)
 
-			err := web.Listen(":8081")
+			addr := fmt.Sprintf(":%s", cfg.Server.Port)
+			logging.Infof("Web服务启动在 %s", addr)
+			err = web.Listen(addr)
 			if err != nil {
-				fmt.Println("Error: ", err)
+				logging.Fatalf("Web服务启动失败: %v", err)
 				return
 			}
 		},

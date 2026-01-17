@@ -1,0 +1,65 @@
+@startuml
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam sequenceArrowThickness 2
+skinparam sequenceMessageAlignment left
+skinparam ParticipantPadding 20
+
+title 房源搜索与推荐时序图
+
+actor 用户 as User
+participant "前端\n(Frontend)" as Frontend
+participant "搜索服务\n(Search Service)" as Search
+participant "推荐服务\n(Recommendation)" as Recommend
+database "房源数据库\n(House DB)" as DB
+
+== 搜索请求阶段 ==
+
+User -> Frontend : 1. 输入搜索条件\n(位置/价格/关键词)
+Frontend -> Search : 2. 搜索请求\n{location, price_range, keywords}
+activate Search
+Search -> DB : 3. 查询房源数据\nSELECT * FROM houses WHERE...
+activate DB
+DB --> Search : 4. 返回原始结果集
+deactivate DB
+
+alt **结果充足** (≥10条房源)
+    Search -> Search : 5. 过滤排序结果\n(相关性评分)
+    Search --> Frontend : 6. HTTP 200\n(完整结果列表)
+    deactivate Search
+    Frontend -> User : 7. 展示搜索结果\n(标注"搜索结果")
+
+else **部分结果** (1-9条房源)
+    Search --> Frontend : 6. HTTP 206\n(部分结果+不足标记)
+    deactivate Search
+    activate Frontend
+    Frontend -> Recommend : 8. 补充推荐请求\n{原始参数, result_count}
+    activate Recommend
+    Recommend -> Recommend : 9. 生成相似推荐\n(扩展邻近区域/放宽条件)
+    Recommend -> DB : 10. 获取推荐房源\n(相似逻辑)
+    activate DB
+    DB --> Recommend : 11. 推荐数据集
+    deactivate DB
+    Recommend --> Frontend : 12. 推荐列表\n(补充房源)
+    deactivate Recommend
+    Frontend -> User : 13. 混合展示\n"搜索结果"+"为您补充"
+    deactivate Frontend
+
+else **无结果** (0条房源)
+    Search --> Frontend : 6. HTTP 204\n(空结果+无结果标记)
+    deactivate Search
+    activate Frontend
+    Frontend -> Recommend : 8. 热门推荐请求\n{fallback: hot}
+    activate Recommend
+    Recommend -> Recommend : 9. 生成热门推荐\n(城市热门/用户偏好)
+    Recommend -> DB : 10. 查询热门房源\nORDER BY views DESC
+    activate DB
+    DB --> Recommend : 11. 热门房源数据
+    deactivate DB
+    Recommend --> Frontend : 12. 热门推荐列表
+    deactivate Recommend
+    Frontend -> User : 13. 展示推荐\n"为您推荐"
+    deactivate Frontend
+end
+
+@enduml

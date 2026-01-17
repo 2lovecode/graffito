@@ -1,8 +1,57 @@
+# IDE
 .idea
 .vscode
+*.swp
+*.swo
+*~
+
+# OS
 .DS_Store
-vendor
-*.o
-ssa.html
+Thumbs.db
+
+# Build
+vendor/
 bin/
+dist/
+*.o
+*.exe
+*.dll
+*.so
+*.dylib
+graffito
+graffito.exe
+
+# Test
+coverage.out
+coverage.html
+*.test
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Go specific
 *.bleve
+ssa.html
+*.prof
+
+# Web
+web/node_modules/
+web/prod/
+web/dist/
+package-lock.json
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Editor
+.vscode/
+.idea/
+*.code-workspace
