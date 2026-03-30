@@ -1,8 +1,6 @@
 module github.com/2lovecode/graffito
 
-go 1.24.0
-
-toolchain go1.24.2
+go 1.25.0
 
 require (
 	github.com/2lovecode/apiflow v0.0.0-20241231042909-f60d1463040a
@@ -40,9 +38,9 @@ require (
 	go.opentelemetry.io/otel/sdk v1.30.0
 	go.opentelemetry.io/otel/sdk/log v0.6.0
 	go.opentelemetry.io/otel/sdk/metric v1.30.0
-	golang.org/x/mod v0.29.0
-	golang.org/x/sync v0.18.0
-	golang.org/x/text v0.31.0
+	golang.org/x/mod v0.33.0
+	golang.org/x/sync v0.20.0
+	golang.org/x/text v0.35.0
 )
 
 require (
@@ -132,7 +130,7 @@ require (
 	go.opentelemetry.io/otel/metric v1.30.0 // indirect
 	go.opentelemetry.io/otel/trace v1.30.0 // indirect
 	golang.org/x/crypto v0.45.0 // indirect
-	golang.org/x/image v0.28.0 // indirect
+	golang.org/x/image v0.38.0 // indirect
 	golang.org/x/net v0.47.0 // indirect
 	golang.org/x/sys v0.38.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
