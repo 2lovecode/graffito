@@ -1,8 +1,6 @@
 module github.com/2lovecode/graffito
 
-go 1.24.0
-
-toolchain go1.24.2
+go 1.25.0
 
 require (
 	github.com/2lovecode/apiflow v0.0.0-20241231042909-f60d1463040a
@@ -24,22 +22,22 @@ require (
 	github.com/speps/go-hashids/v2 v2.0.1
 	github.com/spf13/afero v1.6.0
 	github.com/spf13/cobra v1.8.1
-	github.com/stretchr/testify v1.10.0
+	github.com/stretchr/testify v1.11.1
 	github.com/traefik/yaegi v0.15.1
 	github.com/willf/bloom v2.0.3+incompatible
 	github.com/xuri/excelize/v2 v2.4.1
 	github.com/yanyiwu/gojieba v1.1.2
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.55.0
-	go.opentelemetry.io/otel v1.30.0
+	go.opentelemetry.io/otel v1.43.0
 	go.opentelemetry.io/otel/bridge/opentracing v1.16.0
 	go.opentelemetry.io/otel/exporters/jaeger v1.16.0
 	go.opentelemetry.io/otel/exporters/stdout/stdoutlog v0.6.0
 	go.opentelemetry.io/otel/exporters/stdout/stdoutmetric v1.30.0
 	go.opentelemetry.io/otel/exporters/stdout/stdouttrace v1.30.0
 	go.opentelemetry.io/otel/log v0.6.0
-	go.opentelemetry.io/otel/sdk v1.30.0
+	go.opentelemetry.io/otel/sdk v1.43.0
 	go.opentelemetry.io/otel/sdk/log v0.6.0
-	go.opentelemetry.io/otel/sdk/metric v1.30.0
+	go.opentelemetry.io/otel/sdk/metric v1.43.0
 	golang.org/x/mod v0.29.0
 	golang.org/x/sync v0.18.0
 	golang.org/x/text v0.31.0
@@ -72,13 +70,13 @@ require (
 	github.com/blevesearch/zapx/v14 v14.4.1 // indirect
 	github.com/blevesearch/zapx/v15 v15.4.1 // indirect
 	github.com/blevesearch/zapx/v16 v16.2.2 // indirect
-	github.com/cespare/xxhash/v2 v2.2.0 // indirect
+	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/fatih/structs v1.1.0 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
 	github.com/flosch/pongo2/v4 v4.0.2 // indirect
-	github.com/go-logr/logr v1.4.2 // indirect
+	github.com/go-logr/logr v1.4.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-sql-driver/mysql v1.6.0 // indirect
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
@@ -129,12 +127,13 @@ require (
 	github.com/ysmood/gson v0.7.3 // indirect
 	github.com/ysmood/leakless v0.9.0 // indirect
 	go.etcd.io/bbolt v1.4.0 // indirect
-	go.opentelemetry.io/otel/metric v1.30.0 // indirect
-	go.opentelemetry.io/otel/trace v1.30.0 // indirect
+	go.opentelemetry.io/auto/sdk v1.2.1 // indirect
+	go.opentelemetry.io/otel/metric v1.43.0 // indirect
+	go.opentelemetry.io/otel/trace v1.43.0 // indirect
 	golang.org/x/crypto v0.45.0 // indirect
 	golang.org/x/image v0.28.0 // indirect
 	golang.org/x/net v0.47.0 // indirect
-	golang.org/x/sys v0.38.0 // indirect
+	golang.org/x/sys v0.42.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
 	google.golang.org/protobuf v1.33.0 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
